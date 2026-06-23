@@ -2,9 +2,9 @@
 const CACHE_NAME = 'cannguide-v1';
 
 const ASSETS = [
-  '/cannguide/',
-  '/cannguide/index.html',
-  '/cannguide/manifest.json',
+  '/CannGuide/',
+  '/CannGuide/index.html',
+  '/CannGuide/manifest.json',
   'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js'
 ];
 
