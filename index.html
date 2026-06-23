@@ -9,8 +9,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="CannGuide">
 <meta name="description" content="CannGuide — Prozess-Guide, Dosierungsrechner, Chargenverwaltung und Prävention für Cannabis-Edibles. DACH-Raum.">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.jpg">
+<link rel="manifest" href="/cannguide/manifest.json">
+<link rel="apple-touch-icon" href="/cannguide/icon-192.jpg">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%230F172A'/%3E%3Cpolygon points='256,70 395,150 395,310 256,390 117,310 117,150' fill='none' stroke='%2338BDF8' stroke-width='28' stroke-linejoin='round'/%3E%3Ccircle cx='256' cy='70' r='20' fill='%2300F2FE'/%3E%3Cpath d='M256,160 Q286,230 256,300 Q226,230 256,160 Z' fill='%2334D399'/%3E%3Cpath d='M256,230 Q206,210 186,270 Q236,290 256,230 Z' fill='%23059669'/%3E%3Cpath d='M256,230 Q306,210 326,270 Q276,290 256,230 Z' fill='%23059669'/%3E%3Cline x1='256' y1='390' x2='256' y2='440' stroke='%2338BDF8' stroke-width='28' stroke-linecap='round'/%3E%3C/svg%3E">
 <title>CannGuide</title>
 <style>
@@ -956,7 +956,7 @@ if('serviceWorker' in navigator){
             || host === '';
   if(!skipSW){
     window.addEventListener('load', function(){
-      navigator.serviceWorker.register('/CannGuide/service-worker.js')
+      navigator.serviceWorker.register('/cannguide/service-worker.js')
         .then(function(reg){ console.log('SW registered:', reg.scope); })
         .catch(function(err){ console.warn('SW registration failed:', err); });
     });
