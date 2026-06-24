@@ -7,130 +7,131 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="CannGuide">
-<meta name="description" content="CannGuide — Prozess-Guide, Dosierungsrechner, Chargenverwaltung und Prävention für Cannabis-Edibles. DACH-Raum.">
+<meta name="apple-mobile-web-app-title" content="cannguide">
+<meta name="description" content="cannguide — Prozess-Guide, Dosierungsrechner & Chargenverwaltung für Cannabis-Edibles. DACH-Raum.">
 <link rel="manifest" href="/cannguide/manifest.json">
 <link rel="apple-touch-icon" href="/cannguide/icon-192.jpg">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%230F172A'/%3E%3Cpolygon points='256,70 395,150 395,310 256,390 117,310 117,150' fill='none' stroke='%2338BDF8' stroke-width='28' stroke-linejoin='round'/%3E%3Ccircle cx='256' cy='70' r='20' fill='%2300F2FE'/%3E%3Cpath d='M256,160 Q286,230 256,300 Q226,230 256,160 Z' fill='%2334D399'/%3E%3Cpath d='M256,230 Q206,210 186,270 Q236,290 256,230 Z' fill='%23059669'/%3E%3Cpath d='M256,230 Q306,210 326,270 Q276,290 256,230 Z' fill='%23059669'/%3E%3Cline x1='256' y1='390' x2='256' y2='440' stroke='%2338BDF8' stroke-width='28' stroke-linecap='round'/%3E%3C/svg%3E">
 <title>cannguide</title>
 <style>
-:root{--bg:#111;--bg2:#1a1a1a;--bg3:#222;--border:#2a2a2a;--border2:#3a3a3a;--text:#e8e8e8;--text2:#aaa;--text3:#666;--accent:#52b788;--accent-bg:#0d2018;--warn:#e05252;--warn-bg:#1f0e0e;--amber:#d4a017;--amber-bg:#1f1500;--radius:8px;--radius-lg:12px;--fs-body:14px;--fs-small:12px;--fs-tiny:11px;--fs-title:15px;--fs-h2:17px}
+:root{--bg:#111;--bg2:#1a1a1a;--bg3:#222;--border:#2a2a2a;--border2:#3a3a3a;--text:#e8e8e8;--text2:#aaa;--text3:#666;--accent:#52b788;--accent-bg:#0d2018;--warn:#e05252;--warn-bg:#1f0e0e;--amber:#d4a017;--amber-bg:#1f1500;--radius:8px;--radius-lg:12px;--fs:14px;--fs-sm:12px;--fs-xs:11px;--fs-lg:15px;--fs-xl:17px}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:var(--fs-body);line-height:1.6}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:var(--fs);line-height:1.6}
 .app{max-width:740px;margin:0 auto;padding:1.25rem 1rem}
-h1{font-size:20px;font-weight:600;color:var(--text)}
-.sub{font-size:var(--fs-small);color:var(--text3);margin-bottom:1.25rem}
+h1{font-size:20px;font-weight:600}
+.sub{font-size:var(--fs-sm);color:var(--text3);margin-bottom:1.25rem}
 nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem;border-bottom:1px solid var(--border);padding-bottom:.75rem}
-.nb{background:transparent;border:1px solid var(--border);border-radius:var(--radius);padding:6px 13px;font-size:var(--fs-small);cursor:pointer;color:var(--text2);transition:all .15s;white-space:nowrap}
+.nb{background:transparent;border:1px solid var(--border);border-radius:var(--radius);padding:6px 13px;font-size:var(--fs-sm);cursor:pointer;color:var(--text2);transition:all .15s;white-space:nowrap}
 .nb.active{background:var(--bg2);color:var(--text);border-color:var(--border2)}
 .nb:hover:not(.active){background:var(--bg2)}
 .page{display:none}.page.active{display:block}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:1.25rem}
 .mc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:.875rem;cursor:pointer;transition:all .15s;text-align:center}
 .mc:hover{border-color:var(--border2);background:var(--bg3)}
-.mc.advanced{border-color:var(--warn)}
-.mc.advanced:hover{border-color:var(--warn);background:var(--warn-bg)}
+.mc.adv{border-color:var(--warn)}.mc.adv:hover{background:var(--warn-bg)}
 .mc .ico{font-size:26px;margin-bottom:6px}
-.mc .lbl{font-size:var(--fs-small);font-weight:600;color:var(--text);display:block}
-.mc .dsc{font-size:var(--fs-tiny);color:var(--text3);margin-top:2px;display:block}
-.mc.advanced .dsc{color:var(--warn)}
-.btn{background:transparent;border:1px solid var(--border2);border-radius:var(--radius);padding:7px 14px;font-size:var(--fs-small);cursor:pointer;color:var(--text2);transition:all .15s;display:inline-flex;align-items:center;gap:5px}
+.mc .lbl{font-size:var(--fs-sm);font-weight:600;display:block}
+.mc .dsc{font-size:var(--fs-xs);color:var(--text3);margin-top:2px;display:block}
+.mc.adv .dsc{color:var(--warn)}
+.btn{background:transparent;border:1px solid var(--border2);border-radius:var(--radius);padding:7px 14px;font-size:var(--fs-sm);cursor:pointer;color:var(--text2);transition:all .15s;display:inline-flex;align-items:center;gap:5px}
 .btn:hover{background:var(--bg2);color:var(--text)}
-.btn.primary{border-color:var(--accent);color:var(--accent)}
-.btn.primary:hover{background:var(--accent-bg)}
-.btn.danger{border-color:var(--warn);color:var(--warn)}
-.btn.danger:hover{background:var(--warn-bg)}
-.btn-back{background:none;border:none;color:var(--text3);font-size:var(--fs-small);cursor:pointer;padding:0;margin-bottom:.875rem;display:flex;align-items:center;gap:4px}
+.btn.primary{border-color:var(--accent);color:var(--accent)}.btn.primary:hover{background:var(--accent-bg)}
+.btn.danger{border-color:var(--warn);color:var(--warn)}.btn.danger:hover{background:var(--warn-bg)}
+.btn-back{background:none;border:none;color:var(--text3);font-size:var(--fs-sm);cursor:pointer;padding:0;margin-bottom:.875rem;display:flex;align-items:center;gap:4px}
 .btn-back:hover{color:var(--text2)}
-.wiz-title{font-size:var(--fs-h2);font-weight:600;margin-bottom:3px}
-.wiz-sub{font-size:var(--fs-small);color:var(--text3);margin-bottom:.875rem}
+.wiz-title{font-size:var(--fs-xl);font-weight:600;margin-bottom:3px}
+.wiz-sub{font-size:var(--fs-sm);color:var(--text3);margin-bottom:.875rem}
 .progress{height:3px;background:var(--bg3);border-radius:2px;margin-bottom:1.25rem}
 .pbar{height:3px;background:var(--accent);border-radius:2px;transition:width .3s}
 .sc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.125rem;margin-bottom:10px;transition:opacity .2s}
 .sc.done{opacity:.5}
-.snum{font-size:var(--fs-tiny);color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
-.stitle{font-size:var(--fs-title);font-weight:600;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.sbody{font-size:var(--fs-body);color:var(--text2);line-height:1.7}
-.tip{background:var(--accent-bg);border-left:2px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:9px 12px;margin-top:9px;font-size:var(--fs-small);color:#7ec8a0}
-.warn-inline{background:var(--warn-bg);border-left:2px solid var(--warn);border-radius:0 var(--radius) var(--radius) 0;padding:9px 12px;margin-top:9px;font-size:var(--fs-small);color:var(--warn)}
+.snum{font-size:var(--fs-xs);color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.stitle{font-size:var(--fs-lg);font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.sbody{font-size:var(--fs);color:var(--text2);line-height:1.7}
+.tip{background:var(--accent-bg);border-left:2px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:9px 12px;margin-top:9px;font-size:var(--fs-sm);color:#7ec8a0}
+.warn-il{background:var(--warn-bg);border-left:2px solid var(--warn);border-radius:0 var(--radius) var(--radius) 0;padding:9px 12px;margin-top:9px;font-size:var(--fs-sm);color:var(--warn)}
 .timer-row{display:flex;align-items:center;gap:10px;margin-top:10px;padding:10px 12px;background:var(--bg3);border-radius:var(--radius);flex-wrap:wrap}
-.timer-display{font-size:22px;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;min-width:70px}
-.timer-display.running{color:var(--amber)}
-.timer-display.tdone{color:var(--accent)}
-.timer-display.alert{color:var(--warn)}
-.step-check{width:18px;height:18px;border:2px solid var(--border2);border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;background:transparent}
-.step-check.checked{background:var(--accent);border-color:var(--accent)}
-.step-check.checked::after{content:'✓';color:#fff;font-size:11px}
-.step-note{width:100%;margin-top:10px;padding:7px 10px;background:var(--bg);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:var(--fs-small);font-family:inherit;resize:none;min-height:52px}
+.tdisp{font-size:22px;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;min-width:70px}
+.tdisp.run{color:var(--amber)}.tdisp.fin{color:var(--accent)}.tdisp.alrt{color:var(--warn)}
+.step-check{width:18px;height:18px;border:2px solid var(--border2);border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.step-check.chk{background:var(--accent);border-color:var(--accent)}.step-check.chk::after{content:'✓';color:#fff;font-size:11px}
+.step-note{width:100%;margin-top:10px;padding:7px 10px;background:var(--bg);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:var(--fs-sm);font-family:inherit;resize:none;min-height:52px}
 .step-note::placeholder{color:var(--text3)}
 .charge-save-panel{background:var(--accent-bg);border:1px solid var(--accent);border-radius:var(--radius-lg);padding:1.125rem;margin-top:1rem}
 .lib-sec{margin-bottom:1.25rem}
-.lib-title{font-size:var(--fs-title);font-weight:600;color:var(--text2);margin-bottom:.625rem;padding-bottom:7px;border-bottom:1px solid var(--border)}
+.lib-title{font-size:var(--fs-lg);font-weight:600;color:var(--text2);margin-bottom:.625rem;padding-bottom:7px;border-bottom:1px solid var(--border)}
 .le{padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer}
 .le:last-child{border-bottom:none}
-.le-title{font-size:var(--fs-body);font-weight:500;color:var(--text2);display:flex;justify-content:space-between;align-items:center;gap:8px}
-.le-body{font-size:var(--fs-body);color:var(--text3);line-height:1.75;display:none;padding-top:8px}
+.le-title{font-size:var(--fs);font-weight:500;color:var(--text2);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.le-body{font-size:var(--fs);color:var(--text3);line-height:1.75;display:none;padding-top:8px}
 .le-body.open{display:block}
-.lex-term{font-size:var(--fs-body);font-weight:600;color:var(--accent)}
-.lex-tag{font-size:var(--fs-tiny);padding:1px 6px;border-radius:4px;background:var(--bg3);color:var(--text3);border:1px solid var(--border);margin-left:6px;vertical-align:middle}
+.lex-term{font-size:var(--fs);font-weight:600;color:var(--accent)}
+.lex-tag{font-size:var(--fs-xs);padding:1px 6px;border-radius:4px;background:var(--bg3);color:var(--text3);border:1px solid var(--border);margin-left:6px;vertical-align:middle}
 .lex-tag.conc{background:var(--accent-bg);color:var(--accent);border-color:var(--accent)}
 .lex-tag.adv{background:var(--warn-bg);color:var(--warn);border-color:var(--warn)}
 .lex-tag.base{background:var(--amber-bg);color:var(--amber);border-color:var(--amber)}
 .cs{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.125rem;margin-bottom:10px}
-.cl{font-size:var(--fs-small);color:var(--text3);margin-bottom:5px;display:block}
+.cl{font-size:var(--fs-sm);color:var(--text3);margin-bottom:5px;display:block}
 input[type=range]{width:100%;accent-color:var(--accent);margin-top:3px}
-input[type=number],select,input[type=text],textarea{width:100%;padding:8px 10px;background:var(--bg);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:var(--fs-body);margin-top:3px;font-family:inherit}
+input[type=number],select,input[type=text],textarea{width:100%;padding:8px 10px;background:var(--bg);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:var(--fs);margin-top:3px;font-family:inherit}
 textarea{resize:vertical;min-height:70px}
 .cr{margin-bottom:.875rem}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .rg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:.875rem}
 .rm{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:.875rem}
-.rl{font-size:var(--fs-tiny);color:var(--text3);margin-bottom:5px}
-.rv{font-size:21px;font-weight:600}
-.rv.hi{color:var(--accent)}
-.rv.sm{font-size:var(--fs-body);line-height:1.5;padding-top:2px;font-weight:400}
-.tag{display:inline-block;font-size:var(--fs-tiny);padding:2px 8px;border-radius:5px;font-weight:500}
-.tg{background:var(--accent-bg);color:var(--accent)}
-.ta{background:var(--amber-bg);color:var(--amber)}
-.tr{background:var(--warn-bg);color:var(--warn)}
-.disclaimer{font-size:var(--fs-tiny);color:var(--text3);margin-top:.875rem;line-height:1.6}
-.unit-badge{display:flex;align-items:center;padding:0 10px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);font-size:var(--fs-body);color:var(--text3);white-space:nowrap;margin-top:3px}
-.input-row{display:flex;gap:6px}
-.input-row input{flex:1;margin-top:0}
+.rl{font-size:var(--fs-xs);color:var(--text3);margin-bottom:5px}
+.rv{font-size:21px;font-weight:600}.rv.hi{color:var(--accent)}.rv.am{color:var(--amber)}
+.rv.sm{font-size:var(--fs);line-height:1.5;padding-top:2px;font-weight:400}
+.tag{display:inline-block;font-size:var(--fs-xs);padding:2px 8px;border-radius:5px;font-weight:500}
+.tg{background:var(--accent-bg);color:var(--accent)}.ta{background:var(--amber-bg);color:var(--amber)}.tr{background:var(--warn-bg);color:var(--warn)}
+.disclaimer{font-size:var(--fs-xs);color:var(--text3);margin-top:.875rem;line-height:1.6}
+.unit-badge{display:flex;align-items:center;padding:0 10px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);font-size:var(--fs);color:var(--text3);white-space:nowrap;margin-top:3px}
+.input-row{display:flex;gap:6px}.input-row input{flex:1;margin-top:0}
 .charge-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem;margin-bottom:10px}
 .charge-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.5rem}
-.charge-name{font-size:var(--fs-title);font-weight:600;color:var(--text)}
-.charge-meta{font-size:var(--fs-tiny);color:var(--text3);margin-top:2px}
-.charge-note{font-size:var(--fs-small);color:var(--text2);margin-top:.5rem;line-height:1.5;border-top:1px solid var(--border);padding-top:.5rem}
+.charge-name{font-size:var(--fs-lg);font-weight:600}
+.charge-meta{font-size:var(--fs-xs);color:var(--text3);margin-top:2px}
+.charge-note{font-size:var(--fs-sm);color:var(--text2);margin-top:.5rem;line-height:1.5;border-top:1px solid var(--border);padding-top:.5rem}
 .charge-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:.5rem}
-.badge{font-size:var(--fs-tiny);padding:2px 7px;border-radius:4px;background:var(--bg3);color:var(--text3);border:1px solid var(--border)}
+.badge{font-size:var(--fs-xs);padding:2px 7px;border-radius:4px;background:var(--bg3);color:var(--text3);border:1px solid var(--border)}
 .badge.accent{background:var(--accent-bg);color:var(--accent);border-color:var(--accent)}
-.section-title{font-size:var(--fs-title);font-weight:600;color:var(--text);margin-bottom:.875rem;padding-bottom:7px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.empty-state{text-align:center;padding:2rem;color:var(--text3);font-size:var(--fs-body)}
+.section-title{font-size:var(--fs-lg);font-weight:600;margin-bottom:.875rem;padding-bottom:7px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.empty-state{text-align:center;padding:2rem;color:var(--text3)}
 .color-swatch{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer;display:inline-block}
 .color-swatch.active{border-color:var(--text)}
 .swatch-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.solvent-table{width:100%;border-collapse:collapse;font-size:var(--fs-small);margin-top:.5rem}
-.solvent-table th{text-align:left;color:var(--text3);font-weight:500;padding:5px 8px;border-bottom:1px solid var(--border);font-size:var(--fs-tiny)}
+.solvent-table{width:100%;border-collapse:collapse;font-size:var(--fs-sm);margin-top:.5rem}
+.solvent-table th{text-align:left;color:var(--text3);font-weight:500;padding:5px 8px;border-bottom:1px solid var(--border);font-size:var(--fs-xs)}
 .solvent-table td{padding:7px 8px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
 .solvent-table tr:last-child td{border-bottom:none}
 .dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px}
 .dot-g{background:var(--accent)}.dot-a{background:var(--amber)}.dot-r{background:var(--warn)}
 .mode-toggle{display:flex;gap:6px;margin-bottom:.875rem}
 .mode-toggle .btn{flex:1;justify-content:center}
-.notfall-box{background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--radius-lg);padding:.875rem 1.125rem;margin-bottom:1rem;font-size:var(--fs-body);line-height:2}
+.notfall-box{background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--radius-lg);padding:.875rem 1.125rem;margin-bottom:1rem;font-size:var(--fs);line-height:2}
 .adv-section{margin-top:1.5rem;border-top:1px solid var(--border);padding-top:1.25rem}
-.adv-header{display:flex;align-items:center;gap:8px;margin-bottom:.5rem;flex-wrap:wrap}
-.adv-badge{font-size:var(--fs-tiny);background:var(--warn-bg);border:1px solid var(--warn);border-radius:4px;padding:2px 8px;color:var(--warn)}
-.snav{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
-.scounter{font-size:var(--fs-small);color:var(--text3)}
+.adv-badge{font-size:var(--fs-xs);background:var(--warn-bg);border:1px solid var(--warn);border-radius:4px;padding:2px 8px;color:var(--warn)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:1rem}
+.compare-card{background:var(--bg2);border:1px solid var(--accent);border-radius:var(--radius-lg);padding:1rem}
+.compare-card h3{font-size:var(--fs-sm);font-weight:600;color:var(--accent);margin-bottom:.625rem}
+.compare-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);font-size:var(--fs-sm)}
+.compare-row:last-child{border-bottom:none}
+.compare-label{color:var(--text3)}
+.compare-val{color:var(--text);font-weight:500}
+.terpene-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:8px}
+.terp-chip{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:6px 10px;cursor:pointer;transition:all .15s;font-size:var(--fs-sm)}
+.terp-chip:hover{border-color:var(--border2)}
+.terp-chip.sel{background:var(--accent-bg);border-color:var(--accent);color:var(--accent)}
+.terp-chip .tn{font-weight:600;display:block}
+.terp-chip .ts{font-size:var(--fs-xs);color:var(--text3);margin-top:2px}
+.terp-chip.sel .ts{color:#7ec8a0}
 </style>
 </head>
 <body>
 <div class="app">
 <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.25rem">
   <div style="display:flex;align-items:center;gap:10px">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="36" height="36" style="flex-shrink:0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="36" height="36" style="flex-shrink:0;cursor:pointer" onclick="showPage('home')">
       <rect width="512" height="512" rx="112" fill="#0F172A"/>
       <polygon points="256,70 395,150 395,310 256,390 117,310 117,150" fill="none" stroke="#38BDF8" stroke-width="28" stroke-linejoin="round"/>
       <circle cx="256" cy="70" r="20" fill="#00F2FE"/>
@@ -139,31 +140,47 @@ textarea{resize:vertical;min-height:70px}
       <path d="M256,230 Q306,210 326,270 Q276,290 256,230 Z" fill="#059669"/>
       <line x1="256" y1="390" x2="256" y2="440" stroke="#38BDF8" stroke-width="28" stroke-linecap="round"/>
     </svg>
-    <div><h1 id="app-title">CannGuide</h1><p class="sub">Guide · Bibliothek · Rechner · Chargen · Prävention</p></div>
+    <div><h1 id="app-title">CannGuide</h1><p class="sub" id="app-sub">Guide · Bibliothek · Rechner · Chargen · Prävention</p></div>
   </div>
-  <button class="btn" onclick="showPage('settings')">⚙</button>
+  <div style="display:flex;gap:6px;align-items:center">
+    <button class="btn" id="lang-toggle" onclick="toggleLang()" title="Sprache">DE</button>
+    <button class="btn" onclick="showPage('settings')">⚙</button>
+  </div>
 </div>
 <nav>
-  <button class="nb active" onclick="showPage('home')">⬡ Start</button>
-  <button class="nb" onclick="showPage('wizard')">☑ Guide</button>
-  <button class="nb" onclick="showPage('library')">⊞ Bibliothek</button>
-  <button class="nb" onclick="showPage('calc')">∑ Rechner</button>
-  <button class="nb" onclick="showPage('charges')">⊡ Chargen</button>
-  <button class="nb" onclick="showPage('safety')">⛨ Prävention</button>
-  <button class="nb" onclick="showPage('settings')">⚙ Design</button>
+  <button class="nb active" onclick="showPage('home')" id="nav-home">⬡ Methoden</button>
+  <button class="nb" onclick="showPage('wizard')" id="nav-wizard">☑ Guide</button>
+  <button class="nb" onclick="showPage('library')" id="nav-library">⊞ Bibliothek</button>
+  <button class="nb" onclick="showPage('calc')" id="nav-calc">∑ Rechner</button>
+  <button class="nb" onclick="showPage('charges')" id="nav-charges">⊡ Chargen</button>
+  <button class="nb" onclick="showPage('safety')" id="nav-safety">⛨ Prävention</button>
 </nav>
 
 <!-- HOME -->
 <div id="page-home" class="page active">
-  <p style="font-size:var(--fs-body);color:var(--text3);margin-bottom:1.125rem;line-height:1.7">Schritt-für-Schritt Guide, Dosierungsrechner, Chargenverwaltung und Prävention für Cannabis-Edibles — von Butter bis Vakuumdestillation.</p>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1.25rem">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:.625rem">
+      <span style="font-size:18px">🌿</span>
+      <span style="font-size:var(--fs-lg);font-weight:600">Was ist CannGuide?</span>
+    </div>
+    <p id="home-desc" style="font-size:var(--fs);color:var(--text2);line-height:1.75;margin-bottom:.875rem">CannGuide ist eine praxisorientierte Wissens- und Produktionsapp für Cannabis-Edibles im DACH-Raum. Von der klassischen Cannabutter bis zur Vakuumdestillation — mit Schritt-für-Schritt Guides, Timern, Dosierungsrechner, Chargenverwaltung und Prävention.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px">
+      <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">☑ <b>16 Guides</b><br><span style="color:var(--text3)">mit Timern & Notizen</span></div>
+      <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">∑ <b>Dosierungsrechner</b><br><span style="color:var(--text3)">Rohmaterial & Extrakte</span></div>
+      <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">⊡ <b>Chargenverwaltung</b><br><span style="color:var(--text3)">mit Diagrammen & PDF</span></div>
+      <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">⛨ <b>Prävention</b><br><span style="color:var(--text3)">DACH Anlaufstellen</span></div>
+      <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">📖 <b>Lexikon</b><br><span style="color:var(--text3)">Szene- & Fachbegriffe</span></div>
+      <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">⚗ <b>Fortgeschritten</b><br><span style="color:var(--text3)">BHO, THCA, Destillat</span></div>
+    </div>
+  </div>
   <div class="grid">
     <div class="mc" onclick="showPage('wizard');startWizard('butter')"><div class="ico">🧈</div><span class="lbl">Butter / Fette</span><span class="dsc">Infusion, Dekarb</span></div>
     <div class="mc" onclick="showPage('wizard');startWizard('mct')"><div class="ico">💧</div><span class="lbl">MCT-Öl</span><span class="dsc">Schnell, neutral</span></div>
     <div class="mc" onclick="showPage('wizard');startWizard('glycerin')"><div class="ico">🫙</div><span class="lbl">Glycerin (VG)</span><span class="dsc">Alkoholfrei</span></div>
     <div class="mc" onclick="showPage('wizard');startWizard('lecithin')"><div class="ico">🔬</div><span class="lbl">Lecithin-Ext.</span><span class="dsc">Emulgator-Basis</span></div>
-    <div class="mc" onclick="showPage('wizard');startWizard('rosin')"><div class="ico">🫧</div><span class="lbl">Rosin / Live Resin</span><span class="dsc">Hitzepresse, lösungsmittelfrei</span></div>
     <div class="mc" onclick="showPage('wizard');startWizard('tinktur')"><div class="ico">🧪</div><span class="lbl">Tinktur / QWET</span><span class="dsc">Alkohol-Extrakt</span></div>
     <div class="mc" onclick="showPage('wizard');startWizard('feco')"><div class="ico">🟢</div><span class="lbl">FECO</span><span class="dsc">Full Extract Oil</span></div>
+    <div class="mc" onclick="showPage('wizard');startWizard('rosin')"><div class="ico">🫧</div><span class="lbl">Rosin / Live Resin</span><span class="dsc">Lösungsmittelfrei</span></div>
     <div class="mc" onclick="showPage('wizard');startWizard('hard_candy')"><div class="ico">💎</div><span class="lbl">Hard Candy</span><span class="dsc">Lollipops, Drops</span></div>
     <div class="mc" onclick="showPage('wizard');startWizard('gummies')"><div class="ico">🐻</div><span class="lbl">Soft Candy</span><span class="dsc">Gummies, Jelly</span></div>
     <div class="mc" onclick="showPage('wizard');startWizard('baked')"><div class="ico">🍪</div><span class="lbl">Backwaren</span><span class="dsc">Brownies, Cookies</span></div>
@@ -176,18 +193,16 @@ textarea{resize:vertical;min-height:70px}
     <button class="btn" onclick="showPage('safety')" style="border-color:var(--warn);color:var(--warn)">⛨ Prävention</button>
   </div>
   <div class="adv-section">
-    <div class="adv-header">
-      <span style="font-size:var(--fs-small);font-weight:600;color:var(--warn)">⚗ Fortgeschritten</span>
-      <span class="adv-badge">Spezialequipment</span>
-      <span class="adv-badge">Hohe Kosten</span>
-      <span class="adv-badge">Brandgefahr / Lösungsmittel</span>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:.5rem;flex-wrap:wrap">
+      <span style="font-size:var(--fs-sm);font-weight:600;color:var(--warn)">⚗ Fortgeschritten</span>
+      <span class="adv-badge">Spezialequipment</span><span class="adv-badge">Hohe Kosten</span><span class="adv-badge">Brandgefahr</span>
     </div>
-    <p style="font-size:var(--fs-small);color:var(--text3);margin-bottom:.875rem;line-height:1.6">Diese Methoden erfordern Spezialequipment, technisches Fachwissen und erheblichen Aufwand. Gefährliche Lösungsmittel oder Druckgeräte involviert — für Heimanwender in der Regel nicht empfohlen.</p>
+    <p style="font-size:var(--fs-sm);color:var(--text3);margin-bottom:.875rem;line-height:1.6">Gefährliche Lösungsmittel oder Druckgeräte — für Heimanwender in der Regel nicht empfohlen.</p>
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">
-      <div class="mc advanced" onclick="showPage('wizard');startWizard('rso')"><div class="ico">🟤</div><span class="lbl">RSO</span><span class="dsc">Naphtha / Ethanol</span></div>
-      <div class="mc advanced" onclick="showPage('wizard');startWizard('bho')"><div class="ico">🔥</div><span class="lbl">BHO / N-Butan</span><span class="dsc">Closed Loop</span></div>
-      <div class="mc advanced" onclick="showPage('wizard');startWizard('thca')"><div class="ico">💎</div><span class="lbl">THCA-Kristalle</span><span class="dsc">Diamantmining · Press · Zentrifuge</span></div>
-      <div class="mc advanced" onclick="showPage('wizard');startWizard('vakuum')"><div class="ico">⚗</div><span class="lbl">Vakuumdestillation</span><span class="dsc">THC · CBD · CBG Isolat</span></div>
+      <div class="mc adv" onclick="showPage('wizard');startWizard('rso')"><div class="ico">🟤</div><span class="lbl">RSO</span><span class="dsc">Naphtha / Ethanol</span></div>
+      <div class="mc adv" onclick="showPage('wizard');startWizard('bho')"><div class="ico">🔥</div><span class="lbl">BHO / N-Butan</span><span class="dsc">Closed Loop</span></div>
+      <div class="mc adv" onclick="showPage('wizard');startWizard('thca')"><div class="ico">💎</div><span class="lbl">THCA-Kristalle</span><span class="dsc">Diamond · Press · Zentrifuge</span></div>
+      <div class="mc adv" onclick="showPage('wizard');startWizard('vakuum')"><div class="ico">⚗</div><span class="lbl">Vakuumdestillation</span><span class="dsc">THC · CBD · CBG Isolat</span></div>
     </div>
   </div>
 </div>
@@ -200,20 +215,20 @@ textarea{resize:vertical;min-height:70px}
   <div class="progress"><div class="pbar" id="pbar" style="width:0%"></div></div>
   <div id="wiz-steps"></div>
   <div id="charge-save-panel" style="display:none" class="charge-save-panel">
-    <div style="font-size:var(--fs-title);font-weight:600;color:var(--accent);margin-bottom:.875rem">✓ Herstellung abgeschlossen — Als Charge speichern?</div>
+    <div style="font-size:var(--fs-lg);font-weight:600;color:var(--accent);margin-bottom:.875rem">✓ Herstellung abgeschlossen — Als Charge speichern?</div>
     <div class="row2">
       <div class="cr"><label class="cl">Chargenname</label><input type="text" id="wiz-cf-name"></div>
       <div class="cr"><label class="cl">Medium</label><input type="text" id="wiz-cf-medium" readonly style="opacity:.6"></div>
     </div>
     <div class="row2">
       <div class="cr"><label class="cl">Datum</label><input type="text" id="wiz-cf-date"></div>
-      <div class="cr"><label class="cl">Dosis pro Portion (mg, optional)</label><input type="number" id="wiz-cf-dose" min="0" step="0.5"></div>
+      <div class="cr"><label class="cl">Dosis pro Portion (mg)</label><input type="number" id="wiz-cf-dose" min="0" step="0.5"></div>
     </div>
     <div class="cr"><label class="cl">Notizen aus den Schritten</label><textarea id="wiz-cf-notes" style="min-height:90px"></textarea></div>
     <div style="display:flex;gap:8px;align-items:center">
       <button class="btn primary" onclick="saveWizCharge()">✓ Charge speichern</button>
       <button class="btn" onclick="document.getElementById('charge-save-panel').style.display='none'">Überspringen</button>
-      <span id="wiz-saved" style="font-size:var(--fs-small);color:var(--accent);display:none">✓ Gespeichert!</span>
+      <span id="wiz-saved" style="font-size:var(--fs-sm);color:var(--accent);display:none">✓ Gespeichert!</span>
     </div>
   </div>
 </div>
@@ -228,8 +243,8 @@ textarea{resize:vertical;min-height:70px}
 <div id="page-calc" class="page">
   <div class="cs">
     <div class="mode-toggle">
-      <button id="mode-raw" class="btn primary" onclick="setCalcMode('raw')">🌿 Rohmaterial</button>
-      <button id="mode-extract" class="btn" onclick="setCalcMode('extract')">💧 Extrakt / Konzentrat</button>
+      <button id="btn-mode-raw" class="btn primary" onclick="setCalcMode('raw')">🌿 Rohmaterial</button>
+      <button id="btn-mode-extract" class="btn" onclick="setCalcMode('extract')">💧 Extrakt / Konzentrat</button>
     </div>
     <div class="row2">
       <div class="cr"><label class="cl">Träger / Medium</label>
@@ -241,86 +256,158 @@ textarea{resize:vertical;min-height:70px}
         </select>
       </div>
       <div class="cr"><label class="cl">Eingesetzte Menge</label>
-        <div class="input-row"><input type="number" id="ig" value="5" min="0.001" step="0.001" oninput="cu()"><span class="unit-badge" id="input-unit-label">g</span></div>
+        <div class="input-row"><input type="number" id="ig" value="5" min="0.001" step="0.001" oninput="calcUpdate()"><span class="unit-badge" id="input-unit-label">g</span></div>
       </div>
     </div>
+    <!-- Rohmaterial -->
     <div id="raw-inputs">
       <div class="cr"><label class="cl">Wirkstoffgehalt Material: <strong id="po">20</strong>%</label>
-        <input type="range" min="1" max="35" step="1" value="20" id="potency" oninput="document.getElementById('po').textContent=this.value;cu()">
+        <input type="range" min="1" max="35" step="1" value="20" id="potency" oninput="document.getElementById('po').textContent=this.value;calcUpdate()">
       </div>
     </div>
+    <!-- Extrakt -->
     <div id="extract-inputs" style="display:none">
       <div class="row2">
         <div class="cr"><label class="cl">Extrakt-Typ</label>
           <select id="extract-type" onchange="onExtractTypeChange()">
-            <optgroup label="Lösungsmittelfrei"><option value="rosin">Rosin (60–80%)</option><option value="kief">Kief / Pollen (30–60%)</option><option value="thca_kristall">THCA-Kristalle (95–99%)</option></optgroup>
-            <optgroup label="Lösungsmittel-Extrakte"><option value="bho_shatter">BHO Shatter (70–90%)</option><option value="bho_wax">BHO Wax / Budder (65–85%)</option><option value="bho_oil">BHO Öl / Sauce (50–80%)</option><option value="rso">RSO (40–70%)</option><option value="feco">FECO (50–80%)</option><option value="tinktur_red">Tinktur / QWET-Redukt (30–60%)</option></optgroup>
-            <optgroup label="Destillate"><option value="destillat">Destillat / Vakuumfraktion (85–99%)</option></optgroup>
+            <optgroup label="Lösungsmittelfrei"><option value="rosin">Rosin (60–80%)</option><option value="kief">Kief / Pollen (30–60%)</option><option value="thca_k">THCA-Kristalle (95–99%)</option></optgroup>
+            <optgroup label="Lösungsmittel-Extrakte"><option value="bho_s">BHO Shatter (70–90%)</option><option value="bho_w">BHO Wax/Budder (65–85%)</option><option value="bho_o">BHO Sauce/Öl (50–80%)</option><option value="rso">RSO (40–70%)</option><option value="feco">FECO (50–80%)</option><option value="tred">Tinktur-Redukt (30–60%)</option></optgroup>
+            <optgroup label="Destillate"><option value="dest">Vakuumdestillat (85–99%)</option></optgroup>
             <option value="custom">Eigener Wert</option>
           </select>
         </div>
         <div class="cr"><label class="cl">Wirkstoffgehalt: <strong id="po-ext">70</strong>%</label>
-          <input type="range" min="1" max="99" step="1" value="70" id="potency-ext" oninput="document.getElementById('po-ext').textContent=this.value;cu()">
+          <input type="range" min="1" max="99" step="1" value="70" id="potency-ext" oninput="document.getElementById('po-ext').textContent=this.value;calcUpdate()">
         </div>
       </div>
-      <div id="extract-hint-box" style="background:var(--bg3);border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-small);color:var(--text3);margin-bottom:.625rem"></div>
+      <div id="extract-hint" style="background:var(--bg3);border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-sm);color:var(--text3);margin-bottom:.625rem"></div>
     </div>
+    <!-- Trägermenge -->
     <div class="row2">
       <div class="cr"><label class="cl">Trägermenge gesamt</label>
-        <div class="input-row"><input type="number" id="carrier" value="200" min="1" step="1" oninput="cu()"><span class="unit-badge" id="carrier-unit-label">g</span></div>
+        <div class="input-row"><input type="number" id="carrier" value="200" min="1" step="1" oninput="calcUpdate()"><span class="unit-badge" id="carrier-unit">g</span></div>
       </div>
       <div class="cr"><label class="cl">Portion enthält</label>
-        <div class="input-row"><input type="number" id="portion-carrier" value="10" min="0.1" step="0.1" oninput="cu()"><span class="unit-badge" id="portion-unit-label">g</span></div>
+        <div class="input-row"><input type="number" id="portion-c" value="10" min="0.1" step="0.1" oninput="calcUpdate()"><span class="unit-badge" id="portion-unit">g</span></div>
       </div>
     </div>
+    <!-- Effizienz -->
     <div class="cr">
-      <label class="cl">Extraktionseffizienz: <strong id="eo">80</strong>% <span id="eff-hint" style="font-size:var(--fs-tiny);color:var(--text3);margin-left:4px"></span></label>
-      <input type="range" min="50" max="98" step="1" value="80" id="eff" oninput="document.getElementById('eo').textContent=this.value;cu()">
+      <label class="cl">Extraktionseffizienz: <strong id="eo">80</strong>% <span id="eff-hint" style="font-size:var(--fs-xs);color:var(--text3);margin-left:4px"></span></label>
+      <input type="range" min="50" max="98" step="1" value="80" id="eff" oninput="document.getElementById('eo').textContent=this.value;calcUpdate()">
     </div>
+    <!-- Applikation / Bioverfügbarkeit -->
+    <div class="cr">
+      <label class="cl">Applikationsform (Bioverfügbarkeit)</label>
+      <select id="bioavail" onchange="calcUpdate()">
+        <option value="0">— Nicht berücksichtigen —</option>
+        <option value="0.275">Sublingual (Ø 20–35%)</option>
+        <option value="0.13">Oral / Edibles (Ø 6–20%)</option>
+        <option value="0.03">Topisch (Ø 1–5%)</option>
+      </select>
+    </div>
+    <div id="bio-disclaimer" style="display:none;background:var(--amber-bg);border:1px solid var(--amber);border-radius:var(--radius);padding:9px 12px;font-size:var(--fs-xs);color:var(--amber);line-height:1.65;margin-bottom:.875rem">
+      ⚠ Bioverfügbarkeitswerte sind Mittelwerte aus klinischen Studien und stellen keine individuellen Prognosen dar. Natürliche Produkte unterliegen inhärenten Schwankungen in Wirkstoffgehalt und -zusammensetzung. Darüber hinaus beeinflussen genetische Veranlagung, Stoffwechselrate, Mageninhalt, Toleranz und Enzymaktivität (insb. CYP2C9/CYP3A4) die tatsächlich bioverfügbare Menge erheblich. Die angezeigten Werte dienen ausschliesslich der groben Orientierung.
+    </div>
+    <!-- Toleranz -->
+    <div class="cr">
+      <label class="cl">Konsumfrequenz (Toleranzkorrektur)</label>
+      <select id="tolerance" onchange="calcUpdate()">
+        <option value="1.0">— Nicht berücksichtigen —</option>
+        <option value="1.0">Gelegentlich (1× / Woche oder weniger)</option>
+        <option value="1.3">Regelmässig (2–4× / Woche)</option>
+        <option value="1.7">Täglich</option>
+        <option value="2.2">Täglich mehrmals</option>
+      </select>
+    </div>
+    <!-- Terpene -->
+    <div class="cr">
+      <label class="cl">Terpenprofil (optional — Info)</label>
+      <div class="terpene-grid" id="terpene-grid"></div>
+    </div>
+    <div id="terp-info" style="display:none;background:var(--accent-bg);border:1px solid var(--accent);border-radius:var(--radius);padding:9px 12px;font-size:var(--fs-sm);color:#7ec8a0;line-height:1.65;margin-top:4px"></div>
   </div>
-  <div id="calc-warn" style="display:none;border-radius:var(--radius-lg);padding:.875rem 1.125rem;margin-bottom:10px;font-size:var(--fs-small);line-height:1.8"></div>
-  <div id="conc-summary" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:.875rem 1.125rem;margin-bottom:10px;font-size:var(--fs-small);color:var(--text3);line-height:1.8"></div>
-  <div class="rg">
+  <div id="calc-warn" style="display:none;border-radius:var(--radius-lg);padding:.875rem 1.125rem;margin-bottom:10px;font-size:var(--fs-sm);line-height:1.8"></div>
+  <div id="conc-summary" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:.875rem 1.125rem;margin-bottom:10px;font-size:var(--fs-sm);color:var(--text3);line-height:1.8"></div>
+  <div class="rg" id="result-grid">
     <div class="rm"><div class="rl">Wirkstoff nach Effizienz</div><div class="rv hi" id="r-total">—</div></div>
     <div class="rm"><div class="rl">Pro Portion</div><div class="rv hi" id="r-portion">—</div></div>
+    <div class="rm" id="r-bio-box" style="display:none"><div class="rl">Bioverfügbar (Ø)</div><div class="rv am" id="r-bio">—</div></div>
+    <div class="rm" id="r-tol-box" style="display:none"><div class="rl">Empf. Dosis bei Toleranz</div><div class="rv am" id="r-tol">—</div></div>
     <div class="rm"><div class="rl">Intensität</div><div class="rv" id="r-int">—</div></div>
     <div class="rm"><div class="rl">Empfehlung</div><div class="rv sm" id="r-rec" style="color:var(--text3)">—</div></div>
   </div>
   <div style="margin-top:1rem;display:flex;gap:8px;align-items:center">
     <button class="btn primary" onclick="saveToCharge()">+ Als Charge speichern</button>
-    <span id="calc-saved" style="font-size:var(--fs-small);color:var(--accent);display:none">✓ Gespeichert!</span>
+    <span id="calc-saved" style="font-size:var(--fs-sm);color:var(--accent);display:none">✓ Gespeichert!</span>
   </div>
   <p class="disclaimer">Schätzwerte. Onset: 30–120 Min — immer abwarten.</p>
 </div>
 
 <!-- CHARGEN -->
 <div id="page-charges" class="page">
-  <div class="section-title"><span>Chargenverwaltung</span><button class="btn primary" onclick="showChargeForm()">+ Neue Charge</button></div>
+  <div class="section-title"><span>Chargenverwaltung</span>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <button class="btn primary" onclick="showChargeForm()">+ Neue Charge</button>
+      <button class="btn" onclick="document.getElementById('import-input').click()">↑ Import</button>
+      <input type="file" id="import-input" accept=".json" style="display:none" onchange="importCharges(event)">
+      <button class="btn" onclick="doExportPDF()">↓ PDF</button>
+      <button class="btn" onclick="showCompare()">⇄ Vergleich</button>
+    </div>
+  </div>
+  <div id="import-feedback" style="display:none;border-radius:var(--radius-lg);padding:.75rem 1rem;margin-bottom:1rem;font-size:var(--fs-sm);line-height:1.6"></div>
+
+  <!-- Vergleichs-Panel -->
+  <div id="compare-panel" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.125rem;margin-bottom:1rem">
+    <div style="font-size:var(--fs-lg);font-weight:600;margin-bottom:.875rem">⇄ Chargen vergleichen</div>
+    <div class="row2">
+      <div class="cr"><label class="cl">Charge A</label>
+        <select id="compare-a"><option value="">— wählen —</option></select>
+      </div>
+      <div class="cr"><label class="cl">Charge B</label>
+        <select id="compare-b"><option value="">— wählen —</option></select>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn primary" onclick="doCompare()">Vergleichen</button>
+      <button class="btn" onclick="document.getElementById('compare-panel').style.display='none'">Schliessen</button>
+    </div>
+    <div id="compare-result" style="margin-top:1rem"></div>
+  </div>
 
   <!-- Dashboard -->
   <div id="charges-dashboard" style="display:none;margin-bottom:1.25rem">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
       <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem">
-        <div style="font-size:var(--fs-tiny);color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.625rem">Dosis pro Portion über Zeit</div>
+        <div style="font-size:var(--fs-xs);color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.625rem">Dosis über Zeit</div>
         <canvas id="chart-dose" height="160"></canvas>
       </div>
       <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem">
-        <div style="font-size:var(--fs-tiny);color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.625rem">Medien-Verteilung</div>
+        <div style="font-size:var(--fs-xs);color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.625rem">Medien-Verteilung</div>
         <canvas id="chart-medium" height="160"></canvas>
       </div>
     </div>
     <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem">
-      <div style="font-size:var(--fs-tiny);color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.625rem">Portionen produziert pro Charge</div>
+      <div style="font-size:var(--fs-xs);color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.625rem">Portionen pro Charge</div>
       <canvas id="chart-portions" height="120"></canvas>
     </div>
   </div>
-  <div id="dashboard-empty" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1rem;font-size:var(--fs-small);color:var(--text3);text-align:center">Noch keine Chargen mit Dosisdaten für Diagramme.</div>
+
+  <!-- Formular -->
   <div id="charge-form" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.125rem;margin-bottom:1rem">
-    <div style="font-size:var(--fs-title);font-weight:600;margin-bottom:.875rem">Charge anlegen / bearbeiten</div>
+    <div style="font-size:var(--fs-lg);font-weight:600;margin-bottom:.875rem">Charge anlegen / bearbeiten</div>
+    <div id="template-load-row" class="cr" style="background:var(--bg3);border-radius:var(--radius);padding:8px 10px;margin-bottom:.875rem">
+      <label class="cl" style="color:var(--accent)">📋 Aus Vorlage laden</label>
+      <div style="display:flex;gap:6px;margin-top:4px">
+        <select id="template-select" style="flex:1;margin-top:0"><option value="">— Vorlage wählen —</option></select>
+        <button class="btn primary" onclick="loadTemplate()">Laden</button>
+        <button class="btn danger" onclick="deleteTemplate()">✕</button>
+      </div>
+    </div>
     <div class="row2">
       <div class="cr"><label class="cl">Chargenname *</label><input type="text" id="cf-name"></div>
       <div class="cr"><label class="cl">Medium</label>
-        <select id="cf-medium"><option>Butter</option><option>Ghee</option><option>Kokosöl</option><option>Kokosfett</option><option>MCT-Öl</option><option>Olivenöl</option><option>Glycerin</option><option>Tinktur / QWET</option><option>FECO</option><option>RSO</option><option>BHO</option><option>THCA-Kristalle</option><option>Destillat</option><option>Gummies</option><option>Hard Candy</option><option>Backwaren</option><option>Kapseln</option><option>Exotisch</option></select>
+        <select id="cf-medium"><option>Butter</option><option>Ghee</option><option>Kokosöl</option><option>Kokosfett</option><option>MCT-Öl</option><option>Olivenöl</option><option>Glycerin</option><option>Tinktur / QWET</option><option>FECO</option><option>RSO</option><option>BHO</option><option>Rosin</option><option>THCA-Kristalle</option><option>Destillat</option><option>Gummies</option><option>Hard Candy</option><option>Backwaren</option><option>Kapseln</option><option>Exotisch</option></select>
       </div>
     </div>
     <div class="row2">
@@ -333,8 +420,16 @@ textarea{resize:vertical;min-height:70px}
     </div>
     <div class="cr"><label class="cl">Rezept / Anpassungen</label><textarea id="cf-recipe"></textarea></div>
     <div class="cr"><label class="cl">Notizen & Beobachtungen</label><textarea id="cf-notes"></textarea></div>
-    <div style="display:flex;gap:8px;margin-top:.5rem">
+    <div class="cr">
+      <label class="cl">Anhänge (Bilder, PDFs)</label>
+      <div id="cf-attach-preview" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;min-height:0"></div>
+      <button class="btn" style="margin-top:8px" onclick="document.getElementById('cf-attach-input').click()">+ Anhang</button>
+      <input type="file" id="cf-attach-input" accept="image/*,.pdf" multiple style="display:none" onchange="addAttachments(event)">
+      <p style="font-size:var(--fs-xs);color:var(--text3);margin-top:5px">Bilder werden komprimiert (max. 800px, 70% JPEG). Max. 3–4 Bilder empfohlen.</p>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:.5rem;flex-wrap:wrap">
       <button class="btn primary" onclick="saveCharge()">✓ Speichern</button>
+      <button class="btn" onclick="saveAsTemplate()">📋 Als Vorlage</button>
       <button class="btn" onclick="cancelCharge()">Abbrechen</button>
     </div>
   </div>
@@ -352,35 +447,36 @@ textarea{resize:vertical;min-height:70px}
   <div class="section-title">Design & Einstellungen</div>
   <div class="cs">
     <div class="cr">
-      <label class="cl" style="font-size:var(--fs-body);font-weight:500;color:var(--text2)">Farbschema</label>
+      <label class="cl" style="font-size:var(--fs);font-weight:500;color:var(--text2)">Farbschema</label>
       <div class="swatch-row" style="margin-top:.625rem">
         <div class="color-swatch active" id="sw-green" style="background:#52b788" onclick="setTheme('green')"></div>
         <div class="color-swatch" id="sw-amber" style="background:#d4a017" onclick="setTheme('amber')"></div>
         <div class="color-swatch" id="sw-blue" style="background:#4a9eda" onclick="setTheme('blue')"></div>
         <div class="color-swatch" id="sw-pink" style="background:#d47ab0" onclick="setTheme('pink')"></div>
         <div class="color-swatch" id="sw-red" style="background:#e05252" onclick="setTheme('red')"></div>
-        <span style="font-size:var(--fs-small);color:var(--text3);margin-left:6px" id="theme-name">Grün</span>
+        <span style="font-size:var(--fs-sm);color:var(--text3);margin-left:6px" id="theme-name">Grün</span>
       </div>
     </div>
     <div class="cr">
-      <label class="cl" style="font-size:var(--fs-body);font-weight:500;color:var(--text2)">Hell / Dunkel</label>
-      <div style="display:flex;gap:8px;margin-top:.625rem">
-        <button class="btn primary" id="btn-mode-dark" onclick="setMode('dark')">🌙 Dunkel</button>
-        <button class="btn" id="btn-mode-light" onclick="setMode('light')">☀ Hell</button>
+      <label class="cl" style="font-size:var(--fs);font-weight:500;color:var(--text2)">Hell / Dunkel</label>
+      <div style="display:flex;gap:8px;margin-top:.625rem;flex-wrap:wrap">
+        <button class="btn" id="btn-auto-mode" onclick="setMode('auto')">◐ Auto</button>
+        <button class="btn primary" id="btn-dark-mode" onclick="setMode('dark')">🌙 Dunkel</button>
+        <button class="btn" id="btn-light-mode" onclick="setMode('light')">☀ Hell</button>
       </div>
     </div>
     <div class="cr">
-      <label class="cl" style="font-size:var(--fs-body);font-weight:500;color:var(--text2)">App-Titel</label>
+      <label class="cl" style="font-size:var(--fs);font-weight:500;color:var(--text2)">App-Titel</label>
       <div style="display:flex;gap:8px;margin-top:.375rem">
-        <input type="text" id="title-input" placeholder="🌿 Edibles Workshop" style="flex:1">
+        <input type="text" id="title-input" placeholder="CannGuide" style="flex:1">
         <button class="btn primary" onclick="setTitle()">✓</button>
       </div>
     </div>
     <div class="cr">
-      <label class="cl" style="font-size:var(--fs-body);font-weight:500;color:var(--text2)">Daten</label>
+      <label class="cl" style="font-size:var(--fs);font-weight:500;color:var(--text2)">Daten</label>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:.375rem">
-        <button class="btn" onclick="exportData()">↓ Chargen exportieren (JSON)</button>
-        <button class="btn danger" onclick="clearCharges()">✕ Alle Chargen löschen</button>
+        <button class="btn" onclick="exportData()">↓ JSON Export</button>
+        <button class="btn danger" onclick="clearCharges()">✕ Chargen löschen</button>
       </div>
     </div>
   </div>
@@ -389,497 +485,994 @@ textarea{resize:vertical;min-height:70px}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
-(function(){
+// ═══════════════════════════════════════════════════════════════════════════
+// ALLE FUNKTIONEN DIREKT ALS window.xyz — KEIN IIFE, KEIN SCOPE-PROBLEM
+// ═══════════════════════════════════════════════════════════════════════════
 
-var THEMES={green:{accent:'#52b788',bg:'#0d2018',name:'Grün'},amber:{accent:'#d4a017',bg:'#1f1500',name:'Amber'},blue:{accent:'#4a9eda',bg:'#0d1c2a',name:'Blau'},pink:{accent:'#d47ab0',bg:'#2a0d1c',name:'Pink'},red:{accent:'#e05252',bg:'#1f0e0e',name:'Rot'}};
-var MEDIA_CFG={butter:{unit:'g',eff:78,hint:'Butter ~78%'},ghee:{unit:'g',eff:88,hint:'Ghee ~88% — kein Wasser'},kokosoel:{unit:'g',eff:90,hint:'Kokosöl nativ ~90%'},kokosfett:{unit:'g',eff:88,hint:'Kokosfett raffiniert ~88%'},mct:{unit:'ml',eff:85,hint:'MCT-Öl ~85%'},olivenoel:{unit:'ml',eff:75,hint:'Olivenöl ~75%'},glycerin:{unit:'ml',eff:55,hint:'Glycerin ~55%'},tinktur:{unit:'ml',eff:92,hint:'Ethanol ~92%'},gummies:{unit:'g',eff:80,hint:'Gummies'},hard_candy:{unit:'g',eff:82,hint:'Hard Candy'},baked:{unit:'g',eff:75,hint:'Backwaren'},kapseln:{unit:'ml',eff:88,hint:'Kapseln'}};
-var EXTRACT_CFG={
-  rosin:{min:60,max:80,def:70,hint:'Rosin: Lösungsmittelfrei, Harz-Extrakt, 60–80%.'},
-  kief:{min:30,max:60,def:45,hint:'Kief / Pollen: Trichome-Konzentrat, 30–60%.'},
-  thca_kristall:{min:95,max:99,def:97,hint:'THCA-Kristalle: Reinste Form, 95–99% THCA. Erst nach Dekarb zu THC aktiv!'},
-  bho_shatter:{min:70,max:90,def:80,hint:'BHO Shatter: Transparentes, glasartiges Konzentrat. 70–90%.'},
-  bho_wax:{min:65,max:85,def:75,hint:'BHO Wax / Budder: Cremeige Konsistenz. 65–85%.'},
-  bho_oil:{min:50,max:80,def:65,hint:'BHO Sauce / Öl: Flüssiger, terpenreich. 50–80%.'},
-  rso:{min:40,max:70,def:55,hint:'RSO: Vollspektrum-Extrakt, dunkel, pastös. 40–70%. Alle Pflanzenstoffe enthalten.'},
-  feco:{min:50,max:80,def:65,hint:'FECO: Vollspektrum-Kaltextrakt mit Winterization. 50–80%.'},
-  tinktur_red:{min:30,max:60,def:45,hint:'Tinktur-Redukt / QWET-Konzentrat: 30–60%.'},
-  destillat:{min:85,max:99,def:90,hint:'Vakuumdestillat: Reinprodukt, 85–99%. Nahezu geschmacksneutral.'},
-  custom:{min:1,max:99,def:70,hint:'Eigener Wert: Laboranalyse oder bekannten Wert eingeben.'}
+// ── DATA ─────────────────────────────────────────────────────────────────
+
+var THEMES = {
+  green:{accent:'#52b788',bg:'#0d2018',name:'Grün'},
+  amber:{accent:'#d4a017',bg:'#1f1500',name:'Amber'},
+  blue: {accent:'#4a9eda',bg:'#0d1c2a',name:'Blau'},
+  pink: {accent:'#d47ab0',bg:'#2a0d1c',name:'Pink'},
+  red:  {accent:'#e05252',bg:'#1f0e0e',name:'Rot'}
 };
 
-var W={
+var MEDIA_CFG = {
+  butter:    {unit:'g',  eff:78, hint:'Butter ~78%'},
+  ghee:      {unit:'g',  eff:88, hint:'Ghee ~88% — reines Butterfett'},
+  kokosoel:  {unit:'g',  eff:90, hint:'Kokosöl nativ ~90%'},
+  kokosfett: {unit:'g',  eff:88, hint:'Kokosfett raffiniert ~88%'},
+  mct:       {unit:'ml', eff:85, hint:'MCT-Öl ~85%'},
+  olivenoel: {unit:'ml', eff:75, hint:'Olivenöl ~75%'},
+  glycerin:  {unit:'ml', eff:55, hint:'Glycerin ~55%'},
+  tinktur:   {unit:'ml', eff:92, hint:'Ethanol ~92%'},
+  gummies:   {unit:'g',  eff:80, hint:'Gummies'},
+  hard_candy:{unit:'g',  eff:82, hint:'Hard Candy'},
+  baked:     {unit:'g',  eff:75, hint:'Backwaren'},
+  kapseln:   {unit:'ml', eff:88, hint:'Kapseln'}
+};
+
+var EXTRACT_CFG = {
+  rosin:  {min:60,max:80,def:70,hint:'Rosin: Lösungsmittelfrei, 60–80%.'},
+  kief:   {min:30,max:60,def:45,hint:'Kief / Pollen: 30–60%.'},
+  thca_k: {min:95,max:99,def:97,hint:'THCA-Kristalle: 95–99% THCA. Dekarb vor Edibles-Einsatz Pflicht!'},
+  bho_s:  {min:70,max:90,def:80,hint:'BHO Shatter: 70–90%.'},
+  bho_w:  {min:65,max:85,def:75,hint:'BHO Wax/Budder: 65–85%.'},
+  bho_o:  {min:50,max:80,def:65,hint:'BHO Sauce/Öl: 50–80%.'},
+  rso:    {min:40,max:70,def:55,hint:'RSO: Vollspektrum-Warmextrakt, 40–70%.'},
+  feco:   {min:50,max:80,def:65,hint:'FECO: Kaltextrakt mit Winterization, 50–80%.'},
+  tred:   {min:30,max:60,def:45,hint:'Tinktur-Redukt: 30–60%.'},
+  dest:   {min:85,max:99,def:90,hint:'Vakuumdestillat: 85–99%, nahezu geschmacksneutral.'},
+  custom: {min:1, max:99,def:70,hint:'Eigener Wert: Laboranalyse eingeben.'}
+};
+
+var TERPENES = [
+  {id:'myrcen',   name:'Myrcen',    emoji:'🌿', effect:'Entspannend, sedierend, erdig. Verstärkt THC-Aufnahme.'},
+  {id:'limonen',  name:'Limonen',   emoji:'🍋', effect:'Stimmungsaufhellend, angstlösend, zitrusartig.'},
+  {id:'linalool', name:'Linalool',  emoji:'💜', effect:'Beruhigend, schlaffördernd, lavendelartig.'},
+  {id:'pinene',   name:'α-Pinen',   emoji:'🌲', effect:'Alertheit, Gedächtnis, antientzündlich. Waldartig.'},
+  {id:'caryoph',  name:'β-Caryoph.',emoji:'🌶', effect:'Entzündungshemmend, analgetisch. Pfeffrig-würzig.'},
+  {id:'humulen',  name:'Humulen',   emoji:'🍺', effect:'Appetitzügelnd, antientzündlich. Hopfenartig.'},
+  {id:'terpinol', name:'Terpineol', emoji:'🌺', effect:'Sedierend, antibakteriell. Floral-frisch.'},
+  {id:'ocimen',   name:'Ocimen',    emoji:'🌸', effect:'Antiviral, süsslich-fruchtig. Hebt Terpenprofil.'}
+];
+
+var W = {
   butter:{title:'Butter & Pflanzenfette',steps:[
-    {t:'Dekarboxylierung',b:'110–120°C, 30–45 Min. Material dünn auf Backpapier, halbzeit wenden.',tip:'110°C schont Terpene. CBD: 120–125°C.',warn:'Über 130°C: THC oxidiert zu CBN.',timer:2400},
-    {t:'Fett vorbereiten',b:'Verhältnis 1g Material auf 10–20g Fett. Topf und Wasserbad oder Slow Cooker bereitstellen.',tip:'Ghee / Kokosfett: kein Eigengeschmack.',timer:0},
-    {t:'Infusion',b:'Fett 65–75°C. Material einrühren. Slow Cooker Low, mind. 2–4h.',warn:'Nie über 90°C.',timer:10800},
-    {t:'Filtern',b:'Doppelt Musselintuch. Rückstand ausdrücken.',tip:'Rückstand re-extrahieren — 15–25% Wirkstoff!',timer:0},
-    {t:'Kühlen & lagern',b:'2h kühlen. Wasser abgiessen. Beschriften.',warn:'Sofort beschriften: Medium, Datum, mg/Portion.',timer:7200}
+    {t:'Dekarboxylierung',b:'110–120°C, 30–45 Min. Dünn auf Backpapier, halbzeit wenden.',tip:'110°C schont Terpene. CBD: 120–125°C.',warn:'Über 130°C: THC zu CBN.',timer:2400},
+    {t:'Fett vorbereiten',b:'1g Material auf 10–20g Fett. Kokosöl: höchste Bindung. Ghee: kein Wasser. Kokosfett: neutral.',tip:'Ghee / Kokosfett: kein Eigengeschmack.',timer:0},
+    {t:'Infusion',b:'65–75°C, mind. 2–4h. Slow Cooker Low ideal.',warn:'Nie über 90°C.',timer:10800},
+    {t:'Filtern',b:'Doppelt Musselintuch. Rückstand ausdrücken. Nur Glas oder Edelstahl!',tip:'Rückstand re-extrahieren — 15–25% Wirkstoff!',timer:0},
+    {t:'Kühlen & lagern',b:'2h kühlen, Wasser abgiessen, beschriften.',warn:'Sofort beschriften: Medium, Datum, mg/Portion.',timer:7200}
   ]},
   mct:{title:'MCT-Öl Infusion',steps:[
-    {t:'Dekarboxylierung',b:'110–120°C, 30–45 Min.',tip:'Mason Jar: weniger Geruch.',warn:'Über 130°C: Wirkstoffverlust.',timer:2400},
-    {t:'Infusion',b:'MCT 60–70°C. Material einrühren. Magnetrührer ideal.',timer:9000},
-    {t:'Filtern & Lecithin',b:'Musselintuch filtern. 5–10% Lecithin bei 50°C einrühren.',tip:'Lecithin verbessert Absorption stark.',timer:0},
-    {t:'Abfüllen & lagern',b:'Dunkle Flaschen, kühl. Hält 6–12 Monate.',timer:0}
+    {t:'Dekarboxylierung',b:'110–120°C, 30–45 Min.',tip:'Mason Jar: weniger Geruch.',timer:2400},
+    {t:'Infusion',b:'60–70°C, 2–3h. Magnetrührer empfohlen.',timer:9000},
+    {t:'Filtern & Lecithin',b:'Musselintuch filtern. 5–10% Lecithin bei 50°C einrühren. Nur Glas/Edelstahl!',timer:0},
+    {t:'Lagern',b:'Dunkle Flaschen, kühl. 6–12 Monate.',timer:0}
   ]},
   glycerin:{title:'Glycerin (VG) Infusion',steps:[
-    {t:'Dekarboxylierung',b:'110–120°C, 30–45 Min. Fein zerkleinern.',timer:2400},
-    {t:'Warmextraktion',b:'Material + Glycerin im Einmachglas. Wasserbad 70–75°C, 4–8h. Täglich schütteln.',warn:'Nicht über 80°C.',timer:28800},
-    {t:'Filtern & abfüllen',b:'Warm filtern (50°C). Dunkle Tropfflaschen.',warn:'Nur oral/sublingual!',timer:0}
+    {t:'Dekarboxylierung',b:'110–120°C, 30–45 Min.',timer:2400},
+    {t:'Warmextraktion',b:'Wasserbad 70–75°C, 4–8h, täglich schütteln.',warn:'Nicht über 80°C.',timer:28800},
+    {t:'Filtern',b:'Warm filtern (50°C). Nur Glas/Edelstahl!',warn:'Nur oral/sublingual!',timer:0}
   ]},
   lecithin:{title:'Lecithin & Emulgierung',steps:[
-    {t:'Basisinfusion bereitstellen',b:'Fertige Öl-Infusion + 5–10% Sonnenblumen-Lecithin abwiegen.',tip:'Flüssiges Lecithin einfacher als Granulat.',timer:0},
-    {t:'Emulgieren',b:'Öl + Lecithin auf 50°C. Stabmixer mind. 2 Min.',tip:'Ultraschallbad 3–5 Min für beste Emulsion.',timer:0},
+    {t:'Basisinfusion',b:'Fertige Öl-Infusion + 5–10% Sonnenblumen-Lecithin.',timer:0},
+    {t:'Emulgieren',b:'50°C, Stabmixer mind. 2 Min.',tip:'Ultraschallbad 3–5 Min.',timer:0},
     {t:'Freeze-Thaw',b:'8h einfrieren, auftauen. 2–3 Zyklen.',tip:'Erhöht Bioverfügbarkeit nachweislich.',timer:28800},
-    {t:'Lagern',b:'Kühlschrank, dunkle Flasche. Vor Gebrauch schütteln. 4–8 Wochen.',timer:0}
-  ]},
-  rosin:{title:'Rosin & Live Resin',steps:[
-    {t:'Was ist Rosin?',b:'Rosin ist ein lösungsmittelfreies Konzentrat — hergestellt durch Hitze und Druck. Keine Chemikalien, kein Purging, sofort konsumierbar.<br><br><b>Rosin-Typen:</b><br>• <b>Flower Rosin:</b> Aus getrocknetem Blütenmaterial. Einfachster Einstieg.<br>• <b>Hash Rosin:</b> Aus Bubble Hash oder Dry Sift. Reineres, hellereres Produkt.<br>• <b>Live Rosin:</b> Aus frisch gefrorenem Material via Ice-Water-Hash. Maximale Terpene.<br>• <b>Fresh Press:</b> Direkt nach dem Pressen verwendet — flüssiger, terpenreicher.',tip:'Für Edibles ist frisch gepresstes Rosin ideal: maximale Terpene, kein Lösungsmittel, direkt einarbeitbar.',timer:0},
-    {t:'Equipment',b:'<b>Mindest-Setup:</b><br>• Hitzepresse (Rosin Press) mit Temperaturkontrolle: ab ~200€ für Einstieg-Handpressen, 500€+ für hydraulische Pressen<br>• Rosin-Bags (Filterbeutel, 25–220 Mikron)<br>• Pergaminpapier (kein Wachspapier!)<br>• Edelstahl-Sammeltool<br>• Edelstahl-Auffanggefäss oder Silikonmatte (nur nach dem Pressen)<br><br><b>Günstige Alternative:</b> Haarglätter (Flat Iron) + C-Klemmen für kleine Mengen.',tip:'Haarglätter-Methode: Blüten in Pergaminpapier, zwischen Platten klemmen, Schritt für Schritt drücken. Ergibt 5–20% Ausbeute.',warn:'Nur Pergaminpapier verwenden — Wachspapier haftet und verunreinigt das Rosin.',timer:0},
-    {t:'Ausgangsmaterial vorbereiten',b:'<b>Flower Rosin:</b> Material auf 55–62% Feuchte trocknen lassen — zu trocken ergibt brüchiges, zu feuchtes ergibt schaumiges Rosin. In Rosin-Bag (115–160 Mikron) füllen, nicht zu fest.<br><br><b>Live Rosin / Fresh Press:</b> Material direkt nach Ernte einfrieren. Kein Trocknen nötig. Eiskalt pressen (bei niedrigerer Temp).',tip:'Feuchte-Test: Stiel sollte leicht brechen, Blätter noch leicht biegbar.',warn:'Überfüllte Bags platzen unter Druck — max. 60–70% füllen.',timer:0},
-    {t:'Temperatur & Druck wählen',b:'Temperatur bestimmt Konsistenz und Terpengehalt:<br><br>• <b>55–65°C (niedrig):</b> Live Rosin / Fresh Press — maximale Terpene, flüssig, höchste Qualität. Niedrigere Ausbeute.<br>• <b>75–85°C (mittel):</b> Hash Rosin — gute Balance aus Ausbeute und Terpenerhalt.<br>• <b>90–105°C (hoch):</b> Flower Rosin — höchste Ausbeute, weniger Terpene, stabilere Konsistenz.<br><br>Druck: langsam aufbauen (30–60 Sek), dann maximalen Druck 45–90 Sek halten.',tip:'Niedrigere Temp = mehr Terpene = besser für Edibles mit Geschmack. Höhere Temp = mehr Ausbeute.',timer:0},
-    {t:'Pressen',b:'1. Pergaminpapier um Bag falten<br>2. Zwischen vorgeheizte Platten legen<br>3. Druck langsam aufbauen (kein Schlagdruck)<br>4. 45–90 Sek bei vollem Druck halten<br>5. Öffnen, Rosin mit Edelstahl-Tool von Pergamin abschaben<br>6. In Edelstahl-Behälter oder Silikonmatte sammeln',tip:'Platten leicht kühlen (30 Sek warten) vor dem Abschaben — Rosin löst sich besser vom Pergamin.',warn:'Heisse Platten nicht mit Plastik-Tools berühren. Nur Edelstahl oder Titanium!',timer:90},
-    {t:'Fresh Press direkt in Edibles',b:'Frisch gepresstes, warmes Rosin kann direkt in flüssige Edibles-Massen eingearbeitet werden:<br><br>• In warme Butter / MCT-Öl (60–70°C) einrühren + Lecithin<br>• In temperierte Schokolade (31–32°C) direkt einrühren<br>• In Gummies-Emulsion bei 60°C einarbeiten<br><br>Vorteil Fresh Press: maximale Terpene im Endprodukt, kein Lösungsmittel, direkteste Verarbeitung.',tip:'Rosin + MCT + Lecithin mit Stabmixer: homogenste Edibles-Basis aus Rosin.',timer:0},
-    {t:'Dekarboxylierung für Edibles',b:'Rosin enthält THCA — für orale Wirkung muss dekarboxyliert werden.<br><br><b>Option A: Vor dem Pressen</b> — Ausgangsmaterial dekarboxylieren (110°C, 30 Min). Ergibt sofort aktives Rosin, aber weniger Terpene.<br><br><b>Option B: Nach dem Pressen</b> — Rosin bei 110°C, 20–30 Min im Ofen (auf Pergamin). Schonender für das Rosin.<br><br><b>Option C: Beim Einarbeiten</b> — Rosin in heisses Öl (110°C) geben und 20 Min halten. Dekarb und Infusion in einem Schritt.',tip:'Option C ist am effizientesten für Edibles — ein Schritt weniger.',warn:'Rosin nicht dekarboxylieren wenn es für Dabbing/Inhalation verwendet werden soll — nur für Edibles nötig.',timer:1800},
-    {t:'Konsistenz & Lagerung',b:'Rosin-Konsistenz variiert je nach Pressing-Temperatur und Material:<br>• <b>Sap (flüssig):</b> Live Rosin, niedrige Temp<br>• <b>Badder / Budder:</b> Cremig, durch leichtes Whipping<br>• <b>Shatter-ähnlich:</b> Hohe Temp, wenig Terpene<br>• <b>Jam / Sugar:</b> Teilweise kristallisiert<br><br>Lagerung: Kühlschrank oder Tiefkühl in Silikonbehälter (nach dem Pressen ist Silikon ok). Hält 3–6 Monate.',tip:'Rosin im Tiefkühl wird hart — kurz bei Raumtemp anwärmen vor der Verarbeitung.',timer:0}
+    {t:'Lagern',b:'Kühlschrank, dunkel. 4–8 Wochen.',timer:0}
   ]},
   tinktur:{title:'Tinktur / QWET',steps:[
-    {t:'Vorbereitung',b:'Ethanol 95%+ und Material beide auf –18°C einfrieren.',warn:'Nur Ethanol Lebensmittelqualität! Niemals Isopropanol.',timer:3600},
-    {t:'QWET Extraktion',b:'Max. 3 Min Kontaktzeit bei –22°C. Sofort filtern. Bei –22°C flocken Wachse und Lipide deutlich effektiver aus als bei –18°C.',tip:'Kürzer = weniger Chlorophyll = reineres Produkt. –22°C ist der Praxis-Richtwert für sichtbares Ausfallen.',warn:'Unter –18°C kaum bis kein Ausfallen beobachtbar — Tiefkühler auf Maximum stellen oder Trockeneis verwenden.',timer:180},
-    {t:'Feinfiltern',b:'Kaffeefilter, zweimal. <b>Nur Glas oder Edelstahl als Auffanggefäss</b> — kein Plastik, kein Silikon.',warn:'Silikon, Plastik und andere Polymere können bei Kontakt mit organischen Lösungsmitteln (Ethanol, Ether, Butan, Propanol) Moleküle abgeben. Immer Glas oder Edelstahl verwenden!',timer:0},
+    {t:'Vorbereitung',b:'Ethanol 95%+ und Material auf –22°C einfrieren.',warn:'Nur Ethanol Lebensmittelqualität! Niemals Isopropanol.',timer:3600},
+    {t:'QWET Extraktion',b:'Max. 3 Min Kontaktzeit bei –22°C. Bei –22°C flocken Wachse effektiv aus. Sofort filtern.',tip:'–22°C ist der Praxis-Richtwert für sichtbares Ausfallen — unter –18°C kaum beobachtbar.',timer:180},
+    {t:'Feinfiltern',b:'Kaffeefilter, zweimal. Nur Glas-Auffanggefäss — kein Plastik, kein Silikon bei Lösungsmitteln!',warn:'Silikon und Plastik können bei org. Lösungsmitteln Moleküle abgeben.',timer:0},
     {t:'Reduzieren',b:'Wasserbad max. 70°C. Gut belüfteter Raum.',warn:'Keine offene Flamme!',timer:3600},
-    {t:'Lagern',b:'Dunkle Tropfflaschen, kühl. 12+ Monate.',warn:'Konzentration kann sehr hoch sein — notieren!',timer:0}
+    {t:'Lagern',b:'Dunkle Tropfflaschen, kühl. 12+ Monate.',warn:'Konzentration kann sehr hoch sein.',timer:0}
   ]},
   feco:{title:'FECO — Full Extract Cannabis Oil',steps:[
-    {t:'Was ist FECO?',b:'Vollspektrum-Ethanolextrakt, Kaltextraktion + Winterization. Reineres Produkt als RSO. Alle Cannabinoide + Terpene, ohne schwere Wachse. Medizinischer Standard.',tip:'FECO ist die verfeinerte Version von RSO.',warn:'Hochpotent — Startdosis Reiskorn (~5mg)!',timer:0},
-    {t:'Dekarboxylierung',b:'110–115°C, 45 Min. Vollständige Dekarb ist bei FECO wichtiger als bei RSO.',tip:'Mason Jar Methode für weniger Geruch.',timer:2700},
-    {t:'Kaltextraktion',b:'Material und Ethanol beide auf –18°C. 3–5 Min rühren bei –18°C. Sofort filtern.',tip:'Länger als QWET, kürzer als RSO-Warmextraktion.',warn:'Nur Ethanol Lebensmittelqualität!',timer:300},
-    {t:'Winterization',b:'Filtrat 24–48h bei –20°C. Wachse und Lipide flocken aus. Durch Kaffeefilter abfiltern.',tip:'Winterization ist der Schlüsselschritt: FECO vs. RSO.',timer:86400},
-    {t:'Schonend reduzieren',b:'Wasserbad max. 70°C. Langsam reduzieren — Terpene erhalten. Bis pastös-ölige Konsistenz.',warn:'Keine offene Flamme!',timer:5400},
-    {t:'Dosierung & Anwendung',b:'Sublingual: 1–2 Tropfen (~2.5–5mg) unter Zunge, 90 Sek halten.<br>Kapseln: FECO + MCT 1:10 verdünnen.<br>Edibles: direkt einarbeiten — besser als RSO für Geschmack.<br>Topisch: mit Kokosöl 1:4 verdünnen.',tip:'FECO in MCT 1:10 = ~5–10mg/Tropfen.',warn:'Onset sublingual: 15–45 Min. Oral: 1–3h. Abwarten!',timer:0},
-    {t:'Lagerung',b:'Dunkel, kühl. Kühlschrank: 12–18 Monate. Tiefkühl: bis 3 Jahre.',tip:'Beschriften: Datum, Material, Gehalt.',timer:0}
+    {t:'Was ist FECO?',b:'Vollspektrum-Kaltextrakt + Winterization. Reineres Produkt als RSO. Alle Cannabinoide + Terpene, ohne schwere Wachse.',tip:'FECO ist die verfeinerte Version von RSO.',warn:'Hochpotent — Startdosis Reiskorn (~5mg)!',timer:0},
+    {t:'Dekarboxylierung',b:'110–115°C, 45 Min.',timer:2700},
+    {t:'Kaltextraktion',b:'Material und Ethanol auf –22°C. 3–5 Min rühren. Sofort filtern.',warn:'Nur Ethanol Lebensmittelqualität! Nur Glas/Edelstahl.',timer:300},
+    {t:'Winterization',b:'24–48h bei –20°C. Wachse flocken aus. Kaffeefilter.',tip:'Winterization = Schlüsselschritt FECO vs. RSO.',timer:86400},
+    {t:'Reduzieren',b:'Wasserbad max. 70°C. Schonend — Terpene erhalten.',warn:'Keine offene Flamme!',timer:5400},
+    {t:'Dosierung',b:'Sublingual: 1–2 Tropfen (~2.5–5mg). Kapseln: FECO + MCT 1:10. Edibles: direkt einarbeiten.',warn:'Onset sublingual: 15–45 Min. Abwarten!',timer:0},
+    {t:'Lagern',b:'Kühlschrank: 12–18 Mon. Tiefkühl: 3 Jahre.',timer:0}
+  ]},
+  rosin:{title:'Rosin & Live Resin',steps:[
+    {t:'Überblick & Equipment',b:'Lösungsmittelfrei — Hitze + Druck. Hitzepresse ab ~200€, Rosin-Bags (25–220 Mikron), Pergaminpapier, Edelstahl-Tool.\n\nTypen: Flower Rosin, Hash Rosin, Live Rosin (frisch gefroren), Fresh Press.',tip:'Haarglätter + C-Klemmen für kleine Mengen.',warn:'Nur Pergaminpapier — kein Wachspapier!',timer:0},
+    {t:'Ausgangsmaterial',b:'Flower Rosin: 55–62% Feuchte. In Bag (115–160 Mikron) füllen, max. 60–70%.\nLive Rosin: direkt nach Ernte einfrieren, kein Trocknen.',warn:'Überfüllte Bags platzen.',timer:0},
+    {t:'Temperatur wählen',b:'55–65°C: Live Rosin — max. Terpene, flüssig.\n75–85°C: Hash Rosin — Balance.\n90–105°C: Flower Rosin — höchste Ausbeute.',tip:'Niedrigere Temp = mehr Terpene = besser für Edibles.',timer:0},
+    {t:'Pressen',b:'Pergamin um Bag. Langsam Druck aufbauen. 45–90 Sek. Rosin mit Edelstahl-Tool abschaben.',warn:'Nur Edelstahl oder Titan — kein Plastik bei heissen Platten!',timer:90},
+    {t:'Dekarboxylierung für Edibles',b:'Option A: Material vorher dekarboxylieren (110°C, 30 Min).\nOption B: Rosin nach dem Pressen bei 110°C, 20–30 Min.\nOption C: Rosin in heisses Öl (110°C) geben, 20 Min — Dekarb + Infusion in einem Schritt.',tip:'Option C am effizientesten.',timer:1800},
+    {t:'Lagern',b:'Kühlschrank oder Tiefkühl in Silikonbehälter (nach dem Pressen ist Silikon ok). 3–6 Monate.',tip:'Kurz anwärmen vor der Verarbeitung.',timer:0}
   ]},
   hard_candy:{title:'Hard Candy / Lollipops',steps:[
-    {t:'Ausgangsmaterial',b:'Infundiertes MCT-Öl oder reduzierte Tinktur (kein Restalkohol).',warn:'Wasser in der Masse: trüb, klebrig, kristallisiert.',timer:0},
-    {t:'Zuckermasse kochen',b:'Zucker + Glukosesirup + Wasser (3:2:1). 150–160°C. Nicht rühren! Thermometer Pflicht.',tip:'Zitronensäure 1/4 TL verhindert Kristallisierung.',warn:'Über 160°C: Karamellisierung.',timer:0},
-    {t:'Wirkstoff einarbeiten',b:'Vom Herd. Auf ~120°C abkühlen. Öl + Lecithin einrühren.',warn:'Immer unter 130°C beigeben!',timer:300},
-    {t:'Formen & abkühlen',b:'Zügig giessen. 30 Min abkühlen. Sofort einwickeln.',warn:'Nicht im Kühlschrank kühlen.',timer:1800}
+    {t:'Ausgangsmaterial',b:'MCT-Öl oder reduzierte Tinktur (kein Restalkohol).',warn:'Wasser in der Masse: trüb, klebrig.',timer:0},
+    {t:'Zuckermasse kochen',b:'Zucker + Glukosesirup + Wasser (3:2:1). 150–160°C. Nicht rühren!',warn:'Über 160°C: Karamellisierung.',timer:0},
+    {t:'Wirkstoff einarbeiten',b:'Auf ~120°C abkühlen. Öl + Lecithin einrühren.',warn:'Immer unter 130°C!',timer:300},
+    {t:'Formen & lagern',b:'Zügig giessen. 30 Min abkühlen. Sofort einwickeln.',warn:'Nicht im Kühlschrank kühlen.',timer:1800}
   ]},
   gummies:{title:'Soft Candy / Gummies',steps:[
-    {t:'Gelatine / Agar',b:'Gelatine in kaltem Saft einweichen, erhitzen bis 70–75°C. Agar vegan.',tip:'10–15% Glycerin: weichere Textur.',warn:'Gelatine nie über 80°C.',timer:0},
-    {t:'Emulsion',b:'Öl + Lecithin (1:1) mit Stabmixer emulgieren.',warn:'Ohne Emulgator: Hot Spots!',timer:0},
-    {t:'Mischen & Formen',b:'Gelatine auf 60°C abkühlen. Emulsion einrühren. In Formen dosieren.',tip:'Dosierflasche für gleichmässige Portionen.',timer:0},
-    {t:'Kühlen & trocknen',b:'2h Kühlschrank. 12–24h offen trocknen.',tip:'Zitronensäure-Zucker gegen Zusammenkleben.',timer:7200},
-    {t:'Lagern',b:'Luftdicht, kühl, Lagen mit Backpapier trennen.',timer:0}
+    {t:'Gelatine / Agar',b:'Gelatine in Saft, erhitzen bis 70–75°C. Agar vegan.',tip:'10–15% Glycerin: weichere Textur.',warn:'Gelatine nie über 80°C.',timer:0},
+    {t:'Emulsion',b:'Öl + Lecithin (1:1) mit Stabmixer.',warn:'Ohne Emulgator: Hot Spots!',timer:0},
+    {t:'Mischen & Formen',b:'Gelatine auf 60°C. Emulsion einrühren. Dosierflasche.',timer:0},
+    {t:'Kühlen & lagern',b:'2h Kühlschrank. 12–24h trocknen.',tip:'Zitronensäure-Zucker gegen Zusammenkleben.',timer:7200}
   ]},
   baked:{title:'Backwaren',steps:[
-    {t:'Fett & Dosierung',b:'1:1 Ersatz. Fett zuletzt, unter 70°C einrühren. Nach Gewicht portionieren.',warn:'Max. 175°C. Hot Spots durch ungleichmässiges Mischen!',timer:0},
-    {t:'Backen',b:'160–175°C. Lieber länger bei niedrigerer Temp.',warn:'Über 180°C: Wirkstoffverlust.',timer:1800},
-    {t:'Abkühlen & lagern',b:'Vollständig auskühlen. Einzeln einwickeln. Beschriften.',warn:'Nie offen lagern — Verwechslungsgefahr!',timer:1800}
+    {t:'Fett & Dosierung',b:'1:1 Ersatz. Unter 70°C einrühren. Nach Gewicht portionieren.',warn:'Max. 175°C. Hot Spots!',timer:0},
+    {t:'Backen',b:'160–175°C.',warn:'Über 180°C: Wirkstoffverlust.',timer:1800},
+    {t:'Lagern',b:'Einzeln einwickeln. Beschriften.',warn:'Nie offen — Verwechslungsgefahr!',timer:1800}
   ]},
   kapseln:{title:'Kapseln',steps:[
-    {t:'Füllmasse',b:'MCT + 5–10% Lecithin, 35–40°C. Grösse 00 bereitstellen.',tip:'Lecithin verbessert Absorption.',timer:0},
-    {t:'Füllen & prüfen',b:'Pipette oder Füllbrett. Lekkage-Test 15 Min auf Papier.',warn:'Wärme erweicht Gelatine. Trocken lagern.',timer:900}
+    {t:'Füllmasse',b:'MCT + 5–10% Lecithin, 35–40°C. Grösse 00.',timer:0},
+    {t:'Füllen & prüfen',b:'Pipette oder Füllbrett. Lekkage-Test 15 Min.',warn:'Trocken und kühl lagern.',timer:900}
   ]},
   exotic:{title:'Exotische Edibles',steps:[
-    {t:'Emulsion',b:'Öl + Lecithin emulgieren. Für Getränke: Polysorbat 80.',warn:'Ohne Emulgation: Hot Spots!',timer:0},
-    {t:'Honig / Schokolade',b:'Honig: bei 40°C einrühren. Schokolade: 45°C→27°C→31–32°C temperieren.',warn:'Schokolade über 34°C: Temperierung verloren.',timer:0},
-    {t:'Portionieren & lagern',b:'Einzelportionen in Silikonformen. Beschriften.',timer:0}
+    {t:'Emulsion',b:'Öl + Lecithin emulgieren.',warn:'Ohne Emulgation: Hot Spots!',timer:0},
+    {t:'Honig / Schokolade',b:'Honig: 40°C. Schokolade: 45°C→27°C→31–32°C.',warn:'Schokolade über 34°C: Temperierung verloren.',timer:0},
+    {t:'Portionieren',b:'Einzelportionen in Silikonformen. Beschriften.',timer:0}
   ]},
   rso:{title:'RSO — Rick Simpson Oil',steps:[
-    {t:'⚠ Sicherheit & Aufwand — zuerst lesen',b:'RSO im Original wurde von Rick Simpson mit Naphtha hergestellt. Moderne sichere Variante: hochprozentiger Ethanol (95%+).<br><br><b style="color:var(--warn)">Niemals Naphtha, Isopropanol oder denaturierten Alkohol für konsumierbares RSO!</b><br><br>Naphtha-Variante: nur dokumentiert zu Wissenszwecken — toxische Rückstände möglich, für Konsum ungeeignet. Warmextraktion mit Ethanol ist Standard bei seriöser RSO-Herstellung.<br><br>Risiken: Hohe Brandgefahr durch Alkoholdämpfe bei Reduktion. Nur im Freien oder mit professioneller Absaugung.',warn:'Keine offene Flamme während der gesamten Ethanolreduktion!',timer:0},
-    {t:'Dekarboxylierung',b:'110–115°C, 30–45 Min. Für sublinguale Anwendung ist vollständige Dekarb Pflicht.',tip:'Ohne Dekarb: THCA statt THC — kaum oral wirksam.',timer:2400},
-    {t:'Warmextraktion',b:'Ausgangsmaterial mit Ethanol 95%+ bedecken. Raumtemperatur, 3–4 Min rühren. Keine Kältung nötig — RSO will alle Pflanzenstoffe.',tip:'Warmextraktion holt mehr Chlorophyll und Wachse — das ist bei RSO gewollt.',warn:'Ethanol 95%+ Lebensmittelqualität!',timer:240},
-    {t:'Filtern',b:'Musselintuch, Rückstand ausdrücken. Zweite Extraktion mit frischem Ethanol.',tip:'Zweite Extraktion: RSO-Qualität der Nebencharge.',timer:0},
-    {t:'Reduzieren Phase 1',b:'Rice Cooker oder Topf auf Wasserbad, max. 110°C. Grossteil Ethanol verdampfen.',warn:'Nur im Freien oder mit starker Absaugung. Keine Flamme!',timer:3600},
-    {t:'Reduzieren Phase 2',b:'Auf 70°C senken. Weiterreduzieren bis keine Blasen mehr. Pastös-ölig, dunkelbraun bis schwarz.',tip:'Letzte Ethanolreste: kurz auf 90°C — letztes Aufblasen zeigt Restethanol.',timer:1800},
-    {t:'In Spritzen abfüllen',b:'RSO warm (~60°C) in 1ml oder 5ml Luerlock-Spritzen aufziehen.',tip:'1ml ≈ 600–900mg RSO je nach Konsistenz.',timer:0},
-    {t:'Dosierung & Anwendung',b:'<b>Sublingual:</b> Reiskorngrosse Menge (~5mg) unter Zunge, 60–90 Sek halten.<br><b>Oral:</b> Auf Brot oder in Kapsel.<br><b>Edibles:</b> RSO direkt in Masse einarbeiten.<br><b>Topisch:</b> Mit Kokosöl verdünnen.<br><br>RSO-Protokoll: Start 1/4 Reiskorn (2.5mg), alle 4 Tage verdoppeln.',tip:'Onset sublingual: 15–45 Min. Oral: 1–3h.',warn:'Sehr hochpotent. Immer abwarten!',timer:0},
-    {t:'Lagerung',b:'Spritzen lichtdicht verpackt. Kühlschrank: 12 Monate. Tiefkühl: 24 Monate.',timer:0}
+    {t:'⚠ Sicherheit zuerst',b:'Originales RSO wurde mit Naphtha hergestellt — für konsumierbares RSO ausschliesslich Ethanol 95%+ Lebensmittelqualität verwenden! Naphtha nur dokumentiert zu Wissenszwecken — toxische Rückstände möglich.',warn:'Keine offene Flamme während Ethanolreduktion! Nur im Freien oder mit professioneller Absaugung.',timer:0},
+    {t:'Dekarboxylierung',b:'110–115°C, 45 Min.',timer:2400},
+    {t:'Warmextraktion',b:'Raumtemperatur, 3–4 Min rühren. Nur Glas/Edelstahl!',warn:'Ethanol 95%+, Lebensmittelqualität.',timer:240},
+    {t:'Filtern & Reduzieren',b:'Musselintuch. Dann Rice Cooker max. 110°C.',warn:'Nur im Freien oder Absaugung. Keine Flamme!',timer:3600},
+    {t:'Finish & Abfüllen',b:'Auf 70°C senken bis blasenfrei. Warm in 1ml Luerlock-Spritzen.',tip:'1ml ≈ 600–900mg RSO.',timer:1800},
+    {t:'Dosierung',b:'Sublingual: Reiskorngrosse Menge (~5mg). Oral: auf Brot oder in Kapsel.',warn:'Sehr hochpotent. Immer abwarten!',timer:0}
   ]},
-  bho:{title:'BHO / N-Butan Extraktion (Closed Loop)',steps:[
-    {t:'⚠ Gefahr & Aufwand — zuerst lesen',b:'BHO (Butane Hash Oil) wird mit flüssigem N-Butan als Lösungsmittel hergestellt. Extrem brandgefährlich — Butan ist hochentzündlich und schwerer als Luft (sammelt sich am Boden).<br><br><b>Minimum-Equipment:</b><br>• Closed-Loop-Extraktionsanlage: 500€–5000€+<br>• Vakuumofen für Purging: 300€–1500€<br>• Vakuumpumpe: 200€–600€<br>• N-Butan Lebensmittelqualität (99.5%+)<br>• Geeignete Schutzausrüstung<br><br>Open-Blast (offenes System ohne Closed Loop) ist lebensgefährlich und darf niemals angewendet werden.',warn:'BHO niemals im Innenraum herstellen. Keine Zündquellen in der Nähe. Nur Closed-Loop-Systeme sind halbwegs sicher.',timer:0},
-    {t:'Ausgangsmaterial',b:'Hochwertiges, sehr trockenes Material — Restfeuchte unter 10%. Fein gemahlen für mehr Oberfläche. Je nach Ziel-Konsistenz: leicht angetaut für Shatter, frisch gefroren für Live Resin.',tip:'Live Resin: Material direkt nach der Ernte einfrieren und gefroren extrahieren — maximale Terpene.',timer:0},
-    {t:'Closed-Loop-Extraktion',b:'Material in Extraktionsrohr. N-Butan aus Tank durch Material drücken. Extrakt im Sammelkolben auffangen. Butan über Rückgewinnungspumpe zurück in Tank.',tip:'Lösungsmittelrückgewinnung: 80–95% des Butans wiederverwendbar.',warn:'System auf Leckagen prüfen vor jeder Extraktion!',timer:0},
-    {t:'Vorpurging',b:'Extrakt bei 35–40°C auf Silikonmatte verteilen für das Vorpurgen ist Silikon unbedenklich (kein Lösungsmittel mehr im Direktkontakt). Grossteil Butan verdampfen lassen (15–30 Min).',warn:'Während der Extraktion und beim Abfangen: ausschliesslich Edelstahl oder Glas! Butan und andere organische Lösungsmittel lösen Moleküle aus Plastik und Silikon. Silikonmatten erst nach dem Vorpurging verwenden.',timer:1800},
-    {t:'Vakuum-Purging',b:'Im Vakuumofen bei 35–45°C und –29 inHg Vakuum. Dauer: 24–72h je nach gewünschter Konsistenz.<br><br>Konsistenz je nach Temp + Vakuum + Zeit:<br>• Shatter: niedrige Temp, wenig Rühren, lange Zeit<br>• Wax / Budder: höhere Temp + Rühren (Whipping)<br>• Sauce / Öl: mehr Terpene, kürzeres Purging',tip:'Shatter-Trick: Extrakt nach Vorpurging nicht bewegen, direktes Sonnen-/Kälteschock für Transparenz.',warn:'Restbutan-Test: Feuerzeug über Extrakt halten — kein Entzünden = purge-fertig.',timer:86400},
-    {t:'Extrakt-Typen verstehen',b:'<b>Shatter:</b> Transparent, glasartig, spröde. 70–90% THC.<br><b>Wax / Budder:</b> Cremig, opak. 65–85%.<br><b>Crumble:</b> Trocken, bröckelig. 60–80%.<br><b>Sauce / HTFSE:</b> Flüssig, terpenreich. 50–70%.<br><b>Live Resin:</b> Aus gefrorenem Material, sehr terpenreich. 60–85%.<br><b>Sugar:</b> Körnig, feucht. 60–80%.',tip:'Je terpenreicher, desto ausgeprägter der Entourage-Effekt.',timer:0},
-    {t:'Anwendung & Dosierung',b:'BHO direkt in Edibles einarbeitbar (als Extrakt im Rechner eingeben).<br>Sublingual: mit MCT 1:10 verdünnen.<br>Kapseln: mit MCT verdünnt.<br><br>Konsistenz erwärmen für bessere Verarbeitbarkeit: 40–50°C.',warn:'BHO ist hochpotent. Startdosis: 2.5–5mg.',timer:0},
-    {t:'Lagerung',b:'Silikonbehälter oder Pergaminpapier. Kühl, dunkel, luftdicht. Shatter: Kühlschrank. Wax/Budder: Raumtemperatur möglich.',tip:'Shatter nicht im Kühlschrank mit Feuchtigkeitskontakt — wird milchig.',timer:0}
+  bho:{title:'BHO / N-Butan (Closed Loop)',steps:[
+    {t:'⚠ Gefahr & Kosten',b:'Closed-Loop-Anlage: 500€–5000€+. Vakuumofen: 300€–1500€. N-Butan 99.5%+.\n\nOpen-Blast ist lebensgefährlich und darf niemals angewendet werden!',warn:'Nur im Freien. Keine Zündquellen. Nur Closed-Loop-Systeme.',timer:0},
+    {t:'Extraktion',b:'Material in Rohr. N-Butan durch Material drücken. Extrakt im Sammelkolben auffangen. Nur Glas/Edelstahl für alle Kontaktflächen mit Lösungsmittel!',warn:'System auf Leckagen prüfen!',timer:0},
+    {t:'Vorpurging',b:'Extrakt bei 35–40°C auf Silikonmatte. Silikon erst nach dem Vorpurging verwenden — während Extraktion nur Edelstahl/Glas!',warn:'Butan-Dämpfe: aussen oder Abluft.',timer:1800},
+    {t:'Vakuum-Purging',b:'35–45°C, –29 inHg, 24–72h je nach Konsistenz.\nShatter: niedrige Temp, wenig Rühren.\nWax/Budder: höhere Temp + Rühren.',warn:'Feuerzeug-Test: kein Entzünden = fertig.',timer:86400},
+    {t:'Extrakt-Typen',b:'Shatter: transparent, 70–90%.\nWax/Budder: cremig, 65–85%.\nCrumble: bröckelig, 60–80%.\nSauce/HTFSE: flüssig, terpenreich, 50–70%.\nLive Resin: aus gefrorenem Material, 60–85%.',timer:0}
   ]},
-  thca:{title:'THCA-Kristalle — Drei Methoden',steps:[
-    {t:'Was sind THCA-Kristalle?',b:'THCA-Kristalle (auch "Diamonds") sind die reinste Form von THCA — bis 99% Reinheit. THCA ist nicht psychoaktiv in roher Form. Erst durch Erhitzung (Dekarboxylierung) wird es zu THC.<br><br>Für Edibles: THCA-Kristalle müssen vor oder während der Verarbeitung dekarboxyliert werden!<br><br><b>Drei Herstellungsmethoden:</b><br>1. Diamantmining (aus BHO-Sauce)<br>2. Heat Press / Rosin-Chips<br>3. Zentrifugen-Separation',tip:'Für Edibles: THCA-Kristalle + Dekarb = reines THC. Ideal für hochreine, geschmacksneutrale Produkte.',warn:'THCA-Kristalle sind extrem hochpotent. Kleinste Mengen (0.01g = 10mg) genügen.',timer:0},
-    {t:'Methode 1: Diamantmining (aus Sauce)',b:'Ausgangsmaterial: frisch hergestellter BHO-Extrakt mit hohem Terpenenanteil (Sauce / HTFSE).<br><br>1. Extrakt bei ~21°C in luftdichtem Glasbehälter lagern<br>2. THCA beginnt langsam auszukristallisieren (1–3 Wochen)<br>3. Terpensauce oben abgiessen (separat lagern — "Terp Sauce")<br>4. Kristalle bei 35–40°C im Vakuumofen nachpurgen',tip:'Geduld ist der Schlüssel. Temperatur konstant halten: zu warm = keine Kristalle, zu kalt = langsam.',warn:'Geschlossenes System während Kristallisierung — Druck kann entstehen!',timer:0},
-    {t:'Methode 2: Heat Press / Rosin-Chips',b:'Ausgangsmaterial: gepresstes Rosin oder Rosin-Rückstand (Chips/Pucks).<br><br>1. Rosin-Chips (Pressrückstände) in Lösungsmittel (Ethanol oder Hexan) auflösen<br>2. Filtern und Lösungsmittel vorsichtig verdampfen<br>3. THCA-reicher Rückstand kristallisiert beim langsamen Abkühlen aus<br>4. Kristalle abtrennen und trocknen',tip:'Rosin-Chips enthalten noch 10–30% THCA — lohnt sich für grössere Mengen.',warn:'Hexan ist toxisch — nur im Freien oder mit Abzug. Ethanol bevorzugen!',timer:0},
-    {t:'Methode 3: Zentrifugen-Separation',b:'Ausgangsmaterial: frischer BHO-Extrakt oder Rosin mit sichtbaren Kristallen.<br><br>1. Extrakt auf 30–35°C erwärmen bis halbflüssig<br>2. In Zentrifugenröhrchen füllen<br>3. 3000–5000 RPM, 10–15 Min<br>4. Terpensauce trennt sich oben von THCA-Kristallen unten<br>5. Sauce abgiessen, Kristalle trocknen',tip:'Laborzentrifuge mit Temperaturkontrolle ideal. Günstige Einstieg-Modelle ab ~200€.',warn:'Röhrchen auf Druck-/Temperaturbeständigkeit prüfen.',timer:900},
-    {t:'Dekarboxylierung der Kristalle',b:'Für Edibles und orale Anwendung zwingend!<br><br>THCA-Kristalle: 120°C, 45–60 Min im Ofen (längere Zeit als Pflanzenmaterial).<br>Nach Dekarb: reines THC-Isolat, ~95–97% Reinheit.',tip:'Kristalle schmelzen bei ~120°C — auf Silikonmatte oder in Glas dekarboxylieren.',warn:'Dekarboxylierte Kristalle sind EXTREM potent. 0.01g = ~10mg THC!',timer:3600},
-    {t:'Einarbeiten in Edibles',b:'Dekarboxylierte Kristalle mit MCT-Öl + Lecithin bei 50°C auflösen. Danach wie normales Konzentrat weiterverarbeiten.<br><br>Vorteil Kristalle für Edibles: kein Eigengeschmack, kein Eigengeruch, maximale Reinheit, präzise Dosierung.',tip:'1mg-Waage Pflicht bei der Arbeit mit Kristallen. Normale Küchenwaagen zu ungenau.',timer:0},
-    {t:'Lagerung',b:'Luftdicht, dunkel, kühl. Kristalle sind sehr stabil — haltbar 12–24 Monate. Nicht in Plastik (THCA löst Weichmacher).',tip:'Terp Sauce separat lagern und bei Bedarf zurückführen für Vollspektrum-Produkte.',timer:0}
+  thca:{title:'THCA-Kristalle',steps:[
+    {t:'Grundlagen',b:'THCA-Kristalle bis 99% Reinheit. NICHT psychoaktiv ohne Dekarb! Für Edibles: Dekarb zwingend.\n\n3 Methoden:\n1. Diamantmining (aus BHO-Sauce)\n2. Heat Press / Rosin-Chips\n3. Zentrifugen-Separation',warn:'THCA-Kristalle extrem potent. 0.01g = 10mg!',timer:0},
+    {t:'Diamantmining',b:'Frischer BHO-Extrakt bei ~21°C in Glas. 1–3 Wochen kristallisieren lassen. Terp Sauce abgiessen.',tip:'Geduld. Temp konstant halten.',warn:'Druck kann entstehen — geschlossenes System!',timer:0},
+    {t:'Heat Press / Rosin-Chips',b:'Rosin-Chips in Ethanol lösen, filtern, Lösungsmittel verdampfen. THCA kristallisiert beim Abkühlen.',warn:'Ethanol bevorzugen — Hexan ist toxisch!',timer:0},
+    {t:'Zentrifuge',b:'Extrakt auf 30–35°C erwärmen. 3000–5000 RPM, 10–15 Min. Terp Sauce trennt sich von THCA-Kristallen.',tip:'Zentrifuge ab ~200€.',timer:900},
+    {t:'Dekarboxylierung',b:'120°C, 45–60 Min. Kristalle schmelzen — auf Silikonmatte oder in Glas.',warn:'Dekarb zwingend für Edibles!',timer:3600},
+    {t:'In Edibles',b:'Mit MCT + Lecithin bei 50°C auflösen. Dann wie normales Konzentrat. Kein Eigengeschmack.',tip:'1mg-Waage Pflicht!',timer:0}
   ]},
-  vakuum:{title:'Vakuumdestillation — Cannabinoid-Fraktionierung',steps:[
-    {t:'⚠ Aufwand & Kosten',b:'Kurzwegdestillationsanlage: 500€–5000€+. Vakuumpumpe: 200€–800€. Heizbad mit Regler: 200€–500€. Kühlaggregat: 100€–400€.<br><br>Gesamtinvestition: ab ca. 1500€. Für Heimanwender wirtschaftlich nur bei regelmässig grossen Mengen sinnvoll.',warn:'Nur wenn du regelmässig grosse Mengen verarbeitest oder Hochreinheitsprodukte benötigst.',timer:0},
-    {t:'Grundprinzip & Siedepunkte',b:'Cannabinoide unter Vakuum (~0.05 mbar):<br>• CBG: ~120–140°C<br>• THC: ~155–175°C<br>• CBD: ~160–180°C<br>• Terpene: unter 100°C<br>• Wachse: bleiben im Kolben<br><br>Schrittweises Erhöhen der Temp trennt Fraktionen.',tip:'Niedrigerer Druck = niedrigerer Siedepunkt = schonendere Destillation.',timer:0},
-    {t:'Ausgangsmaterial vorbereiten',b:'Bestes Input: winterisiertes FECO oder BHO. Dekarboxylieren (110°C, 45 Min). Restethanol vollständig entfernen.',warn:'Kein Restethanol — Druck im System!',timer:2700},
-    {t:'Anlage & Vakuumtest',b:'Anlage aufbauen. Alle Verbindungen mit Vakuumfett. Pumpe starten, Manometer auf <0.1 mbar prüfen.',tip:'Lecks sind häufigster Fehler. Vakuumfett vollständig auftragen.',warn:'Nie unter Druck öffnen!',timer:900},
-    {t:'Fraktion 1 — Terpene',b:'80–120°C: Terpene und leichte Verbindungen. Separat auffangen.',tip:'Terpen-Fraktion kann später zurückgeführt werden für Vollspektrum.',timer:1800},
-    {t:'Fraktion 2 — Cannabinoide',b:'155–185°C je nach Ziel. Goldgelbes Destillat tropft in Fraktionskolben.<br>155–165°C: CBG-reich. 165–175°C: THC-reich. 170–180°C: CBD-reich.',tip:'Fraktionskolben bei Farbänderung wechseln.',warn:'Temp langsam erhöhen — Schäumen verunreinigt Destillat.',timer:5400},
-    {t:'Dosierung & Anwendung',b:'Sublingual: 1–2mg. Kapseln: MCT 1:10. Edibles: direkt einarbeiten, kein Eigengeschmack. Destillat + Terpene = Full Spectrum Distillate.',warn:'Potentestes Produkt in diesem Guide. Startdosis: 1–2mg!',timer:0},
-    {t:'Reinigung',b:'Sofort nach Gebrauch mit heissem Ethanol spülen. Vakuumfett erneuern.',tip:'Rückstände aus vorherigen Läufen verunreinigen das nächste Destillat.',timer:0}
+  vakuum:{title:'Vakuumdestillation',steps:[
+    {t:'⚠ Aufwand & Kosten',b:'Kurzwegdestillationsanlage: 500€–5000€+. Vakuumpumpe: 200€–800€. Heizbad: 200€–500€.\nGesamtinvestition: ab ~1500€.',warn:'Nur bei regelmässig grossen Mengen sinnvoll.',timer:0},
+    {t:'Siedepunkte',b:'CBG: 120–140°C. THC: 155–175°C. CBD: 160–180°C. Terpene: unter 100°C.',tip:'Niedrigerer Druck = niedrigerer Siedepunkt.',timer:0},
+    {t:'Vorbereitung',b:'Winterisiertes FECO oder BHO. Dekarboxylieren. Restethanol vollständig entfernen.',warn:'Kein Restethanol — Druck im System!',timer:2700},
+    {t:'Destillation',b:'Fraktion 1 (80–120°C): Terpene — separat auffangen.\nFraktion 2 (155–185°C): Cannabinoide — Hauptfraktion.',warn:'Temp langsam erhöhen.',timer:5400},
+    {t:'Anwendung',b:'Sublingual: 1–2mg. Kapseln: MCT 1:10. Edibles: direkt, kein Eigengeschmack.',warn:'Startdosis: 1–2mg — potentestes Produkt!',timer:0}
   ]}
 };
 
-var LIB={
+var LIB = {
   loesungsmittel:{cat:'Lösungsmittel-Vergleich',items:[
-    {t:'Vergleichstabelle',b:'<table class="solvent-table"><tr><th>Medium</th><th>Bindung</th><th>Alkohol</th><th>Best for</th></tr><tr><td>Kokosöl nativ</td><td><span class="dot dot-g"></span>~90%</td><td>Nein</td><td>Butter, Backwaren</td></tr><tr><td>Ghee</td><td><span class="dot dot-g"></span>~88%</td><td>Nein</td><td>Backwaren, lang haltbar</td></tr><tr><td>MCT C8/C10</td><td><span class="dot dot-g"></span>~85%</td><td>Nein</td><td>Kapseln, Tropfen, Gummies</td></tr><tr><td>Butter</td><td><span class="dot dot-a"></span>~78%</td><td>Nein</td><td>Klassische Rezepte</td></tr><tr><td>Glycerin (VG)</td><td><span class="dot dot-a"></span>~55%</td><td>Nein</td><td>Alkoholfrei</td></tr><tr><td>Ethanol 95%</td><td><span class="dot dot-g"></span>~92%</td><td>Ja</td><td>Tinktur, FECO, RSO</td></tr><tr><td>N-Butan</td><td><span class="dot dot-g"></span>~90%</td><td>Nein*</td><td>BHO, Shatter, Wax</td></tr></table><p style="font-size:11px;color:var(--text3);margin-top:6px">* N-Butan ist kein Alkohol, aber brennbar/explosiv</p>'},
-    {t:'MCT vs. Kokosöl',b:'MCT immer flüssig: Kapseln, Tropfen. Kokosöl wird fest: Butter-Ersatz. MCT C8 schnellste Absorption.'},
+    {t:'Vergleichstabelle',b:'<table class="solvent-table"><tr><th>Medium</th><th>Bindung</th><th>Alkohol</th><th>Best for</th></tr><tr><td>Kokosöl nativ</td><td><span class="dot dot-g"></span>~90%</td><td>Nein</td><td>Butter, Backwaren</td></tr><tr><td>Ghee</td><td><span class="dot dot-g"></span>~88%</td><td>Nein</td><td>Backwaren, lang haltbar</td></tr><tr><td>MCT C8/C10</td><td><span class="dot dot-g"></span>~85%</td><td>Nein</td><td>Kapseln, Tropfen</td></tr><tr><td>Butter</td><td><span class="dot dot-a"></span>~78%</td><td>Nein</td><td>Klassische Rezepte</td></tr><tr><td>Glycerin (VG)</td><td><span class="dot dot-a"></span>~55%</td><td>Nein</td><td>Alkoholfrei</td></tr><tr><td>Ethanol 95%</td><td><span class="dot dot-g"></span>~92%</td><td>Ja</td><td>Tinktur, FECO, RSO</td></tr><tr><td>N-Butan</td><td><span class="dot dot-g"></span>~90%</td><td>Nein*</td><td>BHO, Shatter, Wax</td></tr></table><p style="font-size:11px;color:var(--text3);margin-top:6px">* N-Butan ist kein Alkohol, aber brennbar/explosiv</p>'},
+    {t:'MCT vs. Kokosöl',b:'MCT immer flüssig: Kapseln, Tropfen. Kokosöl wird fest: Butter-Ersatz. MCT C8 schnellste Absorption ohne Gallensalze.'},
     {t:'Glycerin: Vor/Nachteile',b:'Vorteile: Alkoholfrei, süsslich. Nachteile: 40–60% der Ethanol-Ausbeute, sehr viskös.'},
-    {t:'Ethanol-Qualitätsstufen',b:'96% Lebensmittel: Standard QWET/FECO/RSO. 99.9% anhydrous: reinste Extraktion. Niemals Isopropanol oder denaturierten Alkohol!'},
-    {t:'N-Butan vs. Ethanol',b:'N-Butan: selektiveres Lösungsmittel (weniger Chlorophyll), besseres Shatter/Wax, aber explosiv und Closed-Loop-System nötig. Ethanol: sicherer, vielseitiger, für alle Heimanwender geeignet.'}
+    {t:'Ethanol-Qualitätsstufen',b:'96% Lebensmittel: Standard. 99.9% anhydrous: reinste Extraktion. Niemals Isopropanol!'},
+    {t:'Materialwahl bei Lösungsmitteln',b:'Bei organischen Lösungsmitteln (Ethanol, Ether, Butan, Propanol) ausschliesslich Glas oder Edelstahl verwenden. Plastik und Silikon können bei längerem Kontakt Moleküle abgeben. Silikonmatten erst nach vollständigem Lösungsmittelentzug verwenden.'}
   ]},
   tricks:{cat:'Profi-Tricks',items:[
     {t:'Ghee selbst klären',b:'Butter langsam schmelzen bis Molke absinkt. Reines Butterfett abgiessen. Kein Wasseranteil: bessere Extraktion, länger haltbar.'},
-    {t:'Magnetrührer',b:'Heizplatte mit Magnetrührer (~40€): konstante Temp, automatisches Rühren für 3h ohne Eingriff.'},
+    {t:'Magnetrührer',b:'Heizplatte mit Magnetrührer (~40€): konstante Temp, automatisches Rühren. 3h ohne Eingriff.'},
     {t:'Freeze-Thaw',b:'8h einfrieren, auftauen, wiederholen. 2–3 Zyklen. Erhöht Bioverfügbarkeit nachweislich.'},
-    {t:'Winterization',b:'Rohextrakt in –20°C Ethanol (10:1), 24–48h. Wachse flocken aus. Ergebnis: klar, rein.'},
+    {t:'Winterization',b:'Rohextrakt in –20°C Ethanol (10:1), 24–48h. Wachse flocken aus. Klar, rein, weniger Eigengeschmack.'},
+    {t:'QWET: –22°C',b:'Bei –22°C flocken Wachse und Lipide deutlich effektiver aus als bei –18°C. Unter –18°C kaum bis kein sichtbares Ausfallen. Tiefkühler auf Maximum oder Trockeneis verwenden.'},
     {t:'Gummies: Bloom verhindern',b:'Vollständige Emulgierung + langsames Abkühlen + 5–10% Glycerin.'},
     {t:'Schokolade temperieren',b:'Zartbitter: 50°C→28°C→32°C. Vollmilch: 45°C→27°C→30°C. Weiss: 40°C→26°C→28°C.'},
-    {t:'Terp Sauce zurückführen',b:'Terpen-Fraktion aus Destillation oder Zentrifugation zum fertigen Destillat/Kristall zurückführen → Vollspektrum-Produkt mit Entourage-Effekt.'}
+    {t:'Terp Sauce zurückführen',b:'Terpen-Fraktion aus Destillation oder Zentrifugation zum fertigen Destillat zurückführen → Vollspektrum-Produkt mit Entourage-Effekt.'}
   ]},
   dekarb:{cat:'Dekarboxylierung',items:[
     {t:'Warum Dekarb?',b:'THCA zu THC durch Hitze. Ohne Dekarb kaum Wirkung. Auch CBDA zu CBD. THCA-Kristalle besonders wichtig!'},
-    {t:'Temperaturen',b:'THC: 110°C / 30 Min. CBD: 120°C / 40 Min. THCA-Kristalle: 120°C / 45–60 Min.'},
-    {t:'Mason Jar Methode',b:'Im verschlossenen Glas: weniger Geruch, Terpene kondensieren zurück.'},
-    {t:'Sous-Vide',b:'Vakuumversiegelt, 93°C / 2h. Minimale Terpenverluste.'}
+    {t:'Temperaturen',b:'THC: 110°C / 30 Min. CBD: 120°C / 40 Min. THCA-Kristalle: 120°C / 45–60 Min. Terpene ab 100°C flüchtig.'},
+    {t:'Mason Jar',b:'Im verschlossenen Glas: weniger Geruch, Terpene kondensieren zurück. +10 Min.'},
+    {t:'Sous-Vide',b:'Vakuumversiegelt, 93°C / 2h. Minimale Terpenverluste, kein Geruch.'}
   ]},
   fehler:{cat:'Troubleshooting',items:[
-    {t:'Kein Effekt',b:'1) Dekarb fehlt (v.a. bei THCA-Kristallen!). 2) Infusion zu heiss. 3) Onset abwarten (bis 2h!). 4) Fettigen Snack essen.'},
+    {t:'Kein Effekt',b:'1) Dekarb fehlt. 2) Infusion zu heiss. 3) Onset abwarten (bis 2h!). 4) Fettigen Snack essen.'},
     {t:'Hot Spots',b:'Emulgator fehlt, ungleichmässig gemischt. Immer Lecithin + Stabmixer + Waage.'},
     {t:'Trübe Tinktur',b:'Kontaktzeit zu lang. Kürzer waschen, Aktivkohle, Winterization.'},
-    {t:'Shatter wird klebrig',b:'Restbutan oder Feuchtigkeit. Längeres Purging, Silica Gel in Lagerbox.'}
+    {t:'Klebrige Hard Candies',b:'Zu wenig Glukosesirup. Sofort verpacken, Silica Gel.'}
   ]},
   lexikon:{cat:'Lexikon — Extrakt-Begriffe',items:[
-    {t:'Shatter',b:'<span class="lex-term">Shatter</span><span class="lex-tag conc">BHO</span><span class="lex-tag adv">Fortgeschritten</span><br>Transparentes, glasartiges BHO-Konzentrat. Spröde, bricht wie Glas. 70–90% THC. Entsteht durch Purging bei niedrigerer Temperatur ohne Rühren. Beste Stabilität und längste Haltbarkeit unter BHO-Typen.'},
-    {t:'Wax / Budder',b:'<span class="lex-term">Wax / Budder</span><span class="lex-tag conc">BHO</span><span class="lex-tag adv">Fortgeschritten</span><br>Cremige, opake BHO-Konsistenz. Entsteht durch "Whipping" (Rühren) während des Purgings bei ~37°C. 65–85% THC. Einfacher zu handhaben als Shatter.'},
-    {t:'Crumble',b:'<span class="lex-term">Crumble</span><span class="lex-tag conc">BHO</span><span class="lex-tag adv">Fortgeschritten</span><br>Trockene, bröckelige Konsistenz. Purging bei höherer Temp (~45°C) und länger. 60–80%. Weniger terpenreich als Sauce, aber einfach zu dosieren.'},
-    {t:'Live Resin',b:'<span class="lex-term">Live Resin</span><span class="lex-tag conc">BHO</span><span class="lex-tag adv">Fortgeschritten</span><br>BHO aus frisch gefrorenem (nicht getrocknetem) Material. Maximale Terpenerhaltung. Terpengehalt 2–5x höher als aus getrocknetem Material. Intensivster Entourage-Effekt.'},
-    {t:'Sauce / HTFSE',b:'<span class="lex-term">Sauce / HTFSE</span><span class="lex-tag conc">BHO</span><span class="lex-tag adv">Fortgeschritten</span><br>High Terpene Full Spectrum Extract. Flüssig bis dickflüssig, terpenreich, oft mit THCA-Kristallen durchsetzt. 50–80%. Basis für Diamantmining.'},
-    {t:'Diamonds / THCA-Kristalle',b:'<span class="lex-term">Diamonds</span><span class="lex-tag conc">Kristalle</span><span class="lex-tag adv">Fortgeschritten</span><br>THCA-Kristalle bis 99% Reinheit. Nicht psychoaktiv ohne Dekarb! Entstehen durch langsame Kristallisation aus Sauce. Reinste Form aller Konzentrate.'},
-    {t:'Rosin',b:'<span class="lex-term">Rosin</span><span class="lex-tag conc">Lösungsmittelfrei</span><br>Durch Hitze und Druck gepresstes Harz-Extrakt. Kein Lösungsmittel. 60–80%. Hellgelb bis bernstein. Einfachste Konzentrat-Methode für Heimanwender (Haarpresse reicht für kleine Mengen).'},
-    {t:'RSO',b:'<span class="lex-term">RSO</span><span class="lex-tag conc">Vollspektrum</span><span class="lex-tag adv">Fortgeschritten</span><br>Rick Simpson Oil. Vollspektrum-Warmextrakt (Ethanol). Dunkel, pastös, alle Pflanzenstoffe enthalten. 40–70%. Medizinische Tradition. Starker Eigengeschmack.'},
-    {t:'FECO',b:'<span class="lex-term">FECO</span><span class="lex-tag conc">Vollspektrum</span><br>Full Extract Cannabis Oil. Vollspektrum-Kaltextrakt mit Winterization. Reineres Produkt als RSO. 50–80%. Medizinischer Standard.'},
-    {t:'Destillat',b:'<span class="lex-term">Destillat</span><span class="lex-tag conc">Reinprodukt</span><span class="lex-tag adv">Fortgeschritten</span><br>Durch Vakuumdestillation gewonnenes Reinprodukt. 85–99%. Goldgelb, nahezu geruchs- und geschmacksneutral. Ideal für diskrete Edibles.'},
-    {t:'Kief / Pollen',b:'<span class="lex-term">Kief / Pollen</span><span class="lex-tag base">Basis</span><br>Durch Siebung gewonnene Trichome. 30–60%. Einfachste Konzentrat-Form. Kann direkt dekarboxyliert und in Edibles eingearbeitet werden.'},
-    {t:'Terpene / Terp Sauce',b:'<span class="lex-term">Terpene / Terp Sauce</span><span class="lex-tag base">Bestandteil</span><br>Aromastoffe der Cannabispflanze. Beeinflussen Wirkung (Entourage-Effekt). Flüchtig ab 100°C. Terp Sauce = abgetrennte Terpenfraktion aus Destillation oder Zentrifugation.'},
-    {t:'Entourage-Effekt',b:'<span class="lex-term">Entourage-Effekt</span><span class="lex-tag base">Konzept</span><br>Synergistische Wirkung aller Cannabinoide und Terpene zusammen. Vollspektrum-Extrakte (RSO, FECO) > Isolate (Destillat, Kristalle) für ganzheitliche Wirkung. Gegenkonzept: Isolat-Therapie für spezifische Cannabinoid-Wirkung.'},
-    {t:'Winterization',b:'<span class="lex-term">Winterization</span><span class="lex-tag base">Prozessschritt</span><br>Reinigungsschritt: Rohextrakt wird in –20°C Ethanol gelöst und 24–48h bei –20°C gelagert. Wachse, Lipide und Chlorophyll flocken aus und können herausgefiltert werden. Ergebnis: reineres, helleres Produkt.'},
-    {t:'Purging',b:'<span class="lex-term">Purging</span><span class="lex-tag adv">BHO-Prozess</span><br>Entfernung von Restlösungsmittel (Butan) aus BHO-Extrakt im Vakuumofen. Temperatur und Zeit bestimmen die Endkonsistenz (Shatter, Wax, Crumble). Qualitäts-Purge: <500 ppm Restbutan.'},
-    {t:'Closed Loop System',b:'<span class="lex-term">Closed Loop</span><span class="lex-tag adv">Fortgeschritten</span><br>Geschlossenes Extraktionssystem für BHO: Lösungsmittel zirkuliert im System, kein offener Austritt von Butandämpfen. Einzige sichere Methode für BHO-Extraktion. Gegenteil: Open Blast (lebensgefährlich, illegal).'},
-    {t:'Dekarboxylierung',b:'<span class="lex-term">Dekarboxylierung / Dekarb</span><span class="lex-tag base">Grundprozess</span><br>Aktivierung von Cannabinoiden durch Hitze: THCA → THC, CBDA → CBD. Pflicht für alle Edibles. THC: 110°C / 30 Min. CBD: 120°C / 40 Min. THCA-Kristalle: 120°C / 45–60 Min.'}
+    {t:'Shatter',b:'<span class="lex-term">Shatter</span><span class="lex-tag conc">BHO</span><span class="lex-tag adv">Fortgeschritten</span><br>Transparentes, glasartiges BHO-Konzentrat. 70–90% THC.'},
+    {t:'Wax / Budder',b:'<span class="lex-term">Wax / Budder</span><span class="lex-tag conc">BHO</span><br>Cremige, opake Konsistenz. 65–85% THC.'},
+    {t:'Live Resin',b:'<span class="lex-term">Live Resin</span><span class="lex-tag conc">BHO</span><br>BHO aus frisch gefrorenem Material. Maximale Terpene.'},
+    {t:'Sauce / HTFSE',b:'<span class="lex-term">Sauce / HTFSE</span><span class="lex-tag conc">BHO</span><br>High Terpene Full Spectrum Extract. Flüssig, terpenreich, oft mit THCA-Kristallen.'},
+    {t:'Diamonds / THCA-Kristalle',b:'<span class="lex-term">Diamonds</span><span class="lex-tag conc">Kristalle</span><br>THCA-Kristalle bis 99%. Nicht aktiv ohne Dekarb!'},
+    {t:'Rosin',b:'<span class="lex-term">Rosin</span><span class="lex-tag conc">Lösungsmittelfrei</span><br>Hitzepresse-Extrakt, 60–80%. Kein Lösungsmittel.'},
+    {t:'RSO',b:'<span class="lex-term">RSO</span><span class="lex-tag conc">Vollspektrum</span><span class="lex-tag adv">Fortgeschritten</span><br>Rick Simpson Oil. Vollspektrum-Warmextrakt. 40–70%.'},
+    {t:'FECO',b:'<span class="lex-term">FECO</span><span class="lex-tag conc">Vollspektrum</span><br>Full Extract Cannabis Oil. Kaltextrakt + Winterization. 50–80%.'},
+    {t:'Destillat',b:'<span class="lex-term">Destillat</span><span class="lex-tag conc">Reinprodukt</span><span class="lex-tag adv">Fortgeschritten</span><br>Vakuumdestillation. 85–99%. Geschmacksneutral.'},
+    {t:'Entourage-Effekt',b:'<span class="lex-term">Entourage-Effekt</span><span class="lex-tag base">Konzept</span><br>Synergistische Wirkung aller Cannabinoide + Terpene. Vollspektrum > Isolat für ganzheitliche Wirkung.'},
+    {t:'Winterization',b:'<span class="lex-term">Winterization</span><span class="lex-tag base">Prozessschritt</span><br>Rohextrakt bei –20°C: Wachse flocken aus. Ergebnis: klar, rein.'},
+    {t:'Purging',b:'<span class="lex-term">Purging</span><span class="lex-tag adv">BHO</span><br>Entfernung von Restbutan im Vakuumofen. Temp + Zeit = Konsistenz.'},
+    {t:'Closed Loop',b:'<span class="lex-term">Closed Loop</span><span class="lex-tag adv">Fortgeschritten</span><br>Geschlossenes BHO-System. Einzige sichere Methode. Open Blast = lebensgefährlich.'},
+    {t:'Dekarboxylierung',b:'<span class="lex-term">Dekarboxylierung</span><span class="lex-tag base">Grundprozess</span><br>THCA→THC, CBDA→CBD durch Hitze. Pflicht für alle Edibles.'}
   ]}
 };
 
-var SAFETY={
+var SAFETY = {
   dosierung:{cat:"Dos und Don'ts",icon:'⚖',items:[
-    {t:'Start Low, Go Slow',b:'<b style="color:var(--accent)">Dos:</b><br>Erste Erfahrung: max. 2.5–5 mg THC. Mind. 2 Stunden warten.<br><br><b style="color:var(--warn)">Dont\'s:</b><br>Niemals nachkonsumieren weil nichts passiert.<br>Kein Mischkonsum mit Alkohol. Nicht Auto fahren. Nie in Gegenwart von Minderjährigen.'},
+    {t:'Start Low, Go Slow',b:'<b style="color:var(--accent)">Dos:</b><br>Erste Erfahrung: max. 2.5–5 mg THC. Mind. 2 Stunden warten.<br><br><b style="color:var(--warn)">Don\'ts:</b><br>Niemals nachkonsumieren weil nichts passiert.<br>Kein Mischkonsum mit Alkohol. Nicht Auto fahren. Nie bei Minderjährigen.'},
     {t:'Sichere Lagerung',b:'Kindersichere, beschriftete Behälter. Klar von normalen Lebensmitteln trennen. Kühl, dunkel, trocken. Haustiere ebenfalls empfindlich.'},
-    {t:'Risikogruppen',b:'Jugendliche (Gehirn bis ~25 J.), Schwangere, Herzerkrankungen, psychische Erkrankungen. Medikamente: CYP450-Wechselwirkungen möglich — Arzt fragen!'},
-    {t:'Wirkungsdauer',b:'Onset: 30–120 Min. Peak: 2–4h. Dauer: 4–8h. Leerer Magen: schneller + stärker. Fettreiche Mahlzeit: langsamer + stärker.'}
+    {t:'Risikogruppen',b:'Jugendliche (Gehirn bis ~25 J.), Schwangere, Herzerkrankungen, psychische Erkrankungen. CYP450-Wechselwirkungen mit Medikamenten möglich — Arzt fragen!'},
+    {t:'Wirkungsdauer',b:'Onset: 30–120 Min. Peak: 2–4h. Dauer: 4–8h. Leerer Magen: schneller + stärker.'}
   ]},
   od:{cat:'Bei OD / Panik',icon:'🆘',items:[
-    {t:'Zeichen',b:'Selten lebensbedrohlich. Angst, Panik, Herzrasen, Schwindel, Dissoziation.<br><b style="color:var(--warn)">Bei Bewusstlosigkeit / Atemstörung: 112 / 144!</b>'},
+    {t:'Zeichen',b:'Angst, Panik, Herzrasen, Schwindel, Dissoziation.<br><b style="color:var(--warn)">Bei Bewusstlosigkeit / Atemstörung: 112 / 144!</b>'},
     {t:'Erste Hilfe',b:'1. Sichern & hinlegen. 2. Beruhigen. 3. Wasser. 4. Frische Luft. 5. 4-7-8 Atemtechnik. 6. Nicht alleine lassen. 7. CBD kann helfen.<br><b style="color:var(--amber)">Kein Erbrechen provozieren!</b>'},
     {t:'7 W — Notruf',b:'<b style="color:var(--accent)">WO · WAS · WIE VIELE · WELCHER Zustand · WARTEN · WANN · WER</b><br><br>Ehrlich sein — Sanitäter sind keine Polizei.'},
-    {t:'Nicht wirken',b:'Mind. 2h warten. Fettigen Snack essen. Dann ggf. gleiche Dosis.<br><b style="color:var(--warn)">Niemals doppelte Dosis!</b>'}
+    {t:'Nicht wirken',b:'Mind. 2h warten. Fettigen Snack essen.<br><b style="color:var(--warn)">Niemals doppelte Dosis!</b>'}
   ]},
   sucht:{cat:'Sucht & Hilfe',icon:'🤝',items:[
-    {t:'Fakten',b:'~9% entwickeln Abhängigkeit. Jugendlicher Konsum: bis 17%. CUD anerkannte Diagnose. Entzug 1–2 Wochen.'},
+    {t:'Fakten',b:'~9% entwickeln Abhängigkeit. Jugendalter täglich: bis 17%. CUD anerkannte Diagnose. Entzug 1–2 Wochen.'},
     {t:'Warnzeichen',b:'Konsum trotz negativer Folgen. Schwierigkeiten aufzuhören. Stimmungstiefs ohne Konsum. Steigende Toleranz.<br>Selbsttest: CUDIT kostenlos online.'},
     {t:'Hilfe',b:'CBT evidenzbasiert. Quit the Shit: quittheshit.net — kostenlos, anonym.'}
   ]},
   anlaufstellen:{cat:'Anlaufstellen DACH',icon:'📍',items:[
     {t:'🇨🇭 Schweiz',b:'Sanität <b>144</b> · Tox Info <b>145</b> · Dargebotene Hand <b>143</b><br>suchtschweiz.ch · infodrog.ch · feel-ok.ch/cannabis'},
-    {t:'🇩🇪 Deutschland',b:'Notruf <b>112</b> · Telefonseelsorge <b>0800 111 0 111</b><br>bzga.de · drugcom.de · quittheshit.net<br>CanG (2024): 25g öffentlich, 50g zuhause, 3 Pflanzen (18+).'},
+    {t:'🇩🇪 Deutschland',b:'Notruf <b>112</b> · Telefonseelsorge <b>0800 111 0 111</b><br>bzga.de · drugcom.de · quittheshit.net<br>CanG (2024): 25g/50g/3 Pflanzen (18+).'},
     {t:'🇦🇹 Österreich',b:'Sanität <b>144</b> · Vergiftung <b>01 406 43 43</b> · Seelsorge <b>142</b><br>suchtvorbeugung.at · gruenerkreis.at'},
-    {t:'🌍 International',b:'TripSit: tripsit.me · DanceSafe: dancesafe.org<br>CUDIT / ASSIST Selbsttests (WHO)'}
+    {t:'🌍 International',b:'TripSit: tripsit.me · DanceSafe: dancesafe.org<br>CUDIT / ASSIST (WHO)'}
   ]},
   recht:{cat:'Rechtliches DACH',icon:'⚖',items:[
     {t:'🇨🇭 Schweiz',b:'THC illegal. Bis 10g: CHF 100. CBD unter 1% THC legal. Pilotversuche: Basel, Bern, Zürich, Genf.'},
-    {t:'🇩🇪 Deutschland',b:'CanG April 2024: 25g/50g/3 Pflanzen (18+). Cannabis Social Clubs. THC-Grenzwert Strasse: 3.5 ng/ml.'},
+    {t:'🇩🇪 Deutschland',b:'CanG April 2024: 25g/50g/3 Pflanzen (18+). Social Clubs. THC Strassenverkehr: 3.5 ng/ml.'},
     {t:'🇦🇹 Österreich',b:'Illegal (SMG). Eigenkonsum: Diversion möglich. CBD unter 0.3% legal.'},
-    {t:'Hinweis',b:'<b style="color:var(--amber)">Keine Rechtsberatung.</b> Stand Mitte 2025. Im Wandel — lokal prüfen.'}
+    {t:'Hinweis',b:'<b style="color:var(--amber)">Keine Rechtsberatung.</b> Stand Mitte 2025. Lokal prüfen.'}
   ]}
 };
 
-// State
-var charges=[];
-try{charges=JSON.parse(localStorage.getItem('edibles_charges')||'[]');}catch(e){}
-var editIdx=-1, calcMode='raw', activeLibCat='loesungsmittel', activeSafetyCat='dosierung';
-var curWizMedia='butter', stepChecked={}, stepNotes={}, stepTimers={};
+// ── STATE ─────────────────────────────────────────────────────────────────
+var charges = [];
+var templates = [];
+var selectedTerpenes = [];
+var calcMode = 'raw';
+var activeLibCat = 'loesungsmittel';
+var activeSafetyCat = 'dosierung';
+var curWizMedia = 'butter';
+var stepChecked = {}, stepNotes = {}, stepTimers = {};
+var editIdx = -1;
+var pendingAttachments = [];
+var notifPermission = 'default';
+var currentLang = 'de';
+var chartDose = null, chartMedium = null, chartPortions = null;
 
-window.showPage=function(p){
-  document.querySelectorAll('.page').forEach(function(x){x.classList.remove('active');});
-  document.querySelectorAll('.nb').forEach(function(x){x.classList.remove('active');});
+try { charges = JSON.parse(localStorage.getItem('cannguide_charges') || '[]'); } catch(e) {}
+try { templates = JSON.parse(localStorage.getItem('cannguide_templates') || '[]'); } catch(e) {}
+
+// ── I18N ──────────────────────────────────────────────────────────────────
+var I18N = {
+  de: {
+    start:'Methoden', guide:'Guide', library:'Bibliothek', calc:'Rechner',
+    charges:'Chargen', prevention:'Prävention', design:'Design',
+    homeDesc:'CannGuide ist eine praxisorientierte Wissens- und Produktionsapp für Cannabis-Edibles im DACH-Raum. Von der Cannabutter bis zur Vakuumdestillation — mit Schritt-für-Schritt Guides, Timern, Dosierungsrechner, Chargenverwaltung und Prävention.',
+    newCharge:'+ Neue Charge', dosCalc:'∑ Dosierungsrechner', prevention2:'⛨ Prävention',
+    advanced:'⚗ Fortgeschritten'
+  },
+  en: {
+    start:'Methods', guide:'Guide', library:'Library', calc:'Calculator',
+    charges:'Batches', prevention:'Prevention', design:'Design',
+    homeDesc:'CannGuide is a practice-oriented knowledge and production app for cannabis edibles in the DACH region. From cannabutter to vacuum distillation — with step-by-step guides, timers, dosage calculator, batch management and prevention.',
+    newCharge:'+ New Batch', dosCalc:'∑ Dosage Calculator', prevention2:'⛨ Prevention',
+    advanced:'⚗ Advanced'
+  }
+};
+
+window.toggleLang = function() {
+  currentLang = currentLang === 'de' ? 'en' : 'de';
+  document.getElementById('lang-toggle').textContent = currentLang.toUpperCase();
+  try { localStorage.setItem('cannguide_lang', currentLang); } catch(e) {}
+  applyLang();
+};
+
+function applyLang() {
+  var t = I18N[currentLang];
+  var setTxt = function(id, txt) { var el=document.getElementById(id); if(el) el.textContent=txt; };
+  setTxt('nav-home', '⬡ '+t.start);
+  setTxt('nav-wizard', '☑ '+t.guide);
+  setTxt('nav-library', '⊞ '+t.library);
+  setTxt('nav-calc', '∑ '+t.calc);
+  setTxt('nav-charges', '⊡ '+t.charges);
+  setTxt('nav-safety', '⛨ '+t.prevention);
+  setTxt('nav-settings', '⚙ '+t.design);
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────
+window.showPage = function(p) {
+  document.querySelectorAll('.page').forEach(function(x){ x.classList.remove('active'); });
+  document.querySelectorAll('.nb').forEach(function(x){ x.classList.remove('active'); });
   document.getElementById('page-'+p).classList.add('active');
-  var idx={home:0,wizard:1,library:2,calc:3,charges:4,safety:5,settings:6};
-  if(idx[p]!==undefined) document.querySelectorAll('.nb')[idx[p]].classList.add('active');
+  var map = {home:'nav-home',wizard:'nav-wizard',library:'nav-library',calc:'nav-calc',charges:'nav-charges',safety:'nav-safety',settings:'nav-settings'};
+  if(map[p]) { var nb=document.getElementById(map[p]); if(nb) nb.classList.add('active'); }
   if(p==='library') renderLib();
-  if(p==='calc') cu();
+  if(p==='calc') { renderTerpeneGrid(); calcUpdate(); }
   if(p==='charges') renderCharges();
   if(p==='safety') renderSafety();
 };
 
-window.startWizard=function(m){
-  curWizMedia=m; stepChecked={}; stepNotes={};
-  stopAllTimers(); stepTimers={};
-  document.getElementById('charge-save-panel').style.display='none';
-  document.getElementById('wiz-title').textContent=W[m].title;
-  document.getElementById('wiz-sub').textContent='Schritte abhaken — Notizen & Timer pro Schritt verfügbar';
+// ── WIZARD ────────────────────────────────────────────────────────────────
+window.startWizard = function(m) {
+  curWizMedia = m; stepChecked = {}; stepNotes = {};
+  stopAllTimers(); stepTimers = {};
+  document.getElementById('charge-save-panel').style.display = 'none';
+  document.getElementById('wiz-title').textContent = W[m].title;
+  document.getElementById('wiz-sub').textContent = 'Schritte abhaken — Timer & Notizen pro Schritt';
   renderWizSteps();
 };
 
-function renderWizSteps(){
-  var steps=W[curWizMedia].steps, done=0;
-  for(var i=0;i<steps.length;i++){if(stepChecked[i])done++;}
-  document.getElementById('pbar').style.width=(steps.length>0?(done/steps.length*100).toFixed(0):0)+'%';
-  var html='';
-  steps.forEach(function(s,i){
-    var chk=!!stepChecked[i];
-    var timerHtml='';
-    if(s.timer>0){
-      if(!stepTimers[i]) stepTimers[i]={remaining:s.timer,running:false,done:false};
-      var tr=stepTimers[i];
-      var cls=tr.done?'tdone':tr.running?'running':'';
-      var btnLabel=tr.running?'⏸ Pause':tr.done?'✓ Fertig':'▶ Start';
-      timerHtml='<div class="timer-row"><span class="timer-display '+cls+'" id="tdisp-'+i+'">'+fmtTime(tr.remaining)+'</span>'
-        +'<button class="btn'+(tr.done?'':' primary')+'" onclick="toggleTimer('+i+')" id="tbtn-'+i+'"'+(tr.done?' disabled':'')+'>'+btnLabel+'</button>'
+function renderWizSteps() {
+  var steps = W[curWizMedia].steps, done = 0;
+  for(var i=0;i<steps.length;i++) { if(stepChecked[i]) done++; }
+  document.getElementById('pbar').style.width = (steps.length>0 ? (done/steps.length*100).toFixed(0) : 0)+'%';
+  var html = '';
+  steps.forEach(function(s, i) {
+    var chk = !!stepChecked[i];
+    var timerHtml = '';
+    if(s.timer > 0) {
+      if(!stepTimers[i]) stepTimers[i] = {remaining:s.timer, running:false, done:false};
+      var tr = stepTimers[i];
+      var cls = tr.done?'fin':tr.running?'run':'';
+      var btnLbl = tr.running?'⏸ Pause':tr.done?'✓ Fertig':'▶ Start';
+      timerHtml = '<div class="timer-row"><span class="tdisp '+cls+'" id="tdisp-'+i+'">'+fmtTime(tr.remaining)+'</span>'
+        +'<button class="btn'+(tr.done?'':' primary')+'" onclick="toggleTimer('+i+')" id="tbtn-'+i+'"'+(tr.done?' disabled':'')+'>'+btnLbl+'</button>'
         +'<button class="btn" onclick="resetTimer('+i+')" title="Reset">↺</button>'
         +'<span style="font-size:11px;color:var(--text3)">'+fmtTime(s.timer)+'</span></div>';
     }
-    html+='<div class="sc'+(chk?' done':'')+'" id="sc-'+i+'">'
+    html += '<div class="sc'+(chk?' done':'')+'" id="sc-'+i+'">'
       +'<div class="snum">Schritt '+(i+1)+' / '+steps.length+'</div>'
-      +'<div class="stitle"><span class="step-check'+(chk?' checked':'')+'" onclick="toggleCheck('+i+')"></span><span>'+s.t+'</span></div>'
+      +'<div class="stitle"><span class="step-check'+(chk?' chk':'')+'" onclick="toggleCheck('+i+')"></span><span>'+s.t+'</span></div>'
       +'<div class="sbody">'+s.b+'</div>'
       +(s.tip?'<div class="tip">💡 <b>Tipp:</b> '+s.tip+'</div>':'')
-      +(s.warn?'<div class="warn-inline">⚠ <b>Achtung:</b> '+s.warn+'</div>':'')
+      +(s.warn?'<div class="warn-il">⚠ <b>Achtung:</b> '+s.warn+'</div>':'')
       +timerHtml
       +'<textarea class="step-note" placeholder="Notizen..." oninput="saveNote('+i+',this.value)">'+esc(stepNotes[i]||'')+'</textarea>'
       +'</div>';
   });
-  document.getElementById('wiz-steps').innerHTML=html;
-  if(done===steps.length&&steps.length>0){
-    var panel=document.getElementById('charge-save-panel');
-    panel.style.display='block';
-    document.getElementById('wiz-cf-medium').value=W[curWizMedia].title;
-    var now=new Date();
-    document.getElementById('wiz-cf-date').value=now.getDate().toString().padStart(2,'0')+'.'+(now.getMonth()+1).toString().padStart(2,'0')+'.'+now.getFullYear();
-    document.getElementById('wiz-cf-name').value=W[curWizMedia].title+' – '+now.toLocaleDateString('de-CH');
-    var allNotes='';
-    W[curWizMedia].steps.forEach(function(s,i){if(stepNotes[i]&&stepNotes[i].trim())allNotes+='Schritt '+(i+1)+' – '+s.t+':\n'+stepNotes[i]+'\n\n';});
-    document.getElementById('wiz-cf-notes').value=allNotes.trim();
+  document.getElementById('wiz-steps').innerHTML = html;
+  if(done === steps.length && steps.length > 0) {
+    var panel = document.getElementById('charge-save-panel');
+    panel.style.display = 'block';
+    document.getElementById('wiz-cf-medium').value = W[curWizMedia].title;
+    var now = new Date();
+    document.getElementById('wiz-cf-date').value = now.getDate().toString().padStart(2,'0')+'.'+(now.getMonth()+1).toString().padStart(2,'0')+'.'+now.getFullYear();
+    document.getElementById('wiz-cf-name').value = W[curWizMedia].title+' – '+now.toLocaleDateString('de-CH');
+    var allNotes = '';
+    W[curWizMedia].steps.forEach(function(s,i){ if(stepNotes[i]&&stepNotes[i].trim()) allNotes+='Schritt '+(i+1)+' – '+s.t+':\n'+stepNotes[i]+'\n\n'; });
+    document.getElementById('wiz-cf-notes').value = allNotes.trim();
     panel.scrollIntoView({behavior:'smooth'});
   }
 }
-window.toggleCheck=function(i){stepChecked[i]=!stepChecked[i];renderWizSteps();};
-window.saveNote=function(i,v){stepNotes[i]=v;};
-window.toggleTimer=function(i){
-  var tr=stepTimers[i]; if(tr.done) return;
-  if(tr.running){
-    clearInterval(tr.interval);tr.running=false;
-    var b=document.getElementById('tbtn-'+i),d=document.getElementById('tdisp-'+i);
-    if(b)b.textContent='▶ Start'; if(d)d.className='timer-display';
+
+window.toggleCheck = function(i) { stepChecked[i] = !stepChecked[i]; renderWizSteps(); };
+window.saveNote = function(i, v) { stepNotes[i] = v; };
+
+window.toggleTimer = function(i) {
+  var tr = stepTimers[i]; if(tr.done) return;
+  var s = W[curWizMedia].steps[i];
+  if(tr.running) {
+    clearInterval(tr.interval); tr.running = false;
+    cancelTimerNotif(i);
+    var b=document.getElementById('tbtn-'+i), d=document.getElementById('tdisp-'+i);
+    if(b) b.textContent='▶ Start'; if(d) d.className='tdisp';
   } else {
-    tr.running=true;
-    var b=document.getElementById('tbtn-'+i),d=document.getElementById('tdisp-'+i);
-    if(b)b.textContent='⏸ Pause'; if(d)d.className='timer-display running';
-    tr.interval=setInterval(function(){
-      if(tr.remaining>0){
-        tr.remaining--;
-        var el=document.getElementById('tdisp-'+i);
-        if(el){el.textContent=fmtTime(tr.remaining);if(tr.remaining<=30)el.className='timer-display alert';}
-      } else {
-        clearInterval(tr.interval);tr.running=false;tr.done=true;
-        var el=document.getElementById('tdisp-'+i),bn=document.getElementById('tbtn-'+i);
-        if(el){el.textContent='✓ Fertig';el.className='timer-display tdone';}
-        if(bn){bn.textContent='✓ Fertig';bn.disabled=true;bn.className='btn';}
-      }
-    },1000);
+    requestNotifPermission(function(granted) {
+      tr.running = true;
+      var b=document.getElementById('tbtn-'+i), d=document.getElementById('tdisp-'+i);
+      if(b) b.textContent='⏸ Pause'; if(d) d.className='tdisp run';
+      if(granted) scheduleTimerNotif(i, s.t, W[curWizMedia].title, tr.remaining);
+      tr.interval = setInterval(function() {
+        if(tr.remaining > 0) {
+          tr.remaining--;
+          var el = document.getElementById('tdisp-'+i);
+          if(el){ el.textContent=fmtTime(tr.remaining); if(tr.remaining<=30) el.className='tdisp alrt'; }
+        } else {
+          clearInterval(tr.interval); tr.running=false; tr.done=true;
+          var el=document.getElementById('tdisp-'+i), bn=document.getElementById('tbtn-'+i);
+          if(el){el.textContent='✓ Fertig';el.className='tdisp fin';}
+          if(bn){bn.textContent='✓ Fertig';bn.disabled=true;bn.className='btn';}
+        }
+      }, 1000);
+    });
   }
 };
-window.resetTimer=function(i){
-  var s=W[curWizMedia].steps[i]; if(!s||!s.timer) return;
-  var tr=stepTimers[i]; clearInterval(tr.interval);
-  tr.remaining=s.timer;tr.running=false;tr.done=false;
-  var el=document.getElementById('tdisp-'+i),bn=document.getElementById('tbtn-'+i);
-  if(el){el.textContent=fmtTime(s.timer);el.className='timer-display';}
+
+window.resetTimer = function(i) {
+  var s = W[curWizMedia].steps[i]; if(!s||!s.timer) return;
+  var tr = stepTimers[i]; clearInterval(tr.interval);
+  cancelTimerNotif(i);
+  tr.remaining=s.timer; tr.running=false; tr.done=false;
+  var el=document.getElementById('tdisp-'+i), bn=document.getElementById('tbtn-'+i);
+  if(el){el.textContent=fmtTime(s.timer);el.className='tdisp';}
   if(bn){bn.textContent='▶ Start';bn.disabled=false;bn.className='btn primary';}
 };
-window.stopAllTimers=function(){Object.keys(stepTimers).forEach(function(i){if(stepTimers[i]&&stepTimers[i].interval)clearInterval(stepTimers[i].interval);});};
-function fmtTime(s){var h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sc=s%60;return h>0?h+'h '+m.toString().padStart(2,'0')+'m':m.toString().padStart(2,'0')+':'+sc.toString().padStart(2,'0');}
-function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-window.saveWizCharge=function(){
-  var name=document.getElementById('wiz-cf-name').value.trim(); if(!name) return;
-  var c={id:Date.now(),name:name,medium:W[curWizMedia].title,date:document.getElementById('wiz-cf-date').value,dose:document.getElementById('wiz-cf-dose').value,portions:'',material:'',recipe:'Hergestellt mit Guide: '+W[curWizMedia].title,notes:document.getElementById('wiz-cf-notes').value,created:Date.now()};
-  charges.unshift(c);
-  try{localStorage.setItem('edibles_charges',JSON.stringify(charges));}catch(e){}
+
+window.stopAllTimers = function() {
+  Object.keys(stepTimers).forEach(function(i){ if(stepTimers[i]&&stepTimers[i].interval) clearInterval(stepTimers[i].interval); });
+};
+
+window.saveWizCharge = function() {
+  var name = document.getElementById('wiz-cf-name').value.trim(); if(!name) return;
+  var c = {id:Date.now(), name:name, medium:W[curWizMedia].title,
+    date:document.getElementById('wiz-cf-date').value,
+    dose:document.getElementById('wiz-cf-dose').value,
+    portions:'', material:'',
+    recipe:'Hergestellt mit Guide: '+W[curWizMedia].title,
+    notes:document.getElementById('wiz-cf-notes').value,
+    attachments:[], created:Date.now()};
+  charges.unshift(c); saveChargesStorage();
   document.getElementById('wiz-saved').style.display='inline';
-  setTimeout(function(){document.getElementById('wiz-saved').style.display='none';},2500);
+  setTimeout(function(){document.getElementById('wiz-saved').style.display='none';}, 2500);
 };
 
-function renderLib(){
-  var cats={loesungsmittel:'Lösungsmittel',tricks:'Profi-Tricks',dekarb:'Dekarboxylierung',fehler:'Troubleshooting',lexikon:'📖 Lexikon'};
-  var tabs='';
-  Object.keys(cats).forEach(function(k){tabs+='<button class="nb'+(k===activeLibCat?' active':'')+'" onclick="setLibCat(\''+k+'\')">'+cats[k]+'</button>';});
-  document.getElementById('lib-tabs').innerHTML=tabs;
-  var sec=LIB[activeLibCat];
-  var h='<div class="lib-sec"><div class="lib-title">'+sec.cat+'</div>';
-  sec.items.forEach(function(item,i){
-    var id='l'+activeLibCat+i;
-    h+='<div class="le" onclick="toggleEntry(\''+id+'\')"><div class="le-title">'+item.t+'<span style="color:var(--text3);flex-shrink:0">⌄</span></div><div class="le-body" id="'+id+'">'+item.b+'</div></div>';
-  });
-  h+='</div>';
-  document.getElementById('lib-content').innerHTML=h;
+// ── NOTIFICATIONS ─────────────────────────────────────────────────────────
+function requestNotifPermission(cb) {
+  if(!('Notification' in window)) { cb(false); return; }
+  if(Notification.permission==='granted') { notifPermission='granted'; cb(true); return; }
+  if(Notification.permission==='denied') { cb(false); return; }
+  Notification.requestPermission().then(function(r){ notifPermission=r; cb(r==='granted'); });
 }
-window.setLibCat=function(k){activeLibCat=k;renderLib();};
-window.toggleEntry=function(id){var el=document.getElementById(id);if(el)el.classList.toggle('open');};
 
-window.setCalcMode=function(m){
-  calcMode=m;
-  document.getElementById('raw-inputs').style.display=m==='raw'?'block':'none';
-  document.getElementById('extract-inputs').style.display=m==='extract'?'block':'none';
-  document.getElementById('mode-raw').className='btn'+(m==='raw'?' primary':'');
-  document.getElementById('mode-extract').className='btn'+(m==='extract'?' primary':'');
-  cu();
+function scheduleTimerNotif(id, title, medium, delaySec) {
+  if(notifPermission!=='granted') return;
+  if(!navigator.serviceWorker||!navigator.serviceWorker.controller) return;
+  navigator.serviceWorker.controller.postMessage({type:'TIMER_SCHEDULE', timerId:id, stepTitle:title, medium:medium, delay:delaySec*1000});
+}
+
+function cancelTimerNotif(id) {
+  if(!navigator.serviceWorker||!navigator.serviceWorker.controller) return;
+  navigator.serviceWorker.controller.postMessage({type:'TIMER_CANCEL', timerId:id});
+}
+
+// ── LIBRARY ───────────────────────────────────────────────────────────────
+function renderLib() {
+  var cats = {loesungsmittel:'Lösungsmittel', tricks:'Profi-Tricks', dekarb:'Dekarboxylierung', fehler:'Troubleshooting', lexikon:'📖 Lexikon'};
+  var tabs = '';
+  Object.keys(cats).forEach(function(k){
+    tabs += '<button class="nb'+(k===activeLibCat?' active':'')+'" onclick="setLibCat(\''+k+'\')">'+cats[k]+'</button>';
+  });
+  document.getElementById('lib-tabs').innerHTML = tabs;
+  var sec = LIB[activeLibCat];
+  var h = '<div class="lib-sec"><div class="lib-title">'+sec.cat+'</div>';
+  sec.items.forEach(function(item, i){
+    var id = 'l'+activeLibCat+i;
+    h += '<div class="le" onclick="toggleEntry(\''+id+'\')"><div class="le-title">'+item.t+'<span style="color:var(--text3);flex-shrink:0">⌄</span></div><div class="le-body" id="'+id+'">'+item.b+'</div></div>';
+  });
+  h += '</div>';
+  document.getElementById('lib-content').innerHTML = h;
+}
+window.setLibCat = function(k) { activeLibCat=k; renderLib(); };
+window.toggleEntry = function(id) { var el=document.getElementById(id); if(el) el.classList.toggle('open'); };
+
+// ── TERPENE GRID ──────────────────────────────────────────────────────────
+function renderTerpeneGrid() {
+  var grid = document.getElementById('terpene-grid'); if(!grid) return;
+  grid.innerHTML = TERPENES.map(function(t){
+    var sel = selectedTerpenes.indexOf(t.id) !== -1;
+    return '<div class="terp-chip'+(sel?' sel':'')+'" onclick="toggleTerp(\''+t.id+'\')">'
+      +'<span class="tn">'+t.emoji+' '+t.name+'</span>'
+      +'<span class="ts">'+t.effect.split('.')[0]+'</span>'
+      +'</div>';
+  }).join('');
+}
+
+window.toggleTerp = function(id) {
+  var idx = selectedTerpenes.indexOf(id);
+  if(idx !== -1) selectedTerpenes.splice(idx, 1);
+  else selectedTerpenes.push(id);
+  renderTerpeneGrid();
+  updateTerpInfo();
+  calcUpdate();
 };
-window.onMediumChange=function(){
-  var med=document.getElementById('cm').value;
-  var cfg=MEDIA_CFG[med]||{unit:'g',eff:80,hint:''};
-  document.getElementById('carrier-unit-label').textContent=cfg.unit;
-  document.getElementById('portion-unit-label').textContent=cfg.unit;
-  document.getElementById('eff').value=cfg.eff;
-  document.getElementById('eo').textContent=cfg.eff;
-  document.getElementById('eff-hint').textContent=cfg.hint;
-  cu();
+
+function updateTerpInfo() {
+  var box = document.getElementById('terp-info'); if(!box) return;
+  if(!selectedTerpenes.length) { box.style.display='none'; return; }
+  var info = selectedTerpenes.map(function(id){
+    var t = TERPENES.find(function(x){return x.id===id;});
+    return t ? '<b>'+t.emoji+' '+t.name+':</b> '+t.effect : '';
+  }).join('<br>');
+  box.style.display = 'block';
+  box.innerHTML = info;
+}
+
+// ── RECHNER ───────────────────────────────────────────────────────────────
+window.setCalcMode = function(m) {
+  calcMode = m;
+  document.getElementById('raw-inputs').style.display = m==='raw'?'block':'none';
+  document.getElementById('extract-inputs').style.display = m==='extract'?'block':'none';
+  document.getElementById('btn-mode-raw').className = 'btn'+(m==='raw'?' primary':'');
+  document.getElementById('btn-mode-extract').className = 'btn'+(m==='extract'?' primary':'');
+  calcUpdate();
 };
-window.onExtractTypeChange=function(){
-  var t=document.getElementById('extract-type').value;
-  var cfg=EXTRACT_CFG[t]||{min:1,max:99,def:70,hint:''};
-  var sl=document.getElementById('potency-ext');
-  sl.min=cfg.min;sl.max=cfg.max;sl.value=cfg.def;
-  document.getElementById('po-ext').textContent=cfg.def;
-  document.getElementById('extract-hint-box').textContent=cfg.hint;
-  cu();
+
+window.onMediumChange = function() {
+  var med = document.getElementById('cm').value;
+  var cfg = MEDIA_CFG[med]||{unit:'g',eff:80,hint:''};
+  document.getElementById('carrier-unit').textContent = cfg.unit;
+  document.getElementById('portion-unit').textContent = cfg.unit;
+  document.getElementById('input-unit-label').textContent = cfg.unit;
+  document.getElementById('eff').value = cfg.eff;
+  document.getElementById('eo').textContent = cfg.eff;
+  document.getElementById('eff-hint').textContent = cfg.hint;
+  calcUpdate();
 };
-window.cu=function(){
-  var med=document.getElementById('cm').value;
-  var cfg=MEDIA_CFG[med]||{unit:'g',eff:80};
-  var u=cfg.unit;
-  var carrier=parseFloat(document.getElementById('carrier').value)||0;
-  var pc=parseFloat(document.getElementById('portion-carrier').value)||0;
-  var e=parseFloat(document.getElementById('eff').value)||80;
-  var g=parseFloat(document.getElementById('ig').value)||0;
-  var medName=document.getElementById('cm').options[document.getElementById('cm').selectedIndex].text;
-  var rawMg,desc;
-  if(calcMode==='extract'){
-    var pExt=(parseFloat(document.getElementById('potency-ext').value)||70)/100;
-    rawMg=g*1000*pExt;desc=g+'g Extrakt × '+Math.round(pExt*100)+'% = '+Math.round(rawMg)+' mg roh';
+
+window.onExtractTypeChange = function() {
+  var t = document.getElementById('extract-type').value;
+  var cfg = EXTRACT_CFG[t]||{min:1,max:99,def:70,hint:''};
+  var sl = document.getElementById('potency-ext');
+  sl.min=cfg.min; sl.max=cfg.max; sl.value=cfg.def;
+  document.getElementById('po-ext').textContent = cfg.def;
+  document.getElementById('extract-hint').textContent = cfg.hint;
+  calcUpdate();
+};
+
+window.calcUpdate = function() {
+  var med = document.getElementById('cm').value;
+  var cfg = MEDIA_CFG[med]||{unit:'g',eff:80};
+  var u = cfg.unit;
+  var carrier = parseFloat(document.getElementById('carrier').value)||0;
+  var pc = parseFloat(document.getElementById('portion-c').value)||0;
+  var e = parseFloat(document.getElementById('eff').value)||80;
+  var g = parseFloat(document.getElementById('ig').value)||0;
+  var bio = parseFloat(document.getElementById('bioavail').value)||0;
+  var tolFactor = parseFloat(document.getElementById('tolerance').value)||1.0;
+  var medName = document.getElementById('cm').options[document.getElementById('cm').selectedIndex].text;
+
+  // Bioavailability disclaimer
+  var bioDisc = document.getElementById('bio-disclaimer');
+  if(bioDisc) bioDisc.style.display = bio>0?'block':'none';
+
+  // Toleranz-Boxes
+  var tolBox = document.getElementById('r-tol-box');
+  if(tolBox) tolBox.style.display = tolFactor>1.0?'block':'none';
+
+  var rawMg, desc;
+  if(calcMode==='extract') {
+    var pExt = (parseFloat(document.getElementById('potency-ext').value)||70)/100;
+    rawMg = g*1000*pExt;
+    desc = g+'g Extrakt × '+Math.round(pExt*100)+'% = '+Math.round(rawMg)+' mg roh';
   } else {
-    var p=parseFloat(document.getElementById('potency').value)||20;
-    rawMg=g*10*p;desc=g+'g Material × '+p+'% = '+Math.round(rawMg)+' mg roh';
+    var p = parseFloat(document.getElementById('potency').value)||20;
+    rawMg = g*10*p;
+    desc = g+'g Material × '+p+'% = '+Math.round(rawMg)+' mg roh';
   }
-  var totMg=rawMg*(e/100),cpU=carrier>0?totMg/carrier:0,ppMg=cpU*pc,totPor=pc>0?carrier/pc:0,ratio=(g>0&&carrier>0)?carrier/g:0;
-  var errs=[],warns=[];
-  if(carrier<=0)errs.push('Trägermenge eingeben.');
-  if(pc<=0)errs.push('Portionsgrösse eingeben.');
-  if(g<=0)errs.push('Eingesetzte Menge eingeben.');
-  if(carrier>0&&pc>=carrier)errs.push('Portionsgrösse >= Trägermenge.');
-  if(ratio>0&&ratio<5)errs.push('Zu wenig Träger: 1:'+ratio.toFixed(1)+' nicht löslich. Mind. 1:10.');
-  else if(ratio>0&&ratio<10)warns.push('Verhältnis 1:'+ratio.toFixed(1)+' knapp.');
-  if(carrier>0&&pc>0&&pc<carrier){var mpu=ppMg/pc;if(mpu>1000)errs.push('Unmöglich: '+ppMg.toFixed(0)+' mg in '+pc+u+' = '+(mpu/10).toFixed(0)+'% Reingehalt.');else if(ppMg>500)warns.push(ppMg.toFixed(0)+' mg/Portion sehr hoch.');}
-  var wb=document.getElementById('calc-warn'),cs=document.getElementById('conc-summary');
-  if(errs.length){
-    wb.style.display='block';wb.style.background='var(--warn-bg)';wb.style.border='1px solid var(--warn)';wb.style.color='var(--warn)';
+
+  var totMg = rawMg*(e/100);
+  var cpU = carrier>0 ? totMg/carrier : 0;
+  var ppMg = cpU*pc;
+  var totPor = pc>0 ? carrier/pc : 0;
+  var ratio = (g>0&&carrier>0) ? carrier/g : 0;
+  var ppBio = bio>0 ? ppMg*bio : 0;
+  var ppTol = tolFactor>1.0 ? ppMg*tolFactor : 0;
+
+  // Validierung
+  var errs=[], warns=[];
+  if(carrier<=0) errs.push('Trägermenge eingeben.');
+  if(pc<=0) errs.push('Portionsgrösse eingeben.');
+  if(g<=0) errs.push('Eingesetzte Menge eingeben.');
+  if(carrier>0&&pc>=carrier) errs.push('Portionsgrösse >= Trägermenge.');
+  if(ratio>0&&ratio<5) errs.push('Zu wenig Träger: 1:'+ratio.toFixed(1)+'. Mind. 1:10.');
+  else if(ratio>0&&ratio<10) warns.push('Verhältnis 1:'+ratio.toFixed(1)+' knapp.');
+  if(carrier>0&&pc>0&&pc<carrier) {
+    var mpu=ppMg/pc;
+    if(mpu>1000) errs.push('Unmöglich: '+ppMg.toFixed(0)+' mg in '+pc+u+' = '+(mpu/10).toFixed(0)+'% Reingehalt.');
+    else if(ppMg>500) warns.push(ppMg.toFixed(0)+' mg/Portion sehr hoch.');
+  }
+
+  var wb=document.getElementById('calc-warn'), cs=document.getElementById('conc-summary');
+  if(errs.length) {
+    wb.style.display='block'; wb.style.background='var(--warn-bg)'; wb.style.border='1px solid var(--warn)'; wb.style.color='var(--warn)';
     wb.innerHTML='<b>Ungültige Eingabe</b><br>'+errs.join('<br>');
     cs.style.display='none';
-    document.getElementById('r-total').textContent='—';document.getElementById('r-portion').textContent='—';
-    document.getElementById('r-int').innerHTML='';document.getElementById('r-rec').textContent='Eingaben korrigieren';
+    document.getElementById('r-total').textContent='—'; document.getElementById('r-portion').textContent='—';
+    document.getElementById('r-int').innerHTML=''; document.getElementById('r-rec').textContent='Eingaben korrigieren';
     return;
   }
-  if(warns.length){wb.style.display='block';wb.style.background='var(--amber-bg)';wb.style.border='1px solid var(--amber)';wb.style.color='var(--amber)';wb.innerHTML='<b>Hinweis</b><br>'+warns.join('<br>');}
+  if(warns.length) { wb.style.display='block'; wb.style.background='var(--amber-bg)'; wb.style.border='1px solid var(--amber)'; wb.style.color='var(--amber)'; wb.innerHTML='<b>Hinweis</b><br>'+warns.join('<br>'); }
   else wb.style.display='none';
+
   cs.style.display='block';
-  cs.innerHTML=desc+'<br>Nach Effizienz ('+e+'%): <b style="color:var(--accent)">'+Math.round(totMg)+' mg</b> in '+carrier+u+' '+medName+(ratio>0?' · 1:'+ratio.toFixed(1):'')+' <br>Konzentration: <b style="color:var(--accent)">'+cpU.toFixed(2)+' mg/'+u+'</b> · Portion '+pc+u+' → <b style="color:var(--accent)">'+ppMg.toFixed(1)+' mg</b> · ca. <b style="color:var(--text2)">'+Math.round(totPor)+' Portionen</b>';
-  document.getElementById('r-total').textContent=Math.round(totMg)+' mg';
-  document.getElementById('r-portion').textContent=ppMg.toFixed(1)+' mg';
-  var tag='',rec='';
-  if(ppMg<5){tag='<span class="tag tg">Niedrig (&lt;5mg)</span>';rec='Einsteiger.';}
-  else if(ppMg<15){tag='<span class="tag tg">Mittel (5–15mg)</span>';rec='Standard für Erfahrene.';}
-  else if(ppMg<25){tag='<span class="tag ta">Stark (15–25mg)</span>';rec='Nur erfahrene Konsumenten!';}
-  else{tag='<span class="tag tr">Sehr stark (&gt;25mg)</span>';rec='Portionen teilen.';}
-  document.getElementById('r-int').innerHTML=tag;
-  document.getElementById('r-rec').textContent=rec;
-};
-window.saveToCharge=function(){
-  var med=document.getElementById('cm').options[document.getElementById('cm').selectedIndex].text;
-  var now=new Date(),ds=now.getDate().toString().padStart(2,'0')+'.'+(now.getMonth()+1).toString().padStart(2,'0')+'.'+now.getFullYear();
-  var portion=document.getElementById('r-portion').textContent,total=document.getElementById('r-total').textContent;
-  var g=document.getElementById('ig').value,carrier=document.getElementById('carrier').value,pcv=document.getElementById('portion-carrier').value;
-  var cfg2=MEDIA_CFG[document.getElementById('cm').value]||{unit:'g'};
-  var mat=calcMode==='extract'?g+'g Extrakt ('+document.getElementById('potency-ext').value+'%)':g+'g Material ('+document.getElementById('potency').value+'%)';
-  var c={id:Date.now(),name:'Charge '+ds+' – '+med,medium:med,date:ds,dose:portion.replace(' mg',''),portions:Math.round(parseFloat(carrier)/parseFloat(pcv)||0),material:mat,recipe:'Aus Rechner: '+mat+' in '+carrier+cfg2.unit+' '+med+'. Gesamt: '+total+'.',notes:'',created:Date.now()};
-  charges.unshift(c);
-  try{localStorage.setItem('edibles_charges',JSON.stringify(charges));}catch(e){}
-  document.getElementById('calc-saved').style.display='inline';
-  setTimeout(function(){document.getElementById('calc-saved').style.display='none';},2000);
+  cs.innerHTML = desc+'<br>Nach Effizienz ('+e+'%): <b style="color:var(--accent)">'+Math.round(totMg)+' mg</b> in '+carrier+u+' '+medName+(ratio>0?' · 1:'+ratio.toFixed(1):'')+' <br>'
+    +'Konzentration: <b style="color:var(--accent)">'+cpU.toFixed(2)+' mg/'+u+'</b> · Portion '+pc+u+' → <b style="color:var(--accent)">'+ppMg.toFixed(1)+' mg</b>'
+    +(bio>0?' · bioverfügbar Ø <b style="color:var(--amber)">'+ppBio.toFixed(1)+' mg</b>':'')
+    +' · ca. <b style="color:var(--text2)">'+Math.round(totPor)+' Portionen</b>';
+
+  document.getElementById('r-total').textContent = Math.round(totMg)+' mg';
+  document.getElementById('r-portion').textContent = ppMg.toFixed(1)+' mg';
+
+  var bioBox=document.getElementById('r-bio-box'), bioEl=document.getElementById('r-bio');
+  if(bio>0&&bioBox&&bioEl) { bioBox.style.display='block'; bioEl.textContent=ppBio.toFixed(1)+' mg'; }
+  else if(bioBox) bioBox.style.display='none';
+
+  var tolEl=document.getElementById('r-tol');
+  if(tolFactor>1.0&&tolEl) tolEl.textContent=ppTol.toFixed(1)+' mg';
+
+  var tag='', rec='';
+  if(ppMg<5) { tag='<span class="tag tg">Niedrig (&lt;5mg)</span>'; rec='Einsteiger.'; }
+  else if(ppMg<15) { tag='<span class="tag tg">Mittel (5–15mg)</span>'; rec='Standard für Erfahrene.'; }
+  else if(ppMg<25) { tag='<span class="tag ta">Stark (15–25mg)</span>'; rec='Nur erfahrene Konsumenten!'; }
+  else { tag='<span class="tag tr">Sehr stark (&gt;25mg)</span>'; rec='Portionen teilen.'; }
+  document.getElementById('r-int').innerHTML = tag;
+  document.getElementById('r-rec').textContent = rec;
 };
 
-window.showChargeForm=function(idx){
-  editIdx=idx!==undefined?idx:-1;
-  var f=document.getElementById('charge-form');f.style.display='block';
-  if(editIdx>=0){
-    var c=charges[editIdx];
-    document.getElementById('cf-name').value=c.name||'';document.getElementById('cf-medium').value=c.medium||'Butter';
-    document.getElementById('cf-date').value=c.date||'';document.getElementById('cf-dose').value=c.dose||'';
-    document.getElementById('cf-portions').value=c.portions||'';document.getElementById('cf-material').value=c.material||'';
-    document.getElementById('cf-recipe').value=c.recipe||'';document.getElementById('cf-notes').value=c.notes||'';
+window.saveToCharge = function() {
+  var med = document.getElementById('cm').options[document.getElementById('cm').selectedIndex].text;
+  var now = new Date();
+  var ds = now.getDate().toString().padStart(2,'0')+'.'+(now.getMonth()+1).toString().padStart(2,'0')+'.'+now.getFullYear();
+  var portion = document.getElementById('r-portion').textContent;
+  var total = document.getElementById('r-total').textContent;
+  var g = document.getElementById('ig').value;
+  var carrier = document.getElementById('carrier').value;
+  var pcv = document.getElementById('portion-c').value;
+  var cfg2 = MEDIA_CFG[document.getElementById('cm').value]||{unit:'g'};
+  var mat = calcMode==='extract' ? g+'g Extrakt ('+document.getElementById('potency-ext').value+'%)' : g+'g Material ('+document.getElementById('potency').value+'%)';
+  var c = {id:Date.now(), name:'Charge '+ds+' – '+med, medium:med, date:ds,
+    dose:portion.replace(' mg',''), portions:Math.round(parseFloat(carrier)/parseFloat(pcv)||0),
+    material:mat, recipe:'Aus Rechner: '+mat+' in '+carrier+cfg2.unit+' '+med+'. Gesamt: '+total+'.',
+    notes:'', attachments:[], created:Date.now()};
+  charges.unshift(c); saveChargesStorage();
+  document.getElementById('calc-saved').style.display='inline';
+  setTimeout(function(){document.getElementById('calc-saved').style.display='none';}, 2000);
+};
+
+// ── CHARGEN ───────────────────────────────────────────────────────────────
+function saveChargesStorage() {
+  try { localStorage.setItem('cannguide_charges', JSON.stringify(charges)); } catch(e) {
+    var noImg = charges.map(function(c){ return Object.assign({},c,{attachments:[]}); });
+    try { localStorage.setItem('cannguide_charges', JSON.stringify(noImg)); } catch(e2) {}
+  }
+}
+
+window.showChargeForm = function(idx) {
+  editIdx = idx!==undefined ? idx : -1;
+  pendingAttachments = [];
+  renderTemplateSelect();
+  var f = document.getElementById('charge-form'); f.style.display='block';
+  if(editIdx>=0) {
+    var c = charges[editIdx];
+    document.getElementById('cf-name').value=c.name||''; document.getElementById('cf-medium').value=c.medium||'Butter';
+    document.getElementById('cf-date').value=c.date||''; document.getElementById('cf-dose').value=c.dose||'';
+    document.getElementById('cf-portions').value=c.portions||''; document.getElementById('cf-material').value=c.material||'';
+    document.getElementById('cf-recipe').value=c.recipe||''; document.getElementById('cf-notes').value=c.notes||'';
+    pendingAttachments = (c.attachments||[]).slice();
+    renderAttachPreviews(pendingAttachments, 'cf-attach-preview', true);
   } else {
     ['cf-name','cf-dose','cf-portions','cf-material','cf-recipe','cf-notes'].forEach(function(id){document.getElementById(id).value='';});
-    document.getElementById('cf-date').value=new Date().toLocaleDateString('de-CH');
+    document.getElementById('cf-date').value = new Date().toLocaleDateString('de-CH');
+    renderAttachPreviews([], 'cf-attach-preview', true);
   }
   f.scrollIntoView({behavior:'smooth'});
 };
-window.saveCharge=function(){
-  var name=document.getElementById('cf-name').value.trim();if(!name){document.getElementById('cf-name').focus();return;}
-  var c={id:editIdx>=0?charges[editIdx].id:Date.now(),name:name,medium:document.getElementById('cf-medium').value,date:document.getElementById('cf-date').value,dose:document.getElementById('cf-dose').value,portions:document.getElementById('cf-portions').value,material:document.getElementById('cf-material').value,recipe:document.getElementById('cf-recipe').value,notes:document.getElementById('cf-notes').value,created:editIdx>=0?charges[editIdx].created:Date.now()};
-  if(editIdx>=0)charges[editIdx]=c;else charges.unshift(c);
-  try{localStorage.setItem('edibles_charges',JSON.stringify(charges));}catch(e){}
-  cancelCharge();renderCharges();
+
+window.saveCharge = function() {
+  var name = document.getElementById('cf-name').value.trim();
+  if(!name) { document.getElementById('cf-name').focus(); return; }
+  var c = {id:editIdx>=0?charges[editIdx].id:Date.now(), name:name,
+    medium:document.getElementById('cf-medium').value, date:document.getElementById('cf-date').value,
+    dose:document.getElementById('cf-dose').value, portions:document.getElementById('cf-portions').value,
+    material:document.getElementById('cf-material').value, recipe:document.getElementById('cf-recipe').value,
+    notes:document.getElementById('cf-notes').value, attachments:pendingAttachments.slice(),
+    created:editIdx>=0?charges[editIdx].created:Date.now()};
+  if(editIdx>=0) charges[editIdx]=c; else charges.unshift(c);
+  saveChargesStorage(); cancelCharge(); renderCharges();
 };
-window.cancelCharge=function(){document.getElementById('charge-form').style.display='none';editIdx=-1;};
-window.deleteCharge=function(idx){
-  if(confirm('Charge "'+charges[idx].name+'" löschen?')){
-    charges.splice(idx,1);try{localStorage.setItem('edibles_charges',JSON.stringify(charges));}catch(e){}renderCharges();
+
+window.cancelCharge = function() { document.getElementById('charge-form').style.display='none'; editIdx=-1; };
+
+window.deleteCharge = function(idx) {
+  if(confirm('Charge "'+charges[idx].name+'" löschen?')) {
+    charges.splice(idx,1); saveChargesStorage(); renderCharges();
   }
 };
-function renderCharges(){
+
+// Anhänge
+function compressImage(dataUrl, maxW, q, cb) {
+  var img = new Image();
+  img.onload = function() {
+    var canvas = document.createElement('canvas');
+    var scale = Math.min(1, maxW/img.width);
+    canvas.width = Math.round(img.width*scale); canvas.height = Math.round(img.height*scale);
+    canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
+    cb(canvas.toDataURL('image/jpeg', q));
+  };
+  img.src = dataUrl;
+}
+
+window.addAttachments = function(e) {
+  Array.from(e.target.files).forEach(function(file){
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      if(file.type.startsWith('image/')) {
+        compressImage(ev.target.result, 800, 0.70, function(compressed){
+          pendingAttachments.push({name:file.name, type:'image/jpeg', data:compressed, compKB:Math.round(compressed.length*0.75/1024)});
+          renderAttachPreviews(pendingAttachments, 'cf-attach-preview', true);
+        });
+      } else {
+        var kb = Math.round(ev.target.result.length*0.75/1024);
+        pendingAttachments.push({name:file.name, type:file.type, data:ev.target.result, compKB:kb});
+        renderAttachPreviews(pendingAttachments, 'cf-attach-preview', true);
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+  e.target.value='';
+};
+
+function renderAttachPreviews(attachments, containerId, editable) {
+  var el = document.getElementById(containerId); if(!el) return;
+  if(!attachments||!attachments.length) { el.innerHTML=''; return; }
+  el.innerHTML = attachments.map(function(a,i){
+    var isImg = a.type&&a.type.startsWith('image/');
+    var preview = isImg
+      ? '<img src="'+a.data+'" style="width:64px;height:64px;object-fit:cover;border-radius:var(--radius);border:1px solid var(--border)">'
+      : '<div style="width:64px;height:64px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:22px">📄</div>';
+    var sizeLabel = a.compKB ? '<div style="font-size:9px;color:var(--text3);text-align:center;margin-top:2px">'+a.compKB+'KB</div>' : '';
+    var removeBtn = editable ? '<button onclick="removeAttachment('+i+')" style="position:absolute;top:-6px;right:-6px;background:var(--warn);border:none;border-radius:50%;width:18px;height:18px;cursor:pointer;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;padding:0">✕</button>' : '';
+    var viewBtn = '<a href="'+a.data+'" target="_blank" style="position:absolute;bottom:-6px;right:-6px;background:var(--accent);border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;text-decoration:none">🔍</a>';
+    return '<div style="position:relative;display:inline-block" title="'+a.name+'">'+preview+sizeLabel+removeBtn+viewBtn+'</div>';
+  }).join('');
+}
+
+window.removeAttachment = function(i) {
+  pendingAttachments.splice(i,1);
+  renderAttachPreviews(pendingAttachments, 'cf-attach-preview', true);
+};
+
+// Import/Export
+window.importCharges = function(e) {
+  var file = e.target.files[0]; if(!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    try {
+      var imported = JSON.parse(ev.target.result);
+      if(!Array.isArray(imported)) throw new Error('Kein Array');
+      var valid = imported.filter(function(c){return c&&c.name;});
+      if(!valid.length) throw new Error('Keine gültigen Chargen');
+      var existingIds = charges.map(function(c){return c.id;});
+      var newC = valid.filter(function(c){return existingIds.indexOf(c.id)===-1;});
+      var dupes = valid.length - newC.length;
+      charges = charges.concat(newC);
+      charges.sort(function(a,b){return (b.created||0)-(a.created||0);});
+      saveChargesStorage();
+      var fb = document.getElementById('import-feedback');
+      fb.style.display='block'; fb.style.background='var(--accent-bg)'; fb.style.border='1px solid var(--accent)'; fb.style.color='var(--accent)';
+      fb.innerHTML='✓ <b>'+newC.length+' Charge(n) importiert</b>'+(dupes>0?' · '+dupes+' Duplikat(e) übersprungen':'')+' · '+file.name;
+      setTimeout(function(){fb.style.display='none';}, 5000);
+      renderCharges();
+    } catch(err) {
+      var fb = document.getElementById('import-feedback');
+      fb.style.display='block'; fb.style.background='var(--warn-bg)'; fb.style.border='1px solid var(--warn)'; fb.style.color='var(--warn)';
+      fb.innerHTML='⚠ Import fehlgeschlagen: '+err.message;
+      setTimeout(function(){fb.style.display='none';}, 5000);
+    }
+    e.target.value='';
+  };
+  reader.readAsText(file);
+};
+
+window.exportData = function() {
+  var blob = new Blob([JSON.stringify(charges,null,2)],{type:'application/json'});
+  var a = document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='cannguide_chargen_'+new Date().toISOString().split('T')[0]+'.json';
+  a.click();
+};
+
+// PDF Export
+window.doExportPDF = function() {
+  if(!charges.length) { alert('Keine Chargen vorhanden.'); return; }
+  var now = new Date();
+  var ds = now.getDate().toString().padStart(2,'0')+'.'+(now.getMonth()+1).toString().padStart(2,'0')+'.'+now.getFullYear();
+  var ts = now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  var css = 'body{font-family:system-ui,sans-serif;color:#111;margin:0;padding:20px;font-size:13px;line-height:1.6}h1{font-size:20px;font-weight:700;margin-bottom:4px}.sub{font-size:12px;color:#666;margin-bottom:20px}.charge{border:1px solid #ddd;border-radius:8px;padding:14px 16px;margin-bottom:16px;page-break-inside:avoid}.cn{font-size:15px;font-weight:700;margin-bottom:4px}.cm{font-size:11px;color:#888;margin-bottom:8px}.badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}.badge{font-size:11px;padding:2px 8px;border-radius:4px;background:#e8f5ee;color:#1a6640;border:1px solid #b2dac4}.sl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#888;margin-top:8px;margin-bottom:3px}.sb{font-size:12px;color:#333;white-space:pre-wrap}.attachments{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}.attachments img{width:80px;height:80px;object-fit:cover;border-radius:6px;border:1px solid #ddd}.footer{font-size:10px;color:#aaa;text-align:center;margin-top:24px;border-top:1px solid #eee;padding-top:12px}@media print{body{padding:0}}';
+  var body = '';
+  charges.forEach(function(c){
+    body += '<div class="charge"><div class="cn">'+esc(c.name||'Unbenannte Charge')+'</div><div class="cm">'+(c.date||'kein Datum')+' · '+(c.medium||'—')+'</div><div class="badges">';
+    if(c.dose) body += '<span class="badge">'+esc(c.dose)+' mg/Portion</span>';
+    if(c.portions) body += '<span class="badge">'+esc(c.portions)+' Portionen</span>';
+    if(c.material) body += '<span class="badge">'+esc(c.material)+'</span>';
+    body += '</div>';
+    if(c.recipe&&c.recipe.trim()) body += '<div class="sl">Rezept</div><div class="sb">'+esc(c.recipe)+'</div>';
+    if(c.notes&&c.notes.trim()) body += '<div class="sl">Notizen</div><div class="sb">'+esc(c.notes)+'</div>';
+    if(c.attachments&&c.attachments.length) {
+      body += '<div class="sl">Anhänge ('+c.attachments.length+')</div><div class="attachments">';
+      c.attachments.forEach(function(a){
+        if(a.type&&a.type.startsWith('image/')) body += '<img src="'+a.data+'" title="'+esc(a.name)+'">';
+        else body += '<div style="width:80px;height:80px;background:#f5f5f5;border:1px solid #ddd;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:24px">📄</div>';
+      });
+      body += '</div>';
+    }
+    body += '</div>';
+  });
+  var html = '<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>CannGuide</title><style>'+css+'</style></head><body>'
+    +'<h1>🌿 CannGuide — Chargenübersicht</h1><div class="sub">Exportiert am '+ds+' um '+ts+' · '+charges.length+' Charge(n)</div>'
+    +body+'<div class="footer">CannGuide · quack-tic.github.io/cannguide</div></body></html>';
+  var win = window.open('','_blank');
+  if(!win) { alert('Popup blockiert. Bitte Popups erlauben.'); return; }
+  win.document.write(html); win.document.close();
+  win.onload = function(){ setTimeout(function(){win.focus();win.print();}, 400); };
+};
+
+// Batch-Vergleich
+window.showCompare = function() {
+  var panel = document.getElementById('compare-panel');
+  panel.style.display = panel.style.display==='none'?'block':'none';
+  if(panel.style.display==='block') {
+    var selA = document.getElementById('compare-a'), selB = document.getElementById('compare-b');
+    var opts = '<option value="">— wählen —</option>'+charges.map(function(c,i){return '<option value="'+i+'">'+esc(c.name)+'</option>';}).join('');
+    selA.innerHTML = opts; selB.innerHTML = opts;
+    document.getElementById('compare-result').innerHTML = '';
+  }
+};
+
+window.doCompare = function() {
+  var idxA = parseInt(document.getElementById('compare-a').value);
+  var idxB = parseInt(document.getElementById('compare-b').value);
+  if(isNaN(idxA)||isNaN(idxB)||idxA===idxB) { alert('Bitte zwei verschiedene Chargen wählen.'); return; }
+  var a = charges[idxA], b = charges[idxB];
+  var fields = [
+    {label:'Datum', va:a.date||'—', vb:b.date||'—'},
+    {label:'Medium', va:a.medium||'—', vb:b.medium||'—'},
+    {label:'Dosis/Portion', va:(a.dose?a.dose+' mg':'—'), vb:(b.dose?b.dose+' mg':'—')},
+    {label:'Portionen', va:a.portions||'—', vb:b.portions||'—'},
+    {label:'Material', va:a.material||'—', vb:b.material||'—'}
+  ];
+  var rows = fields.map(function(f){
+    return '<div class="compare-row"><span class="compare-label">'+f.label+'</span><span style="display:flex;gap:16px"><span class="compare-val">'+esc(f.va)+'</span><span class="compare-val">'+esc(f.vb)+'</span></span></div>';
+  }).join('');
+  document.getElementById('compare-result').innerHTML =
+    '<div class="compare-grid">'
+    +'<div class="compare-card"><h3>A: '+esc(a.name)+'</h3>'+(a.notes?'<div style="font-size:11px;color:var(--text3)">'+esc(a.notes.slice(0,120))+(a.notes.length>120?'…':'')+'</div>':'')+'</div>'
+    +'<div class="compare-card"><h3>B: '+esc(b.name)+'</h3>'+(b.notes?'<div style="font-size:11px;color:var(--text3)">'+esc(b.notes.slice(0,120))+(b.notes.length>120?'…':'')+'</div>':'')+'</div>'
+    +'</div>'
+    +'<div class="cs" style="margin-top:10px">'+rows+'</div>';
+};
+
+// Vorlagen
+function renderTemplateSelect() {
+  var sel = document.getElementById('template-select'); if(!sel) return;
+  sel.innerHTML = '<option value="">— Vorlage wählen —</option>'
+    +templates.map(function(t,i){return '<option value="'+i+'">'+esc(t.name)+'</option>';}).join('');
+}
+
+window.saveAsTemplate = function() {
+  var tplName = prompt('Vorlagenname:', document.getElementById('cf-name').value.trim()||'Neue Vorlage');
+  if(!tplName) return;
+  var tpl = {id:Date.now(), name:tplName, medium:document.getElementById('cf-medium').value,
+    dose:document.getElementById('cf-dose').value, portions:document.getElementById('cf-portions').value,
+    material:document.getElementById('cf-material').value, recipe:document.getElementById('cf-recipe').value,
+    notes:document.getElementById('cf-notes').value};
+  var ex = templates.findIndex(function(t){return t.name===tplName;});
+  if(ex>=0) templates[ex]=tpl; else templates.push(tpl);
+  try { localStorage.setItem('cannguide_templates', JSON.stringify(templates)); } catch(e) {}
+  renderTemplateSelect();
+};
+
+window.loadTemplate = function() {
+  var sel = document.getElementById('template-select');
+  var idx = parseInt(sel.value); if(isNaN(idx)||!templates[idx]) return;
+  var t = templates[idx];
+  document.getElementById('cf-medium').value=t.medium||'Butter';
+  document.getElementById('cf-dose').value=t.dose||'';
+  document.getElementById('cf-portions').value=t.portions||'';
+  document.getElementById('cf-material').value=t.material||'';
+  document.getElementById('cf-recipe').value=t.recipe||'';
+  document.getElementById('cf-notes').value=t.notes||'';
+  document.getElementById('cf-date').value=new Date().toLocaleDateString('de-CH');
+};
+
+window.deleteTemplate = function() {
+  var sel = document.getElementById('template-select');
+  var idx = parseInt(sel.value); if(isNaN(idx)||!templates[idx]) { alert('Keine Vorlage ausgewählt.'); return; }
+  if(!confirm('Vorlage "'+templates[idx].name+'" löschen?')) return;
+  templates.splice(idx,1);
+  try { localStorage.setItem('cannguide_templates', JSON.stringify(templates)); } catch(e) {}
+  renderTemplateSelect();
+};
+
+// Charts
+function getAccent(){ return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim(); }
+function getTxt(){ return getComputedStyle(document.documentElement).getPropertyValue('--text3').trim(); }
+function getPalette(i){ var p=['#52b788','#4a9eda','#d4a017','#d47ab0','#e05252','#7ec8a0','#a8d8ea','#f4c542']; return p[i%p.length]; }
+
+function destroyCharts() {
+  if(chartDose){chartDose.destroy();chartDose=null;}
+  if(chartMedium){chartMedium.destroy();chartMedium=null;}
+  if(chartPortions){chartPortions.destroy();chartPortions=null;}
+}
+
+function renderCharts() {
+  if(typeof Chart==='undefined') return;
+  destroyCharts();
+  var acc=getAccent(), txt=getTxt(), grid='rgba(255,255,255,0.05)', bf={family:'system-ui,sans-serif',size:11};
+  var sorted=charges.slice().sort(function(a,b){return (a.created||0)-(b.created||0);});
+
+  var doseData=sorted.filter(function(c){return parseFloat(c.dose)>0;});
+  if(doseData.length) {
+    chartDose=new Chart(document.getElementById('chart-dose').getContext('2d'),{
+      type:'line',
+      data:{labels:doseData.map(function(c){return c.date||c.name.slice(0,10);}),
+        datasets:[{label:'mg/Portion',data:doseData.map(function(c){return parseFloat(c.dose)||0;}),
+          borderColor:acc,backgroundColor:acc+'33',borderWidth:2,pointBackgroundColor:acc,pointRadius:4,tension:.35,fill:true}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{x:{ticks:{color:txt,font:bf,maxRotation:30},grid:{color:grid}},y:{ticks:{color:txt,font:bf,callback:function(v){return v+' mg';}},grid:{color:grid},beginAtZero:true}}}
+    });
+  }
+
+  var medCount={};
+  charges.forEach(function(c){var m=c.medium||'?'; medCount[m]=(medCount[m]||0)+1;});
+  var medLabels=Object.keys(medCount);
+  if(medLabels.length) {
+    chartMedium=new Chart(document.getElementById('chart-medium').getContext('2d'),{
+      type:'doughnut',
+      data:{labels:medLabels,datasets:[{data:medLabels.map(function(k){return medCount[k];}),
+        backgroundColor:medLabels.map(function(_,i){return getPalette(i);}),borderWidth:0,hoverOffset:4}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:txt,font:bf,boxWidth:12,padding:8}}},cutout:'60%'}
+    });
+  }
+
+  var portData=sorted.filter(function(c){return parseInt(c.portions)>0;}).slice(-10);
+  if(portData.length) {
+    chartPortions=new Chart(document.getElementById('chart-portions').getContext('2d'),{
+      type:'bar',
+      data:{labels:portData.map(function(c){var n=c.name; return n.length>18?n.slice(0,18)+'…':n;}),
+        datasets:[{data:portData.map(function(c){return parseInt(c.portions)||0;}),
+          backgroundColor:portData.map(function(_,i){return getPalette(i)+'cc';}),borderRadius:4,borderSkipped:false}]},
+      options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},
+        scales:{x:{ticks:{color:txt,font:bf},grid:{color:grid},beginAtZero:true},y:{ticks:{color:txt,font:bf},grid:{color:grid}}}}
+    });
+  }
+}
+
+function renderCharges() {
   var list=document.getElementById('charge-list');
-  if(!charges.length){list.innerHTML='<div class="empty-state">Noch keine Chargen.</div>';return;}
+  var dash=document.getElementById('charges-dashboard');
+  if(!charges.length) {
+    list.innerHTML='<div class="empty-state">Noch keine Chargen.</div>';
+    dash.style.display='none'; destroyCharts(); return;
+  }
+  var hasDose=charges.some(function(c){return parseFloat(c.dose)>0;});
+  var hasPor=charges.some(function(c){return parseInt(c.portions)>0;});
+  if(hasDose||hasPor) { dash.style.display='block'; setTimeout(renderCharts, 80); }
+  else dash.style.display='none';
+
   var h='';
   charges.forEach(function(c,i){
-    h+='<div class="charge-card"><div class="charge-header"><div><div class="charge-name">'+c.name+'</div><div class="charge-meta">'+(c.date||'kein Datum')+' · '+(c.medium||'—')+'</div></div><div style="display:flex;gap:6px"><button class="btn" onclick="showChargeForm('+i+')">✎</button><button class="btn danger" onclick="deleteCharge('+i+')">✕</button></div></div><div class="charge-badges">';
-    if(c.dose)h+='<span class="badge accent">'+c.dose+' mg/Portion</span>';
-    if(c.portions)h+='<span class="badge">'+c.portions+' Portionen</span>';
-    if(c.material)h+='<span class="badge">'+c.material+'</span>';
+    h+='<div class="charge-card"><div class="charge-header"><div><div class="charge-name">'+esc(c.name)+'</div><div class="charge-meta">'+(c.date||'kein Datum')+' · '+(c.medium||'—')+'</div></div><div style="display:flex;gap:6px"><button class="btn" onclick="showChargeForm('+i+')">✎</button><button class="btn danger" onclick="deleteCharge('+i+')">✕</button></div></div><div class="charge-badges">';
+    if(c.dose) h+='<span class="badge accent">'+esc(c.dose)+' mg/Portion</span>';
+    if(c.portions) h+='<span class="badge">'+esc(c.portions)+' Portionen</span>';
+    if(c.material) h+='<span class="badge">'+esc(c.material)+'</span>';
     h+='</div>';
-    if(c.recipe)h+='<div class="charge-note"><b style="color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:.05em">Rezept</b><br>'+c.recipe+'</div>';
-    if(c.notes)h+='<div class="charge-note"><b style="color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:.05em">Notizen</b><br>'+c.notes+'</div>';
+    if(c.recipe&&c.recipe.trim()) h+='<div class="charge-note"><b style="color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:.05em">Rezept</b><br>'+esc(c.recipe)+'</div>';
+    if(c.notes&&c.notes.trim()) h+='<div class="charge-note"><b style="color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:.05em">Notizen</b><br>'+esc(c.notes)+'</div>';
+    if(c.attachments&&c.attachments.length){
+      h+='<div class="charge-note"><b style="color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:.05em">Anhänge ('+c.attachments.length+')</b><div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">';
+      c.attachments.forEach(function(a){
+        var isImg=a.type&&a.type.startsWith('image/');
+        var prev=isImg?'<img src="'+a.data+'" style="width:56px;height:56px;object-fit:cover;border-radius:var(--radius);border:1px solid var(--border)">':'<div style="width:56px;height:56px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:20px">📄</div>';
+        h+='<a href="'+a.data+'" target="_blank" title="'+esc(a.name)+'">'+prev+'</a>';
+      });
+      h+='</div></div>';
+    }
     h+='</div>';
   });
   list.innerHTML=h;
 }
 
-function renderSafety(){
+// ── SAFETY ────────────────────────────────────────────────────────────────
+function renderSafety() {
   var cats={dosierung:"Dos &amp; Don'ts",od:'Bei OD / Panik',sucht:'Sucht &amp; Hilfe',anlaufstellen:'Anlaufstellen',recht:'Rechtliches'};
   var tabs='';
-  Object.keys(cats).forEach(function(k){var s=SAFETY[k];tabs+='<button class="nb'+(k===activeSafetyCat?' active':'')+'" onclick="setSafetyCat(\''+k+'\')">'+s.icon+' '+cats[k]+'</button>';});
+  Object.keys(cats).forEach(function(k){
+    var s=SAFETY[k];
+    tabs+='<button class="nb'+(k===activeSafetyCat?' active':'')+'" onclick="setSafetyCat(\''+k+'\')">'+s.icon+' '+cats[k]+'</button>';
+  });
   document.getElementById('safety-tabs').innerHTML=tabs;
   var sec=SAFETY[activeSafetyCat];
   var h='';
@@ -897,72 +1490,79 @@ function renderSafety(){
   h+='</div>';
   document.getElementById('safety-content').innerHTML=h;
 }
-window.setSafetyCat=function(k){activeSafetyCat=k;renderSafety();};
+window.setSafetyCat = function(k) { activeSafetyCat=k; renderSafety(); };
 
-window.setTheme=function(t){
+// ── SETTINGS ──────────────────────────────────────────────────────────────
+window.setTheme = function(t) {
   var th=THEMES[t];
   document.documentElement.style.setProperty('--accent',th.accent);
   document.documentElement.style.setProperty('--accent-bg',th.bg);
   document.querySelectorAll('.color-swatch').forEach(function(s){s.classList.remove('active');});
-  document.getElementById('sw-'+t).classList.add('active');
+  var sw=document.getElementById('sw-'+t); if(sw) sw.classList.add('active');
   document.getElementById('theme-name').textContent=th.name;
-  try{localStorage.setItem('edibles_theme',t);}catch(e){}
+  try{localStorage.setItem('cannguide_theme',t);}catch(e){}
   if(charges.length) setTimeout(renderCharts,100);
 };
-window.setMode=function(m){
-  if(m==='light'){
-    document.documentElement.style.setProperty('--bg','#fafafa');document.documentElement.style.setProperty('--bg2','#f0f0f0');
-    document.documentElement.style.setProperty('--bg3','#e4e4e4');document.documentElement.style.setProperty('--border','#ddd');
-    document.documentElement.style.setProperty('--border2','#ccc');document.documentElement.style.setProperty('--text','#111');
-    document.documentElement.style.setProperty('--text2','#444');document.documentElement.style.setProperty('--text3','#888');
-  } else {
-    document.documentElement.style.setProperty('--bg','#111');document.documentElement.style.setProperty('--bg2','#1a1a1a');
-    document.documentElement.style.setProperty('--bg3','#222');document.documentElement.style.setProperty('--border','#2a2a2a');
-    document.documentElement.style.setProperty('--border2','#3a3a3a');document.documentElement.style.setProperty('--text','#e8e8e8');
-    document.documentElement.style.setProperty('--text2','#aaa');document.documentElement.style.setProperty('--text3','#666');
-  }
-  document.getElementById('btn-mode-dark').className='btn'+(m==='dark'?' primary':'');
-  document.getElementById('btn-mode-light').className='btn'+(m==='light'?' primary':'');
-  try{localStorage.setItem('edibles_mode',m);}catch(e){}
+
+window.setMode = function(m) {
+  var dark = {bg:'#111',bg2:'#1a1a1a',bg3:'#222',border:'#2a2a2a',border2:'#3a3a3a',text:'#e8e8e8',text2:'#aaa',text3:'#666'};
+  var light = {bg:'#fafafa',bg2:'#f0f0f0',bg3:'#e4e4e4',border:'#ddd',border2:'#ccc',text:'#111',text2:'#444',text3:'#888'};
+  var colors = m==='auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? dark : light) : (m==='dark' ? dark : light);
+  Object.keys(colors).forEach(function(k){ document.documentElement.style.setProperty('--'+k, colors[k]); });
+  ['btn-auto-mode','btn-dark-mode','btn-light-mode'].forEach(function(id){ var el=document.getElementById(id); if(el) el.className='btn'; });
+  var active=document.getElementById('btn-'+(m==='auto'?'auto':m)+'-mode'); if(active) active.className='btn primary';
+  try{localStorage.setItem('cannguide_mode',m);}catch(e){}
 };
-window.setTitle=function(){
+
+window.setTitle = function() {
   var v=document.getElementById('title-input').value.trim();
-  if(v)document.getElementById('app-title').textContent=v;
-  try{localStorage.setItem('edibles_title',v);}catch(e){}
-};
-window.exportData=function(){
-  var blob=new Blob([JSON.stringify(charges,null,2)],{type:'application/json'});
-  var a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download='edibles_chargen_'+new Date().toISOString().split('T')[0]+'.json';a.click();
-};
-window.clearCharges=function(){
-  if(confirm('Alle Chargen löschen?')){charges=[];try{localStorage.removeItem('edibles_charges');}catch(e){}renderCharges();}
+  if(v) document.getElementById('app-title').textContent=v;
+  try{localStorage.setItem('cannguide_title',v);}catch(e){}
 };
 
-try{
-  var t=localStorage.getItem('edibles_theme');if(t&&THEMES[t])setTheme(t);
-  var md=localStorage.getItem('edibles_mode');if(md)setMode(md);
-  var tl=localStorage.getItem('edibles_title');if(tl)document.getElementById('app-title').textContent=tl;
-}catch(e){}
-onMediumChange();
-onExtractTypeChange();
+window.clearCharges = function() {
+  if(confirm('Alle Chargen löschen?')){charges=[];saveChargesStorage();renderCharges();}
+};
 
-// Service Worker registrieren (PWA) — nur auf echtem Host, nicht in Vorschau/Localhost
-if('serviceWorker' in navigator){
-  var host = window.location.hostname;
-  var skipSW = host.indexOf('claudeusercontent.com') !== -1
-            || host === 'localhost'
-            || host === '127.0.0.1'
-            || host === '';
-  if(!skipSW){
-    window.addEventListener('load', function(){
-      navigator.serviceWorker.register('/cannguide/service-worker.js')
-        .then(function(reg){ console.log('SW registered:', reg.scope); })
-        .catch(function(err){ console.warn('SW registration failed:', err); });
+// ── HELPERS ───────────────────────────────────────────────────────────────
+function fmtTime(s){ var h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sc=s%60; return h>0?h+'h '+m.toString().padStart(2,'0')+'m':m.toString().padStart(2,'0')+':'+sc.toString().padStart(2,'0'); }
+function esc(s){ if(!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+(function init(){
+  // Theme
+  try{
+    var t=localStorage.getItem('cannguide_theme'); if(t&&THEMES[t]) setTheme(t);
+    var md=localStorage.getItem('cannguide_mode'); if(md) setMode(md); else setMode('auto');
+    var tl=localStorage.getItem('cannguide_title'); if(tl) document.getElementById('app-title').textContent=tl;
+    var lg=localStorage.getItem('cannguide_lang'); if(lg) { currentLang=lg; document.getElementById('lang-toggle').textContent=lg.toUpperCase(); applyLang(); }
+  }catch(e){}
+
+  // Notification permission
+  if('Notification' in window) notifPermission=Notification.permission;
+
+  // Medium & Extrakt initialisieren
+  onMediumChange();
+  onExtractTypeChange();
+
+  // Service Worker
+  if('serviceWorker' in navigator){
+    var host=window.location.hostname;
+    if(host.indexOf('claudeusercontent.com')===-1 && host!=='localhost' && host!=='127.0.0.1' && host!==''){
+      window.addEventListener('load',function(){
+        navigator.serviceWorker.register('/cannguide/service-worker.js')
+          .then(function(r){console.log('SW:',r.scope);})
+          .catch(function(e){console.warn('SW:',e);});
+      });
+    }
+  }
+
+  // Auto dark mode listener
+  if(window.matchMedia){
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(){
+      try{ if(localStorage.getItem('cannguide_mode')==='auto') setMode('auto'); }catch(e){}
     });
   }
-}
-
 })();
 </script>
 </body>
