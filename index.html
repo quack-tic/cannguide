@@ -413,7 +413,7 @@ textarea{resize:vertical;min-height:70px}
     </div>
     <div class="row2">
       <div class="cr"><label class="cl">Datum</label><input type="text" id="cf-date"></div>
-      <div class="cr"><label class="cl">Dosis pro Portion (mg)</label><input type="number" id="cf-dose" min="0" step="0.5"></div>
+      <div class="cr"><label class="cl">Dosis pro Portion (mg)</label><input type="number" id="cf-dose" min="0" step="0.5" oninput="chargeAmpel()"><div id="cf-ampel" style="display:none;margin-top:6px;padding:6px 10px;border-radius:var(--radius);font-size:var(--fs-sm);font-weight:500"></div></div>
     </div>
     <div class="row2">
       <div class="cr"><label class="cl">Portionen gesamt</label><input type="number" id="cf-portions" min="1"></div>
@@ -1151,6 +1151,34 @@ window.showChargeForm = function(idx) {
   f.scrollIntoView({behavior:'smooth'});
 };
 
+window.chargeAmpel = function() {
+  var dose = parseFloat(document.getElementById('cf-dose').value) || 0;
+  var ampel = document.getElementById('cf-ampel');
+  if(!ampel) return;
+  if(dose <= 0) { ampel.style.display='none'; return; }
+  ampel.style.display = 'block';
+  if(dose < 5) {
+    ampel.style.background = 'var(--accent-bg)';
+    ampel.style.color = 'var(--accent)';
+    ampel.style.border = '1px solid var(--accent)';
+    ampel.textContent = '🟢 Niedrig — unter 5mg. Einsteiger-freundlich.';
+  } else if(dose < 15) {
+    ampel.style.background = 'var(--amber-bg)';
+    ampel.style.color = 'var(--amber)';
+    ampel.style.border = '1px solid var(--amber)';
+    ampel.textContent = '🟡 Mittel — 5–15mg. Standard für Erfahrene.';
+  } else if(dose < 25) {
+    ampel.style.background = '#1f0e00';
+    ampel.style.color = '#e07820';
+    ampel.style.border = '1px solid #e07820';
+    ampel.textContent = '🟠 Stark — 15–25mg. Nur für erfahrene Konsumenten!';
+  } else {
+    ampel.style.background = 'var(--warn-bg)';
+    ampel.style.color = 'var(--warn)';
+    ampel.style.border = '1px solid var(--warn)';
+    ampel.textContent = '🔴 Sehr stark — über 25mg. Portionen teilen oder Menge reduzieren!';
+  }
+};
 window.saveCharge = function() {
   var name = document.getElementById('cf-name').value.trim();
   if(!name) { document.getElementById('cf-name').focus(); return; }
