@@ -545,7 +545,7 @@ var W = {
     {t:'Fett vorbereiten',b:'1g Material auf 10–20g Fett. Kokosöl: höchste Bindung. Ghee: kein Wasser. Kokosfett: neutral.',tip:'Ghee / Kokosfett: kein Eigengeschmack.',timer:0},
     {t:'Infusion',b:'65–75°C, mind. 2–4h. Slow Cooker Low ideal.',warn:'Nie über 90°C.',timer:10800},
     {t:'Filtern',b:'Doppelt Musselintuch. Rückstand ausdrücken. Nur Glas oder Edelstahl!',tip:'Rückstand re-extrahieren — 15–25% Wirkstoff!',timer:0},
-    {t:'Kühlen & lagern',b:'2h kühlen, Wasser abgiessen, beschriften.',warn:'Sofort beschriften: Medium, Datum, mg/Portion.',timer:7200}
+    {t:'Kühlen & lagern',b:'2h kühlen, Wasser abgiessen, beschriften.',warn:'Sofort beschriften: Medium, Datum, mg/Portion.',timer:0}
   ]},
   mct:{title:'MCT-Öl Infusion',steps:[
     {t:'Dekarboxylierung',b:'110–120°C, 30–45 Min.',tip:'Mason Jar: weniger Geruch.',timer:2400},
@@ -555,13 +555,13 @@ var W = {
   ]},
   glycerin:{title:'Glycerin (VG) Infusion',steps:[
     {t:'Dekarboxylierung',b:'110–120°C, 30–45 Min.',timer:2400},
-    {t:'Warmextraktion',b:'Wasserbad 70–75°C, 4–8h, täglich schütteln.',warn:'Nicht über 80°C.',timer:28800},
+    {t:'Warmextraktion',b:'Wasserbad 70–75°C, 4–8h, täglich schütteln.',warn:'Nicht über 80°C.',timer:0},
     {t:'Filtern',b:'Warm filtern (50°C). Nur Glas/Edelstahl!',warn:'Nur oral/sublingual!',timer:0}
   ]},
   lecithin:{title:'Lecithin & Emulgierung',steps:[
     {t:'Basisinfusion',b:'Fertige Öl-Infusion + 5–10% Sonnenblumen-Lecithin.',timer:0},
     {t:'Emulgieren',b:'50°C, Stabmixer mind. 2 Min.',tip:'Ultraschallbad 3–5 Min.',timer:0},
-    {t:'Freeze-Thaw',b:'8h einfrieren, auftauen. 2–3 Zyklen.',tip:'Erhöht Bioverfügbarkeit nachweislich.',timer:28800},
+    {t:'Freeze-Thaw',b:'8h einfrieren, auftauen. 2–3 Zyklen.',tip:'Erhöht Bioverfügbarkeit nachweislich.',timer:0},
     {t:'Lagern',b:'Kühlschrank, dunkel. 4–8 Wochen.',timer:0}
   ]},
   tinktur:{title:'Tinktur / QWET',steps:[
@@ -575,7 +575,7 @@ var W = {
     {t:'Was ist FECO?',b:'Vollspektrum-Kaltextrakt + Winterization. Reineres Produkt als RSO. Alle Cannabinoide + Terpene, ohne schwere Wachse.',tip:'FECO ist die verfeinerte Version von RSO.',warn:'Hochpotent — Startdosis Reiskorn (~5mg)!',timer:0},
     {t:'Dekarboxylierung',b:'110–115°C, 45 Min.',timer:2700},
     {t:'Kaltextraktion',b:'Material und Ethanol auf –22°C. 3–5 Min rühren. Sofort filtern.',warn:'Nur Ethanol Lebensmittelqualität! Nur Glas/Edelstahl.',timer:300},
-    {t:'Winterization',b:'24–48h bei –20°C. Wachse flocken aus. Kaffeefilter.',tip:'Winterization = Schlüsselschritt FECO vs. RSO.',timer:86400},
+    {t:'Winterization',b:'24–48h bei –20°C. Wachse flocken aus. Kaffeefilter.',tip:'Winterization = Schlüsselschritt FECO vs. RSO.',timer:0},
     {t:'Reduzieren',b:'Wasserbad max. 70°C. Schonend — Terpene erhalten.',warn:'Keine offene Flamme!',timer:5400},
     {t:'Dosierung',b:'Sublingual: 1–2 Tropfen (~2.5–5mg). Kapseln: FECO + MCT 1:10. Edibles: direkt einarbeiten.',warn:'Onset sublingual: 15–45 Min. Abwarten!',timer:0},
     {t:'Lagern',b:'Kühlschrank: 12–18 Mon. Tiefkühl: 3 Jahre.',timer:0}
@@ -598,12 +598,12 @@ var W = {
     {t:'Gelatine / Agar',b:'Gelatine in Saft, erhitzen bis 70–75°C. Agar vegan.',tip:'10–15% Glycerin: weichere Textur.',warn:'Gelatine nie über 80°C.',timer:0},
     {t:'Emulsion',b:'Öl + Lecithin (1:1) mit Stabmixer.',warn:'Ohne Emulgator: Hot Spots!',timer:0},
     {t:'Mischen & Formen',b:'Gelatine auf 60°C. Emulsion einrühren. Dosierflasche.',timer:0},
-    {t:'Kühlen & lagern',b:'2h Kühlschrank. 12–24h trocknen.',tip:'Zitronensäure-Zucker gegen Zusammenkleben.',timer:7200}
+    {t:'Kühlen & lagern',b:'2h Kühlschrank. 12–24h trocknen.',tip:'Zitronensäure-Zucker gegen Zusammenkleben.',timer:0}
   ]},
   baked:{title:'Backwaren',steps:[
     {t:'Fett & Dosierung',b:'1:1 Ersatz. Unter 70°C einrühren. Nach Gewicht portionieren.',warn:'Max. 175°C. Hot Spots!',timer:0},
     {t:'Backen',b:'160–175°C.',warn:'Über 180°C: Wirkstoffverlust.',timer:1800},
-    {t:'Lagern',b:'Einzeln einwickeln. Beschriften.',warn:'Nie offen — Verwechslungsgefahr!',timer:1800}
+    {t:'Lagern',b:'Einzeln einwickeln. Beschriften.',warn:'Nie offen — Verwechslungsgefahr!',timer:0}
   ]},
   kapseln:{title:'Kapseln',steps:[
     {t:'Füllmasse',b:'MCT + 5–10% Lecithin, 35–40°C. Grösse 00.',timer:0},
@@ -626,7 +626,7 @@ var W = {
     {t:'⚠ Gefahr & Kosten',b:'Closed-Loop-Anlage: 500€–5000€+. Vakuumofen: 300€–1500€. N-Butan 99.5%+.\n\nOpen-Blast ist lebensgefährlich und darf niemals angewendet werden!',warn:'Nur im Freien. Keine Zündquellen. Nur Closed-Loop-Systeme.',timer:0},
     {t:'Extraktion',b:'Material in Rohr. N-Butan durch Material drücken. Extrakt im Sammelkolben auffangen. Nur Glas/Edelstahl für alle Kontaktflächen mit Lösungsmittel!',warn:'System auf Leckagen prüfen!',timer:0},
     {t:'Vorpurging',b:'Extrakt bei 35–40°C auf Silikonmatte. Silikon erst nach dem Vorpurging verwenden — während Extraktion nur Edelstahl/Glas!',warn:'Butan-Dämpfe: aussen oder Abluft.',timer:1800},
-    {t:'Vakuum-Purging',b:'35–45°C, –29 inHg, 24–72h je nach Konsistenz.\nShatter: niedrige Temp, wenig Rühren.\nWax/Budder: höhere Temp + Rühren.',warn:'Feuerzeug-Test: kein Entzünden = fertig.',timer:86400},
+    {t:'Vakuum-Purging',b:'35–45°C, –29 inHg, 24–72h je nach Konsistenz.\nShatter: niedrige Temp, wenig Rühren.\nWax/Budder: höhere Temp + Rühren.',warn:'Feuerzeug-Test: kein Entzünden = fertig.',timer:0},
     {t:'Extrakt-Typen',b:'Shatter: transparent, 70–90%.\nWax/Budder: cremig, 65–85%.\nCrumble: bröckelig, 60–80%.\nSauce/HTFSE: flüssig, terpenreich, 50–70%.\nLive Resin: aus gefrorenem Material, 60–85%.',timer:0}
   ]},
   thca:{title:'THCA-Kristalle',steps:[
