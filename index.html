@@ -526,7 +526,7 @@ textarea{resize:vertical;min-height:70px}
   </div>
   <p class="disclaimer">Schätzwerte. Onset: 30–120 Min — immer abwarten.</p>
   <div id="inhale-puff-info" style="display:none;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:10px 12px;font-size:var(--fs-sm);color:var(--text2);line-height:1.7;margin-top:8px">
-    💨 <b>mg/Zug verstehen:</b> Ein typischer Zug enthält bei Blüten ~0.5–2mg THC, beim Vaporizer ~1–4mg, beim Dab ~3–10mg. Unter 2mg/Zug = sanfter Einstieg. Ab 5mg/Zug = stark, nur für Erfahrene.<br>
+    💨 <b>mg/Zug verstehen:</b> Ein typischer Zug enthält bei Blüten ~0.5–2mg THC, beim Vaporizer ~1–4mg, beim Dab ~3–10mg. Unter 1.5mg bioverfügbar = Schwellendosis (kaum spürbar). 1.5–4mg = niedrig, gut kontrollierbar. 4–8mg = mittel. Ab 8mg = stark, nur Erfahrene. Ab 15mg = Extrembereich.<br>
     ⚠ <b>Zug halten bringt keinen Mehreffekt</b> — THC wird in den ersten Sekunden absorbiert. Längeres Halten belastet nur die Lunge.<br>
     ⏱ <b>Onset:</b> 30–90 Sek. — warten und einschätzen bevor nachgelegt wird.
   <div id="inhale-compare-info" style="display:none;background:var(--accent-bg);border:1px solid var(--accent);border-radius:var(--radius);padding:10px 12px;font-size:var(--fs-sm);color:#7ec8a0;line-height:1.75;margin-top:8px">
@@ -891,7 +891,7 @@ var LIB = {
 
 var SAFETY = {
   dosierung:{cat:"Dos und Don'ts",icon:'⚖',items:[
-    {t:'Start Low, Go Slow',b:'<b style="color:var(--accent)">Dos:</b><br>Erste Erfahrung: max. 2.5–5 mg THC. Mind. 2 Stunden warten.<br><br><b style="color:var(--warn)">Don\'ts:</b><br>Niemals nachkonsumieren weil nichts passiert.<br>Kein Mischkonsum mit Alkohol. Nicht Auto fahren. Nie bei Minderjährigen.'},
+    {t:'Start Low, Go Slow',b:'<b style="color:var(--accent)">Dos:</b><br>Erste Erfahrung: max. 1.5–2.5 mg THC inhalativ, 2.5–5 mg Edibles. Mind. 2 Stunden warten (Edibles) resp. 15 Min (Inhalation).<br><br><b style="color:var(--warn)">Don\'ts:</b><br>Niemals nachkonsumieren weil nichts passiert.<br>Kein Mischkonsum mit Alkohol. Nicht Auto fahren. Nie bei Minderjährigen.'},
     {t:'Sichere Lagerung',b:'Kindersichere, beschriftete Behälter. Klar von normalen Lebensmitteln trennen. Kühl, dunkel, trocken. Haustiere ebenfalls empfindlich.'},
     {t:'Risikogruppen',b:'Jugendliche (Gehirn bis ~25 J.), Schwangere, Herzerkrankungen, psychische Erkrankungen. CYP450-Wechselwirkungen mit Medikamenten möglich — Arzt fragen!'},
     {t:'Wirkungsdauer',b:'Onset: 30–120 Min. Peak: 2–4h. Dauer: 4–8h. Leerer Magen: schneller + stärker.'}
@@ -1291,9 +1291,9 @@ window.calcUpdate = function() {
     var iTotalMg = iAmt*1000*iPot*iMix*iEff;
     var portionEl = document.getElementById('r-portion');
     portionEl.textContent = iTotalMg.toFixed(1)+' mg bioverfügbar';
-    portionEl.className = 'rv'+(iTotalMg<5?' hi':iTotalMg<15?' am':' warn');
+    portionEl.className = 'rv'+(iTotalMg<1.5?' hi':iTotalMg<8?' am':' warn');
     document.getElementById('r-total').textContent = Math.round(iAmt*1000*iPot*iMix)+' mg THC total';
-    document.getElementById('r-int').innerHTML = iTotalMg<3?'<span class="tag tg">Niedrig</span>':iTotalMg<8?'<span class="tag tg">Mittel</span>':iTotalMg<15?'<span class="tag ta">Stark</span>':'<span class="tag tr">Sehr stark</span>';
+    document.getElementById('r-int').innerHTML = iTotalMg<1.5?'<span class="tag tg">Schwellendosis</span>':iTotalMg<4?'<span class="tag tg">Niedrig</span>':iTotalMg<8?'<span class="tag tg">Mittel</span>':iTotalMg<15?'<span class="tag ta">Stark</span>':'<span class="tag tr">Sehr stark</span>';
     document.getElementById('r-rec').textContent = 'Onset: 30–90 Sek · Peak: 10–30 Min · Dauer: 1–3h · Zug halten = kein Mehreffekt.';
     var kgBox=document.getElementById('r-kg-box'); if(kgBox) kgBox.style.display='none';
     var tolBox=document.getElementById('r-tol-box'); if(tolBox) tolBox.style.display='none';
@@ -1397,8 +1397,9 @@ window.calcUpdate = function() {
   if(tolFactor>1.0&&tolEl) tolEl.textContent=ppTol.toFixed(1)+' mg';
 
   var tag='', rec='';
-  if(ppMg<5) { tag='<span class="tag tg">Niedrig (&lt;5mg)</span>'; rec='Einsteiger.'; }
-  else if(ppMg<15) { tag='<span class="tag tg">Mittel (5–15mg)</span>'; rec='Standard für Erfahrene.'; }
+  if(ppMg<2.5) { tag='<span class="tag tg">Schwellendosis (&lt;2.5mg)</span>'; rec='Kaum spürbar. Mikrodosierung. Ideal zum Einstieg.'; }
+  else if(ppMg<5) { tag='<span class="tag tg">Niedrig (2.5–5mg)</span>'; rec='Einsteiger-Bereich. Gut kontrollierbar.'; }
+  else if(ppMg<15) { tag='<span class="tag tg">Mittel (5–15mg)</span>'; rec='Standard für Erfahrene.';}
   else if(ppMg<25) { tag='<span class="tag ta">Stark (15–25mg)</span>'; rec='Nur erfahrene Konsumenten!'; }
   else { tag='<span class="tag tr">Sehr stark (&gt;25mg)</span>'; rec='Portionen teilen.'; }
   document.getElementById('r-int').innerHTML = tag;
@@ -1821,7 +1822,7 @@ window.renderSafety = function() {
     +'<h2>Sicher konsumieren beginnt mit Wissen.</h2>'
     +'<p class="lede">Die drei Grundregeln für einen risikoärmeren Umgang mit Edibles — besonders wichtig beim ersten Mal.</p>'
     +'<div class="pp-rules">'
-    +'<div class="pp-rule"><span class="n">1</span><div><b>Niedrig starten.</b> <span class="tx">Erste Erfahrung max. 2.5–5&nbsp;mg THC.</span></div></div>'
+    +'<div class="pp-rule"><span class="n">1</span><div><b>Niedrig starten.</b> <span class="tx">Erste Erfahrung max. 1.5–2.5&nbsp;mg THC inhalativ, 2.5–5&nbsp;mg Edibles.</span></div></div>'
     +'<div class="pp-rule"><span class="n">2</span><div><b>Geduld haben.</b> <span class="tx">Wirkung erst nach 30–120&nbsp;Min. Niemals nachlegen, weil „nichts passiert“.</span></div></div>'
     +'<div class="pp-rule"><span class="n">3</span><div><b>Umfeld beachten.</b> <span class="tx">Vertraute Umgebung, kein Alkohol, nicht am Steuer, nie bei Minderjährigen.</span></div></div>'
     +'</div></div>';
