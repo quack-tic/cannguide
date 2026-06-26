@@ -236,11 +236,11 @@ textarea{resize:vertical;min-height:70px}
   </div>
 </div>
 <nav>
+  <button class="nb" onclick="showPage('safety')" id="nav-safety" style="background:#4a1d6e;color:#e0aaff;border-color:#7b2fc4">⛨ Know before you go</button>
+  <button class="nb" onclick="showPage('calc')" id="nav-calc">∑ Rechner</button>
   <button class="nb active" onclick="showPage('home')" id="nav-home">⬡ Methoden</button>
   <button class="nb" onclick="showPage('library')" id="nav-library">⊞ Bibliothek</button>
-  <button class="nb" onclick="showPage('calc')" id="nav-calc">∑ Rechner</button>
   <button class="nb" onclick="showPage('charges')" id="nav-charges">⊡ Chargen</button>
-  <button class="nb" onclick="showPage('safety')" id="nav-safety" style="background:#4a1d6e;color:#e0aaff;border-color:#7b2fc4">⛨ Prävention</button>
 </nav>
 
 <!-- HOME -->
@@ -248,9 +248,9 @@ textarea{resize:vertical;min-height:70px}
     <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1.25rem">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:.625rem">
       <span style="font-size:18px">🌿</span>
-      <span style="font-size:var(--fs-lg);font-weight:600">Was ist CannGuide?</span>
+      <span style="font-size:var(--fs-lg);font-weight:600">CannGuide</span>
     </div>
-    <p id="home-desc" style="font-size:var(--fs);color:var(--text2);line-height:1.75;margin-bottom:.875rem">CannGuide ist eine praxisorientierte Wissens- und Produktionsapp für Cannabis-Edibles im DACH-Raum. Von der klassischen Cannabutter bis zur Vakuumdestillation — mit Schritt-für-Schritt Guides, Timern, Dosierungsrechner, Chargenverwaltung und Prävention.</p>
+    <p id="home-desc" style="font-size:var(--fs);color:var(--text2);line-height:1.75;margin-bottom:.875rem">Cannabis wird konsumiert — mit oder ohne Wissen. CannGuide stellt Wissen entgegen: für sicheren Konsum, informierte Dosierung und weniger gefährliche Selbstexperimente. Guides, Rechner und Chargenverwaltung sind Werkzeuge im Dienst dieses Gedankens.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px">
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">☑ <b>16 Guides</b><br><span style="color:var(--text3)">mit Timern & Notizen</span></div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">∑ <b>Dosierungsrechner</b><br><span style="color:var(--text3)">Rohmaterial & Extrakte</span></div>
@@ -259,6 +259,14 @@ textarea{resize:vertical;min-height:70px}
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">📖 <b>Lexikon</b><br><span style="color:var(--text3)">Szene- & Fachbegriffe</span></div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">⚗ <b>Fortgeschritten</b><br><span style="color:var(--text3)">BHO, THCA, Destillat</span></div>
     </div>
+  </div>
+  <div onclick="showPage('safety')" style="background:#2a1040;border:1px solid #7b2fc4;border-radius:var(--radius-lg);padding:.875rem 1rem;margin-bottom:1rem;cursor:pointer;display:flex;align-items:center;gap:10px">
+    <span style="font-size:22px">⛨</span>
+    <div>
+      <div style="font-size:var(--fs-sm);font-weight:600;color:#e0aaff">Know before you go</div>
+      <div style="font-size:var(--fs-xs);color:#b07ed4;margin-top:2px">Dosierung, Wirkdauer, Notfallnummern — bevor du anfängst.</div>
+    </div>
+    <span style="margin-left:auto;color:#7b2fc4;font-size:16px">→</span>
   </div>
   <div class="ksearch">
     <span class="mag"></span>
