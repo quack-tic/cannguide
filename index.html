@@ -387,7 +387,7 @@ textarea{resize:vertical;min-height:70px}
           <optgroup label="Fertigprodukte"><option value="gummies">Gummies</option><option value="hard_candy">Hard Candy</option><option value="baked">Backwaren</option><option value="kapseln">Kapseln</option></optgroup>
         </select>
       </div>
-      <div class="cr"><label class="cl">Eingesetzte Menge</label>
+      <div class="cr"><label class="cl">Eingesetzte Wirkstoffmenge</label>
         <div class="input-row"><input type="number" id="ig" value="5" min="0.001" step="0.001" oninput="calcUpdate()"><span class="unit-badge" id="input-unit-label">g</span></div>
       </div>
     </div>
@@ -461,10 +461,10 @@ textarea{resize:vertical;min-height:70px}
       <div id="inhale-hint" style="background:var(--bg3);border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-sm);color:var(--text3);margin-bottom:.625rem"></div>
     </div>
     <div id="edible-fields">
-      <div class="cr"><label class="cl">Trägermenge gesamt</label>
+      <div class="cr"><label class="cl" id="label-carrier">Trägermenge gesamt</label>
         <div class="input-row"><input type="number" id="carrier" value="200" min="1" step="1" oninput="calcUpdate()"><span class="unit-badge" id="carrier-unit">g</span></div>
       </div>
-      <div class="cr"><label class="cl">Portion enthält</label>
+      <div class="cr"><label class="cl">Gramm pro Portion</label>
         <div class="input-row"><input type="number" id="portion-c" value="10" min="0.1" step="0.1" oninput="calcUpdate()"><span class="unit-badge" id="portion-unit">g</span></div>
       </div>
     <!-- Effizienz -->
@@ -515,19 +515,28 @@ textarea{resize:vertical;min-height:70px}
     </div>
     <!-- Terpene -->
     <div class="cr">
-      <label class="cl">Terpenprofil (optional — Info)</label>
-      <div class="terpene-grid" id="terpene-grid"></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="var g=document.getElementById('terpene-grid');var i=document.getElementById('terp-toggle');var v=g.style.display==='none';g.style.display=v?'grid':'none';i.textContent=v?'▲':'▼'">
+        <label class="cl" style="cursor:pointer;margin:0">Terpenprofil (optional — Info)</label>
+        <span id="terp-toggle" style="font-size:10px;color:var(--text3)">▼</span>
+      </div>
+      <div class="terpene-grid" id="terpene-grid" style="display:none"></div>
     </div>
     <div id="terp-info" style="display:none;background:var(--accent-bg);border:1px solid var(--accent);border-radius:var(--radius);padding:9px 12px;font-size:var(--fs-sm);color:#7ec8a0;line-height:1.65;margin-top:4px"></div>
     </div>
   <div id="calc-warn" style="display:none;border-radius:var(--radius-lg);padding:.875rem 1.125rem;margin-bottom:10px;font-size:var(--fs-sm);line-height:1.8"></div>
   <div id="conc-summary" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:.875rem 1.125rem;margin-bottom:10px;font-size:var(--fs-sm);color:var(--text3);line-height:1.8"></div>
   <div class="rg" id="result-grid">
-    <div class="rm"><div class="rl">Wirkstoff nach Effizienz</div><div class="rv hi" id="r-total">—</div></div>
-    <div class="rm"><div class="rl">Pro Portion</div><div class="rv hi" id="r-portion">—</div></div>
-    <div class="rm" id="r-bio-box" style="display:none"><div class="rl">Bioverfügbar (Ø)</div><div class="rv am" id="r-bio">—</div></div>
-    <div class="rm pulse-amber" id="r-tol-box" style="display:none"><div class="rl">Empf. Dosis bei Toleranz</div><div class="rv am" id="r-tol">—</div></div>
-    <div class="rm pulse-green" id="r-kg-box" style="display:none"><div class="rl">Empf. Startdosis</div><div class="rv hi" id="r-kg">—</div></div>
+    <div class="rm"><div class="rl">Delta-9-THC gesamt in Charge</div><div class="rv hi" id="r-total">—</div></div>
+    <div class="rm"><div class="rl">Delta-9-THC pro Portion</div><div class="rv hi" id="r-portion">—</div></div>
+    <div class="rm" id="r-bio-box" style="display:none"><div class="rl" id="r-bio-label">Bioverfügbar (Ø)</div><div class="rv am" id="r-bio">—</div></div>
+    <div id="r-11oh-warn" style="display:none;grid-column:1/-1;background:#1f0a0a;border:1px solid #c0392b;border-radius:var(--radius);padding:10px 12px;font-size:var(--fs-sm);color:#e07070;line-height:1.7">
+      ⚠️ <b>Achtung: 11-Hydroxy-THC</b><br>
+      Diese bioverfügbare Menge entsteht oral in der Leber als <b>11-Hydroxy-THC</b> — nicht als Delta-9-THC wie beim Inhalieren. 11-OH-THC wirkt <b>4–5× stärker</b> und bis zu <b>8 Stunden</b>.<br>
+      Bereits <b>1–2mg 11-OH-THC</b> gelten als spürbare Startdosis. Die angezeigte bioverfügbare Menge ist <b>kein Freifahrtschein</b> für höhere Dosierung — im Gegenteil.<br>
+      <b>Immer mit der kleinstmöglichen Portion starten und mindestens 2h warten.</b>
+    </div>
+    <div class="rm pulse-amber" id="r-tol-box" style="display:none"><div class="rl">Empf. Dosis bei Toleranz (Delta-9)</div><div class="rv am" id="r-tol">—</div></div>
+    <div class="rm pulse-green" id="r-kg-box" style="display:none"><div class="rl">Empf. Startdosis (Delta-9)</div><div class="rv hi" id="r-kg">—</div></div>
     <div class="rm"><div class="rl">Intensität</div><div class="rv" id="r-int">—</div></div>
     <div class="rm"><div class="rl">Empfehlung</div><div class="rv sm" id="r-rec" style="color:var(--text3)">—</div></div>
   </div>
@@ -706,18 +715,18 @@ var THEMES = {
 };
 
 var MEDIA_CFG = {
-  butter:    {unit:'g',  eff:78, hint:'Butter ~78%'},
-  ghee:      {unit:'g',  eff:88, hint:'Ghee ~88% — reines Butterfett'},
-  kokosoel:  {unit:'g',  eff:90, hint:'Kokosöl nativ ~90%'},
-  kokosfett: {unit:'g',  eff:88, hint:'Kokosfett raffiniert ~88%'},
-  mct:       {unit:'ml', eff:85, hint:'MCT-Öl ~85%'},
-  olivenoel: {unit:'ml', eff:75, hint:'Olivenöl ~75%'},
-  glycerin:  {unit:'ml', eff:55, hint:'Glycerin ~55%'},
-  tinktur:   {unit:'ml', eff:92, hint:'Ethanol ~92%'},
-  gummies:   {unit:'g',  eff:80, hint:'Gummies'},
-  hard_candy:{unit:'g',  eff:82, hint:'Hard Candy'},
-  baked:     {unit:'g',  eff:75, hint:'Backwaren'},
-  kapseln:   {unit:'ml', eff:88, hint:'Kapseln'}
+  butter:    {unit:'g',  eff:78, hint:'Butter ~78%', carrier:'Buttermenge gesamt'},
+  ghee:      {unit:'g',  eff:88, hint:'Ghee ~88% — reines Butterfett', carrier:'Ghee-Menge gesamt'},
+  kokosoel:  {unit:'g',  eff:90, hint:'Kokosöl nativ ~90%', carrier:'Kokosöl gesamt'},
+  kokosfett: {unit:'g',  eff:88, hint:'Kokosfett raffiniert ~88%', carrier:'Kokosfett gesamt'},
+  mct:       {unit:'ml', eff:85, hint:'MCT-Öl ~85%', carrier:'MCT-Öl gesamt'},
+  olivenoel: {unit:'ml', eff:75, hint:'Olivenöl ~75%', carrier:'Olivenöl gesamt'},
+  glycerin:  {unit:'ml', eff:55, hint:'Glycerin ~55%', carrier:'Glycerin gesamt'},
+  tinktur:   {unit:'ml', eff:92, hint:'Ethanol ~92%', carrier:'Ethanol gesamt'},
+  gummies:   {unit:'g',  eff:80, hint:'Gummies', carrier:'Gummimasse gesamt'},
+  hard_candy:{unit:'g',  eff:82, hint:'Hard Candy', carrier:'Zuckermasse gesamt'},
+  baked:     {unit:'g',  eff:75, hint:'Backwaren', carrier:'Teigmasse gesamt'},
+  kapseln:   {unit:'ml', eff:88, hint:'Kapseln', carrier:'Trägeröl gesamt'}
 };
 
 var EXTRACT_CFG = {
@@ -1301,9 +1310,9 @@ window.calcUpdate = function() {
     var iEff = {joint:0.25,bong:0.35,vape_herb:0.72,vape_ext:0.80,dab:0.80}[iMethod]||0.5;
     var iTotalMg = iAmt*1000*iPot*iMix*iEff;
     var portionEl = document.getElementById('r-portion');
-    portionEl.textContent = iTotalMg.toFixed(1)+' mg bioverfügbar';
+    portionEl.textContent = '~'+iTotalMg.toFixed(1)+' mg bioverfügbar';
     portionEl.className = 'rv'+(iTotalMg<1.5?' hi':iTotalMg<8?' am':' warn');
-    document.getElementById('r-total').textContent = Math.round(iAmt*1000*iPot*iMix)+' mg THC total';
+    document.getElementById('r-total').textContent = '~'+Math.round(iAmt*1000*iPot*iMix)+' mg THC total';
     document.getElementById('r-int').innerHTML = iTotalMg<1.5?'<span class="tag tg">Schwellendosis</span>':iTotalMg<4?'<span class="tag tg">Niedrig</span>':iTotalMg<8?'<span class="tag tg">Mittel</span>':iTotalMg<15?'<span class="tag ta">Stark</span>':'<span class="tag tr">Sehr stark</span>';
     document.getElementById('r-rec').textContent = 'Onset: 30–90 Sek · Peak: 10–30 Min · Dauer: 1–3h · Zug halten = kein Mehreffekt.';
     var kgBox=document.getElementById('r-kg-box'); if(kgBox) kgBox.style.display='none';
@@ -1317,6 +1326,8 @@ window.calcUpdate = function() {
   }
   var cfg = MEDIA_CFG[med]||{unit:'g',eff:80};
   var u = cfg.unit;
+  var lc = document.getElementById('label-carrier');
+  if(lc) lc.textContent = cfg.carrier || 'Trägermenge gesamt';
   var carrier = parseFloat(document.getElementById('carrier').value)||0;
   var pc = parseFloat(document.getElementById('portion-c').value)||0;
   var e = parseFloat(document.getElementById('eff').value)||80;
@@ -1367,7 +1378,7 @@ window.calcUpdate = function() {
   var errs=[], warns=[];
   if(carrier<=0) errs.push('Trägermenge eingeben.');
   if(pc<=0) errs.push('Portionsgrösse eingeben.');
-  if(g<=0) errs.push('Eingesetzte Menge eingeben.');
+  if(g<=0) errs.push('Eingesetzte Wirkstoffmenge eingeben.');
   if(carrier>0&&pc>=carrier) errs.push('Portionsgrösse >= Trägermenge.');
   if(ratio>0&&ratio<5) errs.push('Zu wenig Träger: 1:'+ratio.toFixed(1)+'. Mind. 1:10.');
   else if(ratio>0&&ratio<10) warns.push('Verhältnis 1:'+ratio.toFixed(1)+' knapp.');
@@ -1395,17 +1406,29 @@ window.calcUpdate = function() {
     +(bio>0?' · bioverfügbar Ø <b style="color:var(--amber)">'+ppBio.toFixed(1)+' mg</b>':'')
     +' · ca. <b style="color:var(--text2)">'+Math.round(totPor)+' Portionen</b>';
 
-  document.getElementById('r-total').textContent = Math.round(totMg)+' mg';
+  document.getElementById('r-total').textContent = '~'+Math.round(totMg)+' mg';
   var portionEl = document.getElementById('r-portion');
-  portionEl.textContent = ppMg.toFixed(1)+' mg';
+  portionEl.textContent = '~'+ppMg.toFixed(1)+' mg';
   portionEl.className = 'rv' + (ppMg < 10 ? ' hi' : ppMg < 25 ? ' am' : ' warn');
 
   var bioBox=document.getElementById('r-bio-box'), bioEl=document.getElementById('r-bio');
-  if(bio>0&&bioBox&&bioEl) { bioBox.style.display='block'; bioEl.textContent=ppBio.toFixed(1)+' mg'; }
-  else if(bioBox) bioBox.style.display='none';
+  var ohWarn = document.getElementById('r-11oh-warn');
+  if(bio>0&&bioBox&&bioEl) {
+    bioBox.style.display='block';
+    bioEl.textContent='~'+ppBio.toFixed(1)+' mg';
+    var bl=document.getElementById('r-bio-label');
+    if(bl) bl.textContent='Bioverfügbar (Ø) · von '+ppMg.toFixed(1)+' mg/Portion';
+    if(ohWarn) ohWarn.style.display = (bio===0.13 && ppBio>=2.5) ? 'block' : 'none';
+    if(bl) bl.textContent = bio===0.13
+      ? '11-OH-THC bioverfügbar (Ø) · von '+ppMg.toFixed(1)+' mg Delta-9/Portion'
+      : 'Delta-9-THC bioverfügbar (Ø) · von '+ppMg.toFixed(1)+' mg/Portion';
+  } else if(bioBox) {
+    bioBox.style.display='none';
+    if(ohWarn) ohWarn.style.display='none';
+  }
 
   var tolEl=document.getElementById('r-tol');
-  if(tolFactor>1.0&&tolEl) tolEl.textContent=ppTol.toFixed(1)+' mg';
+  if(tolFactor>1.0&&tolEl) tolEl.textContent='~'+ppTol.toFixed(1)+' mg';
 
   var tag='', rec='';
   if(ppMg<2.5) { tag='<span class="tag tg">Schwellendosis (&lt;2.5mg)</span>'; rec='Kaum spürbar. Mikrodosierung. Ideal zum Einstieg.'; }
@@ -1425,7 +1448,7 @@ window.calcUpdate = function() {
     var startDose = Math.round(bw * 0.05 * sexF * 10) / 10;
     var modDose = Math.round(bw * 0.1 * sexF * 10) / 10;
     kgBox.style.display = 'block';
-    kgEl.innerHTML = startDose + ' mg <span style="font-size:11px;color:var(--text3)">(bis ' + modDose + ' mg erfahren)</span>';
+    kgEl.innerHTML = '~'+startDose + ' mg <span style="font-size:11px;color:var(--text3)">(bis ~' + modDose + ' mg erfahren)</span>';
   } else if(kgBox) {
     kgBox.style.display = 'none';
   }
