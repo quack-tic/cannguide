@@ -25,7 +25,7 @@ Der Prozess-Guide, der Dosierungsrechner, die Chargenverwaltung, die Extraktions
 Das Projekt entwickelt sich bewusst in zwei Versionen:
 
 ### 🌐 Full PWA — GitHub Pages
-Die vollständige Version für alle, die aktiv suchen und bereits wissen was sie tun. Enthält alles — inklusive fortgeschrittener Extraktionsmethoden wie BHO, QWET, RSO, FECO, THCA-Kristalle und Vakuumdestillation.
+Die vollständige Version für alle, die aktiv suchen und bereits wissen was sie tun wollen. Enthält alles — inklusive fortgeschrittener Extraktionsmethoden wie BHO, QWET, RSO, FECO, THCA-Kristalle und Vakuumdestillation.
 
 Der Gedanke dahinter: Wer diese Methoden anwendet, tut es so oder so. Fundiertes Wissen schützt besser als Schweigen.
 
