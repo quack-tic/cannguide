@@ -1417,14 +1417,36 @@ window.calcUpdate = function() {
     bioBox.style.display='block';
     bioEl.textContent='~'+ppBio.toFixed(1)+' mg';
     var bl=document.getElementById('r-bio-label');
-    if(bl) bl.textContent='Bioverfügbar (Ø) · von '+ppMg.toFixed(1)+' mg/Portion';
-    if(ohWarn) ohWarn.style.display = (bio===0.13 && ppBio>=2.5) ? 'block' : 'none';
     if(bl) bl.textContent = bio===0.13
       ? '11-OH-THC bioverfügbar (Ø) · von '+ppMg.toFixed(1)+' mg Delta-9/Portion'
       : 'Delta-9-THC bioverfügbar (Ø) · von '+ppMg.toFixed(1)+' mg/Portion';
+    var bioWarn = bio===0.13 && ppBio>=2.5;
+    if(ohWarn) {
+      ohWarn.style.display = bioWarn ? 'block' : 'none';
+      if(bioWarn) ohWarn.classList.add('pulse-warn');
+      else ohWarn.classList.remove('pulse-warn');
+    }
+    if(bio===0.13) {
+      if(ppBio<1.0) {
+        bioEl.style.color='var(--accent)';
+        bioBox.classList.remove('pulse-warn','pulse-amber');
+      } else if(ppBio<2.5) {
+        bioEl.style.color='var(--amber)';
+        bioBox.classList.remove('pulse-warn');
+        bioBox.classList.add('pulse-amber');
+      } else {
+        bioEl.style.color='var(--warn)';
+        bioBox.classList.remove('pulse-amber');
+        bioBox.classList.add('pulse-warn');
+      }
+    } else {
+      bioEl.style.color='var(--amber)';
+      bioBox.classList.remove('pulse-warn','pulse-amber');
+    }
   } else if(bioBox) {
     bioBox.style.display='none';
-    if(ohWarn) ohWarn.style.display='none';
+    bioBox.classList.remove('pulse-warn','pulse-amber');
+    if(ohWarn) { ohWarn.style.display='none'; ohWarn.classList.remove('pulse-warn'); }
   }
 
   var tolEl=document.getElementById('r-tol');
