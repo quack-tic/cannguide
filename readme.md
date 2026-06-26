@@ -1,132 +1,93 @@
 # 🌿 CannGuide
 
-**Prozess-Guide · Dosierungsrechner · Chargenverwaltung · Prävention**
+**Harm Reduction für Cannabis-Edibles im DACH-Raum**
 
-> ⚠️ **Dieses Projekt befindet sich in aktiver Entwicklung.** Features, Inhalte und Struktur ändern sich laufend. Das Projekt ist bereits online — für Feedback, Vorstellungszwecke und erste Nutzung.
+> ⚠️ **Aktiv in Entwicklung.** Die App ist bereits online — für Feedback, Vorstellungszwecke und erste Nutzung. Inhalte und Features wachsen laufend.
 
 **→ [Live auf GitHub Pages](https://quack-tic.github.io/cannguide)**
 
 ---
 
-## Was ist CannGuide?
+## Die Idee dahinter
 
-CannGuide ist eine browserbasierte Progressive Web App (PWA) für die Herstellung, Dosierung und den sicheren Umgang mit Cannabis-Edibles im DACH-Raum. Alles läuft vollständig im Browser — keine Installation, kein Backend, keine Abhängigkeiten. Die gesamte App steckt in einer einzigen HTML-Datei.
+Cannabis wird konsumiert — mit oder ohne App, mit oder ohne Wissen. Die Frage ist nicht ob, sondern wie sicher.
 
-Der Fokus liegt auf zwei Dingen: **praxisnaher Prozessführung** (von Cannabutter bis Vakuumdestillation) und **verantwortungsvollem Konsum** (Dosierung, Prävention, Harm Reduction).
+CannGuide geht davon aus: **Unwissen ist das eigentliche Risiko.** Wer nicht versteht wie Dekarboxylierung funktioniert, überdosiert. Wer Dosierung nicht einschätzen kann, landet im Greening Out. Wer ohne Grundlagen mit Lösungsmitteln extrahiert, gefährdet sich und andere. Wer Hot Spots in Backwaren nicht kennt, hat keine Chance auf einen kontrollierten Konsum.
+
+Diesem Unwissen stellt CannGuide Wissen entgegen — praxisnah, ohne Verklärung, ohne Moralisieren.
+
+Der Prozess-Guide, der Dosierungsrechner, die Chargenverwaltung, die Extraktionskunde: das sind keine Features einer "Produktions-App". Das sind **Werkzeuge im Dienst der Schadenminimierung**. Weniger gefährliche Selbstexperimente. Weniger Überdosierungen. Weniger Panik. Mehr Kontrolle.
 
 ---
 
-## Zwei Ausrichtungen
+## Zwei Ausrichtungen — eine Mission
 
-Das Projekt entwickelt sich in zwei parallele Versionen:
+Das Projekt entwickelt sich bewusst in zwei Versionen:
 
 ### 🌐 Full PWA — GitHub Pages
-Die vollständige Version mit allen Inhalten, direkt über den Browser nutzbar:
-- Alle Herstellungsmethoden inkl. fortgeschrittener Extraktion (BHO, QWET, RSO, FECO, THCA-Kristalle, Vakuumdestillation)
-- Schritt-für-Schritt Prozessführung mit Timern und Notizen
-- Vollständiger Dosierungsrechner mit Körpergewicht, Toleranz, Geschlecht/Metabolismus
-- Chargenverwaltung mit Diagrammen und Export
-- Prävention & Harm Reduction für den DACH-Raum
+Die vollständige Version für alle, die aktiv suchen und bereits wissen was sie tun. Enthält alles — inklusive fortgeschrittener Extraktionsmethoden wie BHO, QWET, RSO, FECO, THCA-Kristalle und Vakuumdestillation.
+
+Der Gedanke dahinter: Wer diese Methoden anwendet, tut es so oder so. Fundiertes Wissen schützt besser als Schweigen.
 
 **→ [quack-tic.github.io/cannguide](https://quack-tic.github.io/cannguide)**
 
-### 🤖 Store-Lite — Google Play (geplant)
-Eine angepasste Version für den Google Play Store via Trusted Web Activity (TWA):
-- Ausschliesslich lebensmitteltaugliche Methoden (Butter, Öle, Gummies, Backwaren, Kapseln usw.)
-- Fortgeschrittene Extraktionsguides entfallen (lösungsmittel- und laborbasierte Methoden)
-- Gleicher Dosierungsrechner, Chargenverwaltung und Prävention
-- Geobeschränkt auf CH + DE
-- Onboarding mit Alterstor und Präventionshinweis
+### 🤖 Store-Lite — Google Play *(geplant)*
+Eine niederschwellige Version für den Google Play Store — breiter zugänglich, öffentlich sichtbar, politisch weniger exponiert. Fortgeschrittene Lösungsmittel- und Laborextraktion entfällt bewusst. Nicht als Selbstzensur, sondern als **strategische Entscheidung**: Wer Vakuumdestillation braucht, findet die Full PWA. Wer zufällig auf die App stösst, bekommt das Wichtigste zuerst — sichere Dosierung, Prävention, Notfallnummern.
+
+Der Lite-Ansatz schützt das Projekt und erreicht gleichzeitig mehr Menschen.
+
+---
+
+## Was die App kann
+
+### ⛨ Prävention & Harm Reduction
+Das Herzstück. Dos & Don'ts, Wirkungsdauer und Verzögerungseffekt bei Edibles, Risikogruppen, Greening-Out-Protokoll, Sucht & Hilfe, konkrete Anlaufstellen für CH / DE / AT und internationale Ressourcen. Rechtslage DACH (Stand 2025, volatile Gesetzgebung). Notfallnummern immer direkt sichtbar.
+
+### ∑ Dosierungsrechner
+Körpergewicht, Toleranzstufen, Geschlecht und Metabolismus, Intensitätsbewertung, Plausibilitätsprüfung. Zwei Modi: Rohmaterial oder Extrakt. Weil der häufigste Fehler bei Edibles eine falsch eingeschätzte Dosis ist.
+
+### ☑ Prozess-Guide
+Schritt-für-Schritt Herstellung mit Timern, Checkboxen und Notizfeldern — weil kontrollierte Prozesse kontrollierte Ergebnisse liefern. Vom einfachen Butter-Infus bis zur Destillation.
+
+### ⊡ Chargenverwaltung
+Dokumentation eigener Herstellungen mit Diagrammen und Export. Wissen aus jeder Charge zieht in die nächste.
+
+### ⊞ Bibliothek & Lexikon
+Extraktionskunde, Lösungsmittelvergleich, Dekarboxylierungstabellen, Troubleshooting, Fachbegriffe. Weil ein gemeinsames Vokabular Voraussetzung für einen informierten Umgang ist.
 
 ---
 
 ## Aktueller Stand
 
-### ✅ Fertig
-- Interaktiver Prozess-Guide für alle Methoden (Standard + Fortgeschritten)
-- Dosierungsrechner mit Körpergewicht, Toleranzstufen, Geschlecht/Metabolismus-Toggle, Inhalationsrechner
-- Chargenverwaltung mit Charts, Vergleich, Export und Print
-- Bibliothek: Lösungsmittelvergleich, Lexikon, Dekarboxylierung, Troubleshooting, Profi-Tricks
-- Prävention: Dos & Don'ts, OD-Protokoll, Sucht & Hilfe, Anlaufstellen DACH, Rechtslage CH/DE/AT
-- PWA (Offline-Nutzung via Service Worker, installierbar auf Android & iOS)
+### ✅ Umgesetzt
+- Prävention mit Anlaufstellen, Rechtslage und Greening-Out-Protokoll für DACH
+- Vollständiger Dosierungsrechner inkl. Inhalationsrechner
+- Prozess-Guide für alle Standard- und Fortgeschrittenen-Methoden
+- Chargenverwaltung mit Charts, Vergleich und Export
+- Bibliothek, Lexikon, Troubleshooting
+- PWA (offline-fähig, installierbar auf Android & iOS)
 - DE/EN Sprachumschalter (Basis)
-- Design-Einstellungen: Farbthemen, Hell-/Dunkel-Modus
 
 ### 🔧 In Arbeit / Geplant
-- Prävention: Inhalations-spezifische Inhalte (Lungengesundheit, Dabbing-Temperaturen, Tabakbeimischung)
+- Prävention: Inhalationsspezifische Inhalte (Lunge, Dabbing-Temperaturen, Tabakbeimischung)
 - Lexikon: Erweiterung mit Inhalationsbegriffen
 - Kosten & Zeitaufwand pro Methode
 - Onboarding-Tour für Erstnutzer
-- Play Store: TWA-Integration via bubblewrap CLI, Digital Asset Links, Geo-Beschränkung
-- Community-Rezeptteilen (Phase 3, evaluiert: Supabase / GitHub Issues / Netlify Forms)
-- Vollständige DE/EN Übersetzung (zum Abschluss)
-
----
-
-## Funktionen im Überblick
-
-### ☑ Prozess-Guide
-Geführte Schritt-für-Schritt Herstellung mit Checkboxen, Countdown-Timern und Notizfeldern pro Schritt. Abgeschlossene Guides lassen sich direkt als Charge speichern.
-
-**Standard-Methoden:** Butter, Ghee, Kokosöl, MCT-Öl, Glycerin, Lecithin, Rosin, Tinktur/QWET, FECO, Hard/Soft Candy, Gummies, Backwaren, Kapseln, Honig, Schokolade, Getränke
-
-**⚗ Fortgeschritten:** RSO, BHO/N-Butan (Closed Loop), THCA-Kristalle, Vakuumdestillation
-
-### ∑ Dosierungsrechner
-Zwei Modi (Rohmaterial / Extrakt), Effizienz-Voreinstellungen je Medium, Körpergewicht, Toleranz, Geschlecht/Metabolismus, Inhalationstab, Intensitätsbewertung, Plausibilitätsprüfung.
-
-### ⊡ Chargenverwaltung
-Chargen anlegen, bearbeiten, vergleichen. Export als JSON. Diagramme: Dosisverteilung, Medien, Portionen. Automatische Übernahme aus Guide und Rechner.
-
-### ⊞ Bibliothek & Lexikon
-Lösungsmittelvergleich, Dekarboxylierungstabellen, Troubleshooting, Profi-Tricks, Fachbegriff-Lexikon mit Tags und Erklärungen.
-
-### ⛨ Prävention & Harm Reduction
-Dos & Don'ts, Greening-Out-Protokoll, Sucht & Hilfe, konkrete Anlaufstellen für CH / DE / AT, Rechtslage DACH (Stand 2025). Notfallnummern immer direkt sichtbar.
+- Play Store: TWA-Integration, Geo-Beschränkung CH + DE, Alterstor
+- Community-Rezeptteilen (Phase 3)
+- Vollständige DE/EN Übersetzung (Abschluss)
 
 ---
 
 ## Technologie
 
-- **Vanilla HTML / CSS / JavaScript** — keine Frameworks, keine Build-Tools
-- **Eine einzige HTML-Datei** — vollständig portabel
-- **localStorage** für Chargen, Einstellungen und Titel
-- **Service Worker** für Offline-Nutzung
-- **Chart.js** für Diagramme (CDN)
-- PWA-konform: installierbar, offline-fähig, Manifest
-
----
-
-## Installation & Nutzung
-
-```bash
-# Repository klonen
-git clone https://github.com/quack-tic/cannguide.git
-
-# Direkt im Browser öffnen
-open index.html
-
-# Oder lokal mit Server (empfohlen für PWA-Features)
-npx serve .
-```
-
-**PWA installieren:**
-- Android (Chrome): Menü → „App installieren" oder „Zum Startbildschirm"
-- iOS (Safari): Teilen → „Zum Home-Bildschirm"
-
----
-
-## Sicherheitshinweis
-
-> CannGuide richtet sich an den DACH-Raum und berücksichtigt die aktuellen Rechtssituationen (Stand: Mitte 2025). Alle Informationen zu Herstellung, Dosierung und Konsum dienen ausschliesslich zu Bildungs- und Schadenminimierungszwecken. Das Tool ersetzt keine medizinische oder rechtliche Beratung.
-
-Bei der Arbeit mit organischen Lösungsmitteln ausschliesslich Glas oder Edelstahl verwenden. Für QWET-Extraktion werden –22°C empfohlen.
+Vanilla HTML / CSS / JavaScript — keine Frameworks, keine Build-Tools, keine Abhängigkeiten. Die gesamte App steckt in einer einzigen HTML-Datei. Service Worker für Offline-Nutzung, Chart.js für Diagramme, PWA-konform.
 
 ---
 
 ## Mitmachen
 
-Feedback, Korrekturen zu Prozessschritten, Effizienzwerten oder Sicherheitshinweisen als [Issue](https://github.com/quack-tic/cannguide/issues) melden. Pull Requests willkommen.
+Sachliche Korrekturen zu Prozessschritten, Dosierungswerten, Effizienzwerten oder Sicherheitshinweisen sind besonders willkommen — als [Issue](https://github.com/quack-tic/cannguide/issues) oder Pull Request.
 
 ---
 
@@ -139,3 +100,5 @@ MIT License — frei verwendbar und veränderbar mit Namensnennung.
 ## Autor
 
 Erstellt von **quack-tic** · [github.com/quack-tic](https://github.com/quack-tic)
+
+> *CannGuide ist ein Bildungs- und Harm-Reduction-Werkzeug. Es ersetzt keine medizinische oder rechtliche Beratung.*
