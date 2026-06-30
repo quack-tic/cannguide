@@ -1525,33 +1525,38 @@ window.showChargeForm = function(idx) {
   f.scrollIntoView({behavior:'smooth'});
 };
 
+function parseDose(v) {
+  if(v===undefined || v===null) return 0;
+  var n = parseFloat(String(v).replace(/[^0-9.,-]/g,'').replace(',','.'));
+  return isNaN(n) ? 0 : n;
+}
+
+window.getDoseAmpel = function(dose) {
+  dose = parseDose(dose);
+  if(dose <= 0) return null;
+  if(dose < 5) return {emoji:'🟢', cls:'dose-low', bg:'var(--accent-bg)', col:'var(--accent)', border:'var(--accent)', label:'Niedrig'};
+  if(dose < 15) return {emoji:'🟡', cls:'dose-mid', bg:'var(--amber-bg)', col:'var(--amber)', border:'var(--amber)', label:'Mittel'};
+  if(dose < 25) return {emoji:'🟠', cls:'dose-high', bg:'#1f0e00', col:'#e07820', border:'#e07820', label:'Stark'};
+  return {emoji:'🔴', cls:'dose-veryhigh', bg:'var(--warn-bg)', col:'var(--warn)', border:'var(--warn)', label:'Sehr stark'};
+};
+
 window.chargeAmpel = function() {
   var dose = parseFloat(document.getElementById('cf-dose').value) || 0;
   var ampel = document.getElementById('cf-ampel');
   if(!ampel) return;
-  if(dose <= 0) { ampel.style.display='none'; return; }
+  var a = getDoseAmpel(dose);
+  if(!a) { ampel.style.display='none'; return; }
   ampel.style.display = 'block';
-  if(dose < 5) {
-    ampel.style.background = 'var(--accent-bg)';
-    ampel.style.color = 'var(--accent)';
-    ampel.style.border = '1px solid var(--accent)';
-    ampel.textContent = '🟢 Niedrig — unter 5mg. Einsteiger-freundlich.';
-  } else if(dose < 15) {
-    ampel.style.background = 'var(--amber-bg)';
-    ampel.style.color = 'var(--amber)';
-    ampel.style.border = '1px solid var(--amber)';
-    ampel.textContent = '🟡 Mittel — 5–15mg. Standard für Erfahrene.';
-  } else if(dose < 25) {
-    ampel.style.background = '#1f0e00';
-    ampel.style.color = '#e07820';
-    ampel.style.border = '1px solid #e07820';
-    ampel.textContent = '🟠 Stark — 15–25mg. Nur für erfahrene Konsumenten!';
-  } else {
-    ampel.style.background = 'var(--warn-bg)';
-    ampel.style.color = 'var(--warn)';
-    ampel.style.border = '1px solid var(--warn)';
-    ampel.textContent = '🔴 Sehr stark — über 25mg. Portionen teilen oder Menge reduzieren!';
-  }
+  ampel.style.background = a.bg;
+  ampel.style.color = a.col;
+  ampel.style.border = '1px solid '+a.border;
+  var texts = {
+    'dose-low':'🟢 Niedrig — unter 5mg. Einsteiger-freundlich.',
+    'dose-mid':'🟡 Mittel — 5–15mg. Standard für Erfahrene.',
+    'dose-high':'🟠 Stark — 15–25mg. Nur für erfahrene Konsumenten!',
+    'dose-veryhigh':'🔴 Sehr stark — über 25mg. Portionen teilen oder Menge reduzieren!'
+  };
+  ampel.textContent = texts[a.cls];
 };
 window.saveCharge = function() {
   var name = document.getElementById('cf-name').value.trim();
@@ -1794,12 +1799,12 @@ window.renderCharts = function() {
   var acc=getAccent(), txt=getTxt(), grid='rgba(255,255,255,0.05)', bf={family:'system-ui,sans-serif',size:11};
   var sorted=charges.slice().sort(function(a,b){return (a.created||0)-(b.created||0);});
 
-  var doseData=sorted.filter(function(c){return parseFloat(c.dose)>0;});
+  var doseData=sorted.filter(function(c){return parseDose(c.dose)>0;});
   if(doseData.length) {
     chartDose=new Chart(document.getElementById('chart-dose').getContext('2d'),{
       type:'line',
       data:{labels:doseData.map(function(c){return c.date||c.name.slice(0,10);}),
-        datasets:[{label:'mg/Portion',data:doseData.map(function(c){return parseFloat(c.dose)||0;}),
+        datasets:[{label:'mg/Portion',data:doseData.map(function(c){return parseDose(c.dose);}),
           borderColor:acc,backgroundColor:acc+'33',borderWidth:2,pointBackgroundColor:acc,pointRadius:4,tension:.35,fill:true}]},
       options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
         scales:{x:{ticks:{color:txt,font:bf,maxRotation:30},grid:{color:grid}},y:{ticks:{color:txt,font:bf,callback:function(v){return v+' mg';}},grid:{color:grid},beginAtZero:true}}}
@@ -1838,7 +1843,7 @@ window.renderCharges = function() {
     list.innerHTML='<div class="empty-state">Noch keine Chargen.</div>';
     dash.style.display='none'; destroyCharts(); return;
   }
-  var hasDose=charges.some(function(c){return parseFloat(c.dose)>0;});
+  var hasDose=charges.some(function(c){return parseDose(c.dose)>0;});
   var hasPor=charges.some(function(c){return parseInt(c.portions)>0;});
   if(hasDose||hasPor) { dash.style.display='block'; setTimeout(renderCharts, 80); }
   else dash.style.display='none';
@@ -1846,7 +1851,7 @@ window.renderCharges = function() {
   var h='';
   charges.forEach(function(c,i){
     h+='<div class="charge-card"><div class="charge-header"><div><div class="charge-name">'+esc(c.name)+'</div><div class="charge-meta">'+(c.date||'kein Datum')+' · '+(c.medium||'—')+'</div></div><div style="display:flex;gap:6px"><button class="btn" onclick="showChargeForm('+i+')">✎</button><button class="btn danger" onclick="deleteCharge('+i+')">✕</button></div></div><div class="charge-badges">';
-    if(c.dose) h+='<span class="badge accent">'+esc(c.dose)+' mg/Portion</span>';
+    if(c.dose) { var a=getDoseAmpel(c.dose); h+='<span class="badge" style="background:'+(a?a.bg:'var(--bg3)')+';color:'+(a?a.col:'var(--text3)')+';border-color:'+(a?a.border:'var(--border)')+'">'+(a?a.emoji+' ':'')+esc(c.dose)+' mg/Portion</span>'; }
     if(c.portions) h+='<span class="badge">'+esc(c.portions)+' Portionen</span>';
     if(c.material) h+='<span class="badge">'+esc(c.material)+'</span>';
     h+='</div>';
