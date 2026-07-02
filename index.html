@@ -65,6 +65,8 @@ nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem;border-bottom:1px 
 .lib-sec{margin-bottom:1.25rem}
 .lib-title{font-size:var(--fs-lg);font-weight:600;color:var(--text2);margin-bottom:.625rem;padding-bottom:7px;border-bottom:1px solid var(--border)}
 .le{padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer}
+.le.hl{animation:leHl 2s ease}
+@keyframes leHl{0%{background:var(--accent-bg)}100%{background:transparent}}
 .le:last-child{border-bottom:none}
 .le-title{font-size:var(--fs);font-weight:500;color:var(--text2);display:flex;justify-content:space-between;align-items:center;gap:8px}
 .le-body{font-size:var(--fs);color:var(--text3);line-height:1.75;display:none;padding-top:8px}
@@ -276,8 +278,8 @@ textarea{resize:vertical;min-height:70px}
   </div>
   <div class="ksearch">
     <span class="mag"></span>
-    <input type="text" placeholder="Wissen durchsuchen — Wirkstoff, Begriff oder Frage…" onkeydown="if(event.key==='Enter')showPage('library')" />
-    <button class="go" onclick="showPage('library')">Suchen</button>
+    <input type="text" id="ksearch-input" placeholder="Wissen durchsuchen — Wirkstoff, Begriff oder Frage…" onkeydown="if(event.key==='Enter'){doGlobalSearch()}" />
+    <button class="go" onclick="doGlobalSearch()">Suchen</button>
   </div>
   <div class="kchips">
     <span class="kchip" onclick="showPage('safety')"><b>↗</b> Wirkdauer</span>
@@ -1282,6 +1284,83 @@ function scheduleTimerNotif(id, title, medium, delaySec) {
 function cancelTimerNotif(id) {
   if(!navigator.serviceWorker||!navigator.serviceWorker.controller) return;
   navigator.serviceWorker.controller.postMessage({type:'TIMER_CANCEL', timerId:id});
+}
+
+// ── GLOBALE SUCHE ────────────────────────────────────────────────────────
+function stripHtml(str) {
+  return String(str).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function searchIndex(query) {
+  var q = query.toLowerCase();
+  var titleHits = [];
+  var bodyHits = [];
+  Object.keys(LIB).forEach(function(cat) {
+    LIB[cat].items.forEach(function(item, i) {
+      var title = stripHtml(item.t).toLowerCase();
+      var body = stripHtml(item.b).toLowerCase();
+      if (title.indexOf(q) !== -1) {
+        titleHits.push({page: 'library', cat: cat, index: i});
+      } else if (body.indexOf(q) !== -1) {
+        bodyHits.push({page: 'library', cat: cat, index: i});
+      }
+    });
+  });
+  if (typeof SAFETY !== 'undefined') {
+    Object.keys(SAFETY).forEach(function(cat) {
+      SAFETY[cat].items.forEach(function(item, i) {
+        var title = stripHtml(item.t).toLowerCase();
+        var body = stripHtml(item.b).toLowerCase();
+        if (title.indexOf(q) !== -1) {
+          titleHits.push({page: 'safety', cat: cat, index: i});
+        } else if (body.indexOf(q) !== -1) {
+          bodyHits.push({page: 'safety', cat: cat, index: i});
+        }
+      });
+    });
+  }
+  return titleHits.concat(bodyHits);
+}
+
+window.doGlobalSearch = function() {
+  var inputEl = document.getElementById('ksearch-input');
+  var query = inputEl ? inputEl.value.trim() : '';
+  if (!query) { showPage('library'); return; }
+
+  var hits = searchIndex(query);
+  if (!hits.length) {
+    showPage('library');
+    var box = document.getElementById('lib-content');
+    if (box) {
+      box.insertAdjacentHTML('afterbegin',
+        '<div style="background:var(--bg3);border-radius:var(--radius);padding:10px 14px;margin-bottom:1rem;font-size:var(--fs-sm);color:var(--text2)">' +
+        'Keine Treffer für "' + query.replace(/</g, '&lt;') + '". Hier ist die Bibliothek.</div>');
+    }
+    return;
+  }
+
+  var hit = hits[0];
+  if (hit.page === 'safety') {
+    activeSafetyCat = hit.cat;
+    showPage('safety');
+    setTimeout(function() { jumpToEntry('s' + hit.cat + hit.index); }, 60);
+  } else {
+    activeLibCat = hit.cat;
+    showPage('library');
+    setTimeout(function() { jumpToEntry('l' + hit.cat + hit.index); }, 60);
+  }
+};
+
+function jumpToEntry(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('open');
+  var row = el.closest('.le');
+  if (row) {
+    row.scrollIntoView({behavior: 'smooth', block: 'center'});
+    row.classList.add('hl');
+    setTimeout(function() { row.classList.remove('hl'); }, 2000);
+  }
 }
 
 // ── LIBRARY ───────────────────────────────────────────────────────────────
