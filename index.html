@@ -261,7 +261,7 @@ textarea{resize:vertical;min-height:70px}
     <p id="home-desc" style="font-size:var(--fs);color:var(--text2);line-height:1.75;margin-bottom:.875rem">Cannabis wird konsumiert — mit oder ohne Wissen. CannGuide stellt Wissen entgegen: für sicheren Konsum, informierte Dosierung und weniger gefährliche Selbstexperimente. Guides, Rechner und Chargenverwaltung sind Werkzeuge im Dienst dieses Gedankens.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px">
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">☑ <b>16 Guides</b><br><span style="color:var(--text3)">mit Timern & Notizen</span></div>
-      <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">∑ <b>Dosierungsrechner</b><br><span style="color:var(--text3)">Rohmaterial & Extrakte</span></div>
+      <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">∑ <b>Dosierungsrechner</b><br><span style="color:var(--text3)">Blüten & Extrakte</span></div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">⊡ <b>Chargenverwaltung</b><br><span style="color:var(--text3)">mit Diagrammen & PDF</span></div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">⛨ <b>Prävention</b><br><span style="color:var(--text3)">DACH Anlaufstellen</span></div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">📖 <b>Lexikon</b><br><span style="color:var(--text3)">Szene- & Fachbegriffe</span></div>
@@ -382,7 +382,7 @@ textarea{resize:vertical;min-height:70px}
 <div id="page-calc" class="page">
   <div class="cs">
     <div class="mode-toggle">
-      <button id="btn-mode-raw" class="btn primary" onclick="setCalcMode('raw')">🌿 Rohmaterial</button>
+      <button id="btn-mode-raw" class="btn primary" onclick="setCalcMode('raw')">🌿 Blüten</button>
       <button id="btn-mode-extract" class="btn" onclick="setCalcMode('extract')">💧 Extrakt / Konzentrat</button>
     </div>
     <div class="row2" id="carrier-medium-row">
@@ -398,9 +398,9 @@ textarea{resize:vertical;min-height:70px}
         <div class="input-row"><input type="number" id="ig" value="5" min="0.001" step="0.001" oninput="calcUpdate()"><span class="unit-badge" id="input-unit-label">g</span></div>
       </div>
     </div>
-    <!-- Rohmaterial -->
+    <!-- Blüten -->
     <div id="raw-inputs">
-      <div class="cr"><label class="cl">Wirkstoffgehalt Material: <strong id="po">20</strong>%</label>
+      <div class="cr"><label class="cl">Wirkstoffgehalt Blüten: <strong id="po">20</strong>%</label>
         <input type="range" min="1" max="35" step="1" value="20" id="potency" oninput="document.getElementById('po').textContent=this.value;calcUpdate()">
       </div>
       <div class="cr"><label class="cl">Bereits decarboxyliert (aktiviert)?</label>
@@ -417,7 +417,8 @@ textarea{resize:vertical;min-height:70px}
       <div class="row2">
         <div class="cr"><label class="cl">Extrakt-Typ</label>
           <select id="extract-type" onchange="onExtractTypeChange()">
-            <optgroup label="Lösungsmittelfrei"><option value="rosin">Rosin (60–80%)</option><option value="kief">Kief / Pollen (30–60%)</option><option value="thca_k">THCA-Kristalle (95–99%)</option></optgroup>
+            <optgroup label="Blütenmaterial (unverarbeitet)"><option value="kief">Kief / Pollen (30–60%)</option></optgroup>
+            <optgroup label="Lösungsmittelfrei"><option value="rosin">Rosin (60–80%)</option><option value="thca_k">THCA-Kristalle (95–99%)</option></optgroup>
             <optgroup label="Lösungsmittel-Extrakte"><option value="bho_s">BHO Shatter (70–90%)</option><option value="bho_w">BHO Wax/Budder (65–85%)</option><option value="bho_o">BHO Sauce/Öl (50–80%)</option><option value="rso">RSO (40–70%)</option><option value="feco">FECO (50–80%)</option><option value="tred">Tinktur-Redukt (30–60%)</option></optgroup>
             <optgroup label="Destillate"><option value="dest">Vakuumdestillat (85–99%)</option></optgroup>
             <option value="custom">Eigener Wert</option>
@@ -1434,7 +1435,7 @@ window.calcUpdate = function() {
   } else {
     var p = parseFloat(document.getElementById('potency').value)||20;
     rawMg = g*10*p;
-    desc = g+'g Material × '+p+'% = '+Math.round(rawMg)+' mg roh';
+    desc = g+'g Blüten × '+p+'% = '+Math.round(rawMg)+' mg roh';
   }
 
   // Extrakt ist bereits der fertige Wirkstoff (decarbed, gelöst) -> keine Infusions-Effizienz.
@@ -1579,7 +1580,7 @@ window.saveToCharge = function() {
   var carrier = document.getElementById('carrier').value;
   var pcv = document.getElementById('portion-c').value;
   var cfg2 = MEDIA_CFG[document.getElementById('cm').value]||{unit:'g'};
-  var mat = calcMode==='extract' ? g+'g Extrakt ('+document.getElementById('potency-ext').value+'%)' : g+'g Material ('+document.getElementById('potency').value+'%)';
+  var mat = calcMode==='extract' ? g+'g Extrakt ('+document.getElementById('potency-ext').value+'%)' : g+'g Blüten ('+document.getElementById('potency').value+'%)';
   var c = {id:Date.now(), name:'Charge '+ds+' – '+med, medium:med, date:ds,
     dose:portion.replace(' mg',''), portions:Math.round(parseFloat(carrier)/parseFloat(pcv)||0),
     material:mat, recipe:'Aus Rechner: '+mat+' in '+carrier+cfg2.unit+' '+med+'. Gesamt: '+total+'.',
