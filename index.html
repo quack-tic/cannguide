@@ -384,7 +384,6 @@ textarea{resize:vertical;min-height:70px}
     <div class="mode-toggle">
       <button id="btn-mode-raw" class="btn primary" onclick="setCalcMode('raw')">🌿 Rohmaterial</button>
       <button id="btn-mode-extract" class="btn" onclick="setCalcMode('extract')">💧 Extrakt / Konzentrat</button>
-      <button id="btn-mode-inhale" class="btn" onclick="setCalcMode('inhale')">💨 Inhalation</button>
     </div>
     <div class="row2" id="carrier-medium-row">
       <div class="cr"><label class="cl">Träger / Medium</label>
@@ -437,52 +436,6 @@ textarea{resize:vertical;min-height:70px}
       </div>
       <div id="decarb-info" style="display:none;background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-sm);color:var(--warn);margin-bottom:.625rem"></div>
       <div id="extract-hint" style="background:var(--bg3);border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-sm);color:var(--text3);margin-bottom:.625rem"></div>
-    </div>
-    <!-- Inhalation -->
-    <div id="inhale-inputs" style="display:none">
-      <div class="row2">
-        <div class="cr"><label class="cl">Substanz</label>
-          <select id="inhale-substance" onchange="calcUpdate()">
-            <optgroup label="Pflanzenmaterial">
-              <option value="blueten">🌿 Blüten / Kraut</option>
-              <option value="kief">✨ Kief / Pollen</option>
-              <option value="hasch">🟫 Hasch / Pollenpresse</option>
-            </optgroup>
-            <optgroup label="Konzentrate">
-              <option value="shatter">💎 Shatter</option>
-              <option value="wax">🍯 Wax / Budder</option>
-              <option value="oel">💧 Öl / RSO / FECO</option>
-              <option value="rosin">🫧 Rosin / Live Resin</option>
-              <option value="dab">⚗ Dab / Destillat</option>
-            </optgroup>
-          </select>
-        </div>
-        <div class="cr"><label class="cl">Methode</label>
-          <select id="inhale-method" onchange="onInhaleMethodChange()">
-            <option value="joint">🚬 Joint</option>
-            <option value="bong">🫧 Bong / Pipe</option>
-            <option value="vape_herb">🌿 Vaporizer Kraut</option>
-            <option value="vape_ext">💧 Vaporizer Extrakt</option>
-            <option value="dab">⚗ Dab / Konzentrat</option>
-          </select>
-        </div>
-      </div>
-      <div class="row2">
-        <div class="cr"><label class="cl">Menge (g)</label>
-          <input type="number" id="inhale-amount" value="1" min="0.01" max="50" step="0.01" oninput="calcUpdate()">
-        </div>
-        <div class="cr"><label class="cl">Beimischung</label>
-          <select id="inhale-mix" onchange="calcUpdate()">
-            <option value="1.0">Pur</option>
-            <option value="0.7">Mit CBD-Blüten (~30%)</option>
-            <option value="0.5">Mit Tabak (~50%)</option>
-          </select>
-        </div>
-      </div>
-      <div class="cr"><label class="cl">Wirkstoffgehalt: <strong id="po-inhale">20</strong>%</label>
-        <input type="range" min="1" max="99" step="1" value="20" id="potency-inhale" oninput="document.getElementById('po-inhale').textContent=this.value;calcUpdate()">
-      </div>
-      <div id="inhale-hint" style="background:var(--bg3);border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-sm);color:var(--text3);margin-bottom:.625rem"></div>
     </div>
     <div id="edible-fields">
       <div class="cr"><label class="cl" id="label-carrier">Trägermenge gesamt</label>
@@ -569,18 +522,6 @@ textarea{resize:vertical;min-height:70px}
     <span id="calc-saved" style="font-size:var(--fs-sm);color:var(--accent);display:none">✓ Gespeichert!</span>
   </div>
   <p class="disclaimer">Schätzwerte. Onset: 30–120 Min — immer abwarten.</p>
-  <div id="inhale-puff-info" style="display:none;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:10px 12px;font-size:var(--fs-sm);color:var(--text2);line-height:1.7;margin-top:8px">
-    💨 <b>mg/Zug verstehen:</b> Ein typischer Zug enthält bei Blüten ~0.5–2mg THC, beim Vaporizer ~1–4mg, beim Dab ~3–10mg. Unter 1.5mg bioverfügbar = Schwellendosis (kaum spürbar). 1.5–4mg = niedrig, gut kontrollierbar. 4–8mg = mittel. Ab 8mg = stark, nur Erfahrene. Ab 15mg = Extrembereich.<br>
-    ⚠ <b>Zug halten bringt keinen Mehreffekt</b> — THC wird in den ersten Sekunden absorbiert. Längeres Halten belastet nur die Lunge.<br>
-    ⏱ <b>Onset:</b> 30–90 Sek. — warten und einschätzen bevor nachgelegt wird.
-  </div>
-  <div id="inhale-compare-info" style="display:none;background:var(--accent-bg);border:1px solid var(--accent);border-radius:var(--radius);padding:10px 12px;font-size:var(--fs-sm);color:#7ec8a0;line-height:1.75;margin-top:8px">
-    ⚖️ <b>Inhalativ ≠ oral — gleiche mg, andere Wirkung:</b><br>
-    <b>Inhalation:</b> Delta-9-THC gelangt direkt ins Blut. Onset 30–90 Sek, Dauer 1–3h — schnell und einschätzbar.<br><br>
-    <b>Edibles:</b> THC wird in der Leber zu <b>11-Hydroxy-THC</b> — wirkt stärker und bis zu 8h. Deshalb fühlen sich 10mg oral intensiver an als 10mg inhaliert.<br><br>
-    👉 Wer beides kennt: Edible-Dosen immer tiefer ansetzen als gewohnt.<br>
-    <span style="font-size:var(--fs-xs);color:var(--text3)">Quellen: MacCallum &amp; Russo (2018), Huestis (2007)</span>
-  </div>
 
 </div>
 <!-- CHARGEN -->
@@ -1438,15 +1379,11 @@ window.setCalcMode = function(m) {
   calcMode = m;
   document.getElementById('raw-inputs').style.display = m==='raw'?'block':'none';
   document.getElementById('extract-inputs').style.display = m==='extract'?'block':'none';
-  document.getElementById('inhale-inputs').style.display = m==='inhale'?'block':'none';
-  var ef = document.getElementById('edible-fields'); if(ef) ef.style.display = m==='inhale'?'none':'block';
+  var ef = document.getElementById('edible-fields'); if(ef) ef.style.display = 'block';
   var er = document.getElementById('eff-row'); if(er) er.style.display = m==='extract'?'none':'block';
-  var cmr = document.getElementById('carrier-medium-row'); if(cmr) cmr.style.display = m==='inhale'?'none':'grid';
-  var inhaleInfo = document.getElementById('inhale-puff-info'); if(inhaleInfo) inhaleInfo.style.display = m==='inhale'?'block':'none';
-  var inhaleCompare = document.getElementById('inhale-compare-info'); if(inhaleCompare) inhaleCompare.style.display = m==='inhale'?'block':'none';
+  var cmr = document.getElementById('carrier-medium-row'); if(cmr) cmr.style.display = 'grid';
   document.getElementById('btn-mode-raw').className = 'btn'+(m==='raw'?' primary':'');
   document.getElementById('btn-mode-extract').className = 'btn'+(m==='extract'?' primary':'');
-  document.getElementById('btn-mode-inhale').className = 'btn'+(m==='inhale'?' primary':'');
   calcUpdate();
 };
 
@@ -1510,39 +1447,8 @@ window.onBioChange = function() {
   calcUpdate();
 };
 
-window.onInhaleMethodChange = function() {
-  var cfg = {joint:{eff:25,hint:'Joint: ~25% Effizienz. Viel THC verbrennt — Onset 30–90 Sek.'},bong:{eff:35,hint:'Bong/Pipe: ~35% Effizienz. Kühlung reduziert Reizung, erhöht Volumen.Onset 30–90 Sek.'},vape_herb:{eff:72,hint:'Vaporizer Kraut: ~72% Effizienz. Kein Verbrennen — schonender für die Lunge. Optimal 170–185°C.Onset 1–3 Min.'},vape_ext:{eff:80,hint:'Vaporizer Extrakt: ~80% Effizienz. Konzentrate direkt verdampfen. Temp je nach Extrakt 160–200°C.Onset 1–2 Min.'},dab:{eff:80,hint:'Dab: ~80% Effizienz. Nail/Banger max. 230°C — höhere Temp erzeugt Benzol. Onset sofort–30 Sek.'}};
-  var m = document.getElementById('inhale-method').value;
-  var c = cfg[m]||{eff:50,hint:''};
-  document.getElementById('inhale-hint').textContent = c.hint;
-  calcUpdate();
-};
-
 window.calcUpdate = function() {
   var med = document.getElementById('cm').value;
-  // ── INHALATION ──────────────────────────────────────────────────────────
-  if(calcMode==='inhale') {
-    var iMethod = document.getElementById('inhale-method').value;
-    var iAmt = parseFloat(document.getElementById('inhale-amount').value)||0;
-    var iPot = (parseFloat(document.getElementById('potency-inhale').value)||20)/100;
-    var iMix = parseFloat(document.getElementById('inhale-mix').value)||1.0;
-    var iEff = {joint:0.25,bong:0.35,vape_herb:0.72,vape_ext:0.80,dab:0.80}[iMethod]||0.5;
-    var iTotalMg = iAmt*1000*iPot*iMix*iEff;
-    var portionEl = document.getElementById('r-portion');
-    portionEl.textContent = '~'+iTotalMg.toFixed(1)+' mg bioverfügbar';
-    portionEl.className = 'rv'+(iTotalMg<1.5?' hi':iTotalMg<8?' am':' warn');
-    document.getElementById('r-total').textContent = '~'+Math.round(iAmt*1000*iPot*iMix)+' mg THC total';
-    document.getElementById('r-int').innerHTML = iTotalMg<1.5?'<span class="tag tg">Schwellendosis</span>':iTotalMg<4?'<span class="tag tg">Niedrig</span>':iTotalMg<8?'<span class="tag tg">Mittel</span>':iTotalMg<15?'<span class="tag ta">Stark</span>':'<span class="tag tr">Sehr stark</span>';
-    document.getElementById('r-rec').textContent = 'Onset: 30–90 Sek · Peak: 10–30 Min · Dauer: 1–3h · Zug halten = kein Mehreffekt.';
-    var kgBox=document.getElementById('r-kg-box'); if(kgBox) kgBox.style.display='none';
-    var tolBox=document.getElementById('r-tol-box'); if(tolBox) tolBox.style.display='none';
-    var bioBox=document.getElementById('r-bio-box'); if(bioBox) bioBox.style.display='none';
-    document.getElementById('conc-summary').style.display='none';
-    document.getElementById('calc-warn').style.display='none';
-    var portionBox=document.getElementById('r-portion').closest('.rm');
-    if(portionBox) portionBox.classList.toggle('pulse-warn',iTotalMg>=15);
-    return;
-  }
   var cfg = MEDIA_CFG[med]||{unit:'g',eff:80};
   var u = cfg.unit;
   var lc = document.getElementById('label-carrier');
