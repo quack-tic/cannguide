@@ -403,7 +403,7 @@ textarea{resize:vertical;min-height:70px}
       <div class="cr"><label class="cl">Wirkstoffgehalt Material: <strong id="po">20</strong>%</label>
         <input type="range" min="1" max="35" step="1" value="20" id="potency" oninput="document.getElementById('po').textContent=this.value;calcUpdate()">
       </div>
-      <div class="cr"><label class="cl">Wert bereits als aktives THC angegeben?</label>
+      <div class="cr"><label class="cl">Bereits decarboxyliert (aktiviert)?</label>
         <select id="raw-decarb" onchange="onDecarbChange()">
           <option value="" selected disabled>— bitte wählen —</option>
           <option value="no">Nein – Rohwert / THCA (Aktivierung nötig)</option>
