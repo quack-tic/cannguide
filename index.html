@@ -499,8 +499,8 @@ textarea{resize:vertical;min-height:70px}
       Bereits <b>1–2mg 11-OH-THC</b> gelten als spürbare Startdosis. Die angezeigte bioverfügbare Menge ist <b>kein Freifahrtschein</b> für höhere Dosierung — im Gegenteil.<br>
       <b>Immer mit der kleinstmöglichen Portion starten und mindestens 2h warten.</b>
     </div>
-    <div class="rm" id="r-tol-box" style="display:none"><div class="rl">Empf. Dosis bei Toleranz (Delta-9)</div><div class="rv am" id="r-tol">—</div></div>
-    <div class="rm pulse-green" id="r-kg-box" style="display:none"><div class="rl">Empf. Startdosis (Delta-9)</div><div class="rv hi" id="r-kg">—</div></div>
+    <div id="r-tol-box" style="display:none;grid-column:1/-1;background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--radius);padding:10px 12px;font-size:var(--fs-sm);color:var(--warn);line-height:1.65">⚠️ <b>Hinweis bei angegebener Toleranz</b> (<span id="r-tol-lvl">—</span>)<br><span id="r-tol-text">—</span></div>
+    <div class="rm pulse-green" id="r-kg-box" style="display:none"><div class="rl">Empf. Einstiegsdosis (Delta-9, oral)</div><div class="rv hi" id="r-kg">—</div></div>
     <div class="rm"><div class="rl">Intensität</div><div class="rv" id="r-int">—</div></div>
     <div class="rm"><div class="rl">Empfehlung</div><div class="rv sm" id="r-rec" style="color:var(--text3)">—</div></div>
   </div>
@@ -1544,8 +1544,13 @@ window.calcUpdate = function() {
     if(ohWarn) { ohWarn.style.display='none'; ohWarn.classList.remove('pulse-warn'); }
   }
 
-  var tolEl=document.getElementById('r-tol');
-  if(tolFactor>1.0&&tolEl) tolEl.textContent='~'+ppTol.toFixed(1)+' mg';
+  var tolTextEl=document.getElementById('r-tol-text');
+  var tolLvlEl=document.getElementById('r-tol-lvl');
+  if(tolFactor>1.0 && tolTextEl) {
+    var _tolSel=document.getElementById('tolerance');
+    if(tolLvlEl) tolLvlEl.textContent=_tolSel.options[_tolSel.selectedIndex].text;
+    tolTextEl.innerHTML='Bei bestehender Toleranz kann für einen spürbaren Wirkungseintritt mehr nötig sein — erfahrungsgemäss bis ~'+ppTol+' mg. <b>Das ist keine Empfehlung.</b> Höhere Dosen steigern Risiko und Toleranz weiter; eine Konsumpause (T-Break) senkt den Bedarf wieder.';
+  }
 
   var tag='', rec='';
   if(ppMg<2.5) { tag='<span class="tag tg">Schwellendosis (&lt;2.5mg)</span>'; rec='Kaum spürbar. Mikrodosierung. Ideal zum Einstieg.'; }
@@ -1560,13 +1565,10 @@ window.calcUpdate = function() {
 
   var kgBox = document.getElementById('r-kg-box');
   var kgEl = document.getElementById('r-kg');
-  // Absolute Startdosis (MacCallum & Russo 2018); nur ohne Toleranz anzeigen,
-  // damit sie sich nicht mit der Toleranz-Box widerspricht.
-  if(tolFactor === 1.0 && kgBox && kgEl) {
+  // Einstiegsdosis (MacCallum & Russo 2018): absolut, immer sichtbar als Grundempfehlung.
+  if(kgBox && kgEl) {
     kgBox.style.display = 'block';
-    kgEl.innerHTML = '~2.5 mg <span style="font-size:11px;color:var(--text3)">(vorsichtig bis ~5 mg, langsam titrieren)</span>';
-  } else if(kgBox) {
-    kgBox.style.display = 'none';
+    kgEl.innerHTML = '~2.5 mg <span style="font-size:11px;color:var(--text3)">Delta-9-THC aufgenommen · oral wirksam als 11-OH · bis ~5 mg langsam titrieren<br>empfindliche Personen (tendenziell ♀) tiefer ansetzen</span>';
   }
 };
 
