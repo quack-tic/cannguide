@@ -404,6 +404,14 @@ textarea{resize:vertical;min-height:70px}
       <div class="cr"><label class="cl">Wirkstoffgehalt Material: <strong id="po">20</strong>%</label>
         <input type="range" min="1" max="35" step="1" value="20" id="potency" oninput="document.getElementById('po').textContent=this.value;calcUpdate()">
       </div>
+      <div class="cr"><label class="cl">Wert bereits als aktives THC angegeben?</label>
+        <select id="raw-decarb" onchange="onDecarbChange()">
+          <option value="" selected disabled>— bitte wählen —</option>
+          <option value="no">Nein – Rohwert / THCA (Aktivierung nötig)</option>
+          <option value="yes">Ja – aktives (Total-)THC</option>
+        </select>
+      </div>
+      <div id="raw-decarb-info" style="display:none;border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-sm);margin-bottom:.625rem"></div>
     </div>
     <!-- Extrakt -->
     <div id="extract-inputs" style="display:none">
@@ -422,8 +430,9 @@ textarea{resize:vertical;min-height:70px}
       </div>
       <div class="cr"><label class="cl">Bereits decarboxyliert (aktiviert)?</label>
         <select id="extract-decarb" onchange="onDecarbChange()">
-          <option value="yes">Ja – bereits aktiv (Destillat, FECO, RSO, erhitzt)</option>
-          <option value="no">Nein – Roh-Extrakt (Rosin, Kief, THCA-Kristalle)</option>
+          <option value="" selected disabled>— bitte wählen —</option>
+          <option value="no">Nein – Rohwert (THCA, Aktivierung nötig)</option>
+          <option value="yes">Ja – bereits aktives THC</option>
         </select>
       </div>
       <div id="decarb-info" style="display:none;background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-sm);color:var(--warn);margin-bottom:.625rem"></div>
@@ -961,7 +970,7 @@ var LIB = {
   ]},
   konsum:{cat:'Konsum & Methoden',items:[
     {t:'Decarboxylierung (Aktivierung)',b:'<span class=\"lex-term\">Decarboxylierung</span><span class=\"lex-tag conc\">Grundlage</span><span class=\"lex-tag adv\">Edibles-Pflicht</span><br>[ROHENTWURF \u2013 bitte pruefen] Decarboxylierung ist der Erhitzungsschritt, der die saeurehaltige Vorstufe THCA in psychoaktives THC umwandelt (analog CBDA \u2192 CBD). In der rohen Pflanze liegt der Wirkstoff fast vollstaendig als THCA vor \u2013 roh gegessen berauscht Cannabis deshalb nicht. Beim Rauchen/Verdampfen geschieht die Aktivierung schlagartig durch die Hitze; fuer Edibles muss sie bewusst vorher erfolgen. <b>Richtwerte:</b> ca. 110\u2013120\u00b0C fuer 30\u201345 Minuten (Werte je nach Quelle unterschiedlich \u2013 hier deine eigenen Erfahrungswerte einsetzen). Zu heiss/zu lang baut THC wieder zu CBN ab (sedierend, schwaecher). <b>Massenverlust:</b> THCA verliert beim Abspalten der Carboxylgruppe CO\u2082 \u2013 aus der Masse THCA werden rund 87,7% THC (Molmassen 314,5 vs. 358,5 g/mol). Das erklaert, warum der Rechner bei Roh-Extrakten weniger aktives THC ausweist als der Rohgehalt vermuten laesst.'},
-    {t:'Decarb bei Extrakten & Konzentraten',b:'<span class=\"lex-term\">Decarb bei Extrakten</span><span class=\"lex-tag adv\">Fortgeschritten</span><br>[ROHENTWURF \u2013 bitte pruefen] Nicht jeder Extrakt ist gleich. <b>Bereits aktiv (decarboxyliert):</b> Destillat, FECO und meist RSO \u2013 sie durchlaufen im Herstellungsprozess Hitze und koennen direkt in Edibles verwendet werden. <b>Roh (nicht decarboxyliert):</b> Rosin, Kief/Pollen, THCA-Kristalle und frisches BHO enthalten ueberwiegend THCA. Wer sie kalt in Butter oder Oel ruehrt, erhaelt ein kaum wirksames Edible \u2013 und dosiert beim naechsten Versuch leicht zu hoch, weil das Produkt faelschlich als \u201eschwach\u201c eingeschaetzt wird. Roh-Extrakte deshalb vor der Verarbeitung decarboxylieren. Im Rechner den Schalter \u201eBereits decarboxyliert?\u201c korrekt setzen \u2013 er beruecksichtigt den ~12%-Massenverlust automatisch.'},
+    {t:'Decarb bei Extrakten & Konzentraten',b:'<span class="lex-term">Decarb bei Extrakten</span><span class="lex-tag adv">Fortgeschritten</span><br>[ROHENTWURF – bitte prüfen] Ob ein Extrakt bereits decarboxyliert ist, hängt vom Herstellungsprozess ab – nicht vom Produktnamen. Entscheidend ist, ob dabei über längere Zeit Temperaturen um ~115 °C erreicht wurden. Vakuumdestillation trennt das Lösungsmittel bei ~50 °C ab – dabei wird nichts aktiviert. FECO muss aktiv decarboxyliert werden. RSO erreicht auf üblichen Wegen die nötige Temperatur meist nicht – im Zweifel decarboxylieren. Bei der Fraktionsdestillation von FECO zu Cannabinoïdöl muss bereits vorher decarbt werden, sonst entsteht bei der Fraktionierung zu viel CO₂. Faustregel: Bist du unsicher, behandle den Extrakt als Rohwert und decarboxyliere. Kalt eingerührtes Roh-Konzentrat wirkt kaum – und verleitet beim nächsten Versuch zur gefährlichen Überdosierung.'},
     {t:'Inhalation — Grundlagen',b:'<span class="lex-term">Inhalation</span><span class="lex-tag base">Konsummethode</span><br>Bei der Inhalation gelangen Cannabinoide über die Lungen direkt ins Blut. Wirkungseintritt: 30–90 Sekunden, Peak: 10–30 Minuten, Dauer: 1–3 Stunden. Im Vergleich zu Edibles ist die Wirkung kürzer und besser steuerbar. Beim Verbrennen entstehen Verbrennungsprodukte wie Benzol, Kohlenmonoxid und Teer — ähnlich wie beim Tabakrauchen.'},
     {t:'Joint / Spliff',b:'<span class="lex-term">Joint</span><span class="lex-tag base">Konsummethode</span><br>Der Joint ist die verbreitetste Konsumform — Cannabis in Zigarettenpapier gerollt, oft mit Tabak gemischt (Spliff). Der Tabakzusatz erhöht das Abhängigkeitspotenzial durch Nikotin erheblich. Pur-Joints ohne Tabak mit Aktivkohlefilter reduzieren den Schadstoffeintrag.'},
     {t:'Vaporizer / Verdampfer',b:'<span class="lex-term">Vaporizer</span><span class="lex-tag base">Konsummethode</span><br>Vaporizer erhitzen Cannabis auf 160–220°C — unterhalb der Verbrennungstemperatur. Das erzeugt ein Aerosol statt Rauch, mit deutlich weniger schädlichen Verbrennungsprodukten. Empfohlene Temperaturen: 170–185°C (schonend, mehr Terpene), 190–210°C (volle Wirkung). Medizinische Geräte: Volcano Medic, Mighty Medic. Studien zeigen reduzierte Atemwegssymptome bei Vaporer-Nutzung.'},
@@ -1454,16 +1463,21 @@ window.onMediumChange = function() {
 };
 
 window.onDecarbChange = function() {
-  var dc = document.getElementById('extract-decarb');
-  var box = document.getElementById('decarb-info');
-  if(dc && box) {
+  [['extract-decarb','decarb-info'],['raw-decarb','raw-decarb-info']].forEach(function(p){
+    var dc = document.getElementById(p[0]); var box = document.getElementById(p[1]);
+    if(!dc || !box) return;
     if(dc.value === 'no') {
       box.style.display = 'block';
-      box.innerHTML = '\u26a0\ufe0f <b>Roh-Extrakt:</b> THCA muss vor oder beim Verarbeiten zu Edibles decarboxyliert (erhitzt) werden \u2013 sonst kaum Wirkung. Beim Aktivieren verliert THCA ~12% Masse (CO\u2082), der Rechner zieht das automatisch ab. Rosin/Kief/BHO nicht kalt verr\u00fchren.';
+      box.style.background='var(--warn-bg)'; box.style.border='1px solid var(--warn)'; box.style.color='var(--warn)';
+      box.innerHTML = '\u26a0\ufe0f <b>Rohwert (THCA):</b> muss vor oder beim Verarbeiten zu Edibles decarboxyliert (erhitzt) werden \u2013 sonst kaum Wirkung. Beim Aktivieren gehen ~12% Masse als CO\u2082 verloren; der Rechner zieht das ab.';
+    } else if(dc.value === 'yes') {
+      box.style.display = 'block';
+      box.style.background='var(--bg3)'; box.style.border='1px solid var(--border)'; box.style.color='var(--text3)';
+      box.innerHTML = '\u2713 Wird als bereits aktives THC gerechnet (voller Wert, kein Decarb-Abzug).';
     } else {
       box.style.display = 'none';
     }
-  }
+  });
   calcUpdate();
 };
 
@@ -1474,9 +1488,7 @@ window.onExtractTypeChange = function() {
   sl.min=cfg.min; sl.max=cfg.max; sl.value=cfg.def;
   document.getElementById('po-ext').textContent = cfg.def;
   document.getElementById('extract-hint').textContent = cfg.hint;
-  var dc = document.getElementById('extract-decarb');
-  if(dc) dc.value = (['dest','feco','rso','tred'].indexOf(t) >= 0) ? 'yes' : 'no';
-  if(window.onDecarbChange) onDecarbChange(); else calcUpdate();
+  calcUpdate();
 };
 
 window.onBioChange = function() {
@@ -1567,11 +1579,12 @@ window.calcUpdate = function() {
   // Extrakt ist bereits der fertige Wirkstoff (decarbed, gelöst) -> keine Infusions-Effizienz.
   var eEff = (calcMode==='extract') ? 100 : e;
   var totMg = rawMg*(eEff/100);
-  // Decarb-Korrektur: Roh-Extrakte (THCA) verlieren beim Aktivieren ~12,3% Masse (CO2).
-  var decarbNo = false;
-  if(calcMode==='extract') {
-    var _dc = document.getElementById('extract-decarb');
-    if(_dc && _dc.value === 'no') { totMg = totMg * 0.877; decarbNo = true; }
+  // Decarb-Korrektur: Rohwerte (THCA) verlieren beim Aktivieren ~12,3% Masse (CO2).
+  var decarbNo = false, decarbSel = 'na';
+  if(calcMode==='extract' || calcMode==='raw') {
+    var _dc = document.getElementById(calcMode==='extract' ? 'extract-decarb' : 'raw-decarb');
+    decarbSel = _dc ? _dc.value : '';
+    if(decarbSel === 'no') { totMg = totMg * 0.877; decarbNo = true; }
   }
   var cpU = carrier>0 ? totMg/carrier : 0;
   var ppMg = cpU*pc;
@@ -1590,6 +1603,7 @@ window.calcUpdate = function() {
   if(carrier<=0) errs.push('Trägermenge eingeben.');
   if(pc<=0) errs.push('Portionsgrösse eingeben.');
   if(g<=0) errs.push('Eingesetzte Wirkstoffmenge eingeben.');
+  if((calcMode==='extract'||calcMode==='raw') && decarbSel!=='yes' && decarbSel!=='no') errs.push('Decarboxylierung w\u00e4hlen (Ja/Nein).');
   if(carrier>0&&pc>=carrier) errs.push('Portionsgrösse >= Trägermenge.');
   if(ratio>0&&ratio<5) errs.push('Zu wenig Träger: 1:'+ratio.toFixed(1)+'. Mind. 1:10.');
   else if(ratio>0&&ratio<10) warns.push('Verhältnis 1:'+ratio.toFixed(1)+' knapp.');
@@ -1618,7 +1632,7 @@ window.calcUpdate = function() {
       ? 'Roh-Extrakt \u2192 decarboxyliert: ~87,7% aktiv (THCA\u2192THC, CO\u2082-Verlust)'
       : 'Vollst\u00e4ndige Einarbeitung (~100% Transfer, bereits aktiv)';
   } else {
-    effLabel = 'Nach Effizienz ('+eEff+'%)';
+    effLabel = 'Nach Effizienz ('+eEff+'%)'+(decarbNo?' \u00b7 Rohwert decarbt ~87,7%':'');
   }
   cs.innerHTML = desc+'<br>'+effLabel+': <b style="color:var(--accent)">'+Math.round(totMg)+' mg</b> in '+carrier+u+' '+medName+(ratio>0?' · 1:'+ratio.toFixed(1):'')+' <br>'
     +'Konzentration: <b style="color:var(--accent)">'+cpU.toFixed(2)+' mg/'+u+'</b> · Portion '+pc+u+' → <b style="color:var(--accent)">'+ppMg.toFixed(1)+' mg</b>'
