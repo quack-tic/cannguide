@@ -420,6 +420,13 @@ textarea{resize:vertical;min-height:70px}
           <input type="range" min="1" max="99" step="1" value="70" id="potency-ext" oninput="document.getElementById('po-ext').textContent=this.value;calcUpdate()">
         </div>
       </div>
+      <div class="cr"><label class="cl">Bereits decarboxyliert (aktiviert)?</label>
+        <select id="extract-decarb" onchange="onDecarbChange()">
+          <option value="yes">Ja – bereits aktiv (Destillat, FECO, RSO, erhitzt)</option>
+          <option value="no">Nein – Roh-Extrakt (Rosin, Kief, THCA-Kristalle)</option>
+        </select>
+      </div>
+      <div id="decarb-info" style="display:none;background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-sm);color:var(--warn);margin-bottom:.625rem"></div>
       <div id="extract-hint" style="background:var(--bg3);border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-sm);color:var(--text3);margin-bottom:.625rem"></div>
     </div>
     <!-- Inhalation -->
@@ -953,6 +960,8 @@ var LIB = {
     {t:'Tinktur (Alkohol-Extrakt)',b:'<span class="lex-term">Tinktur</span><span class="lex-tag base">Lebensmittelauszug</span><br>Eine Tinktur ist ein Lebensmittelauszug: Cannabis wird in trinkfähigem Alkohol (z.B. Wodka 40 Vol.%, Rum) angesetzt — ähnlich wie kräuterbasierte Hausmittel. Der Alkoholgehalt liegt im trinkfähigen Bereich und extrahiert Cannabinoide und Terpene schonend. Onset sublingual (unter die Zunge): 15–45 Minuten — schneller als Edibles, gut dosierbar. Bei Schlucken wirkt sie wie ein Edible (längerer Onset durch Leberpassage). Hochprozentiger Laborethanol (≥60 Vol.%) gehört zur Wirkstoffextraktion — das ist eine andere Kategorie.'}
   ]},
   konsum:{cat:'Konsum & Methoden',items:[
+    {t:'Decarboxylierung (Aktivierung)',b:'<span class=\"lex-term\">Decarboxylierung</span><span class=\"lex-tag conc\">Grundlage</span><span class=\"lex-tag adv\">Edibles-Pflicht</span><br>[ROHENTWURF \u2013 bitte pruefen] Decarboxylierung ist der Erhitzungsschritt, der die saeurehaltige Vorstufe THCA in psychoaktives THC umwandelt (analog CBDA \u2192 CBD). In der rohen Pflanze liegt der Wirkstoff fast vollstaendig als THCA vor \u2013 roh gegessen berauscht Cannabis deshalb nicht. Beim Rauchen/Verdampfen geschieht die Aktivierung schlagartig durch die Hitze; fuer Edibles muss sie bewusst vorher erfolgen. <b>Richtwerte:</b> ca. 110\u2013120\u00b0C fuer 30\u201345 Minuten (Werte je nach Quelle unterschiedlich \u2013 hier deine eigenen Erfahrungswerte einsetzen). Zu heiss/zu lang baut THC wieder zu CBN ab (sedierend, schwaecher). <b>Massenverlust:</b> THCA verliert beim Abspalten der Carboxylgruppe CO\u2082 \u2013 aus der Masse THCA werden rund 87,7% THC (Molmassen 314,5 vs. 358,5 g/mol). Das erklaert, warum der Rechner bei Roh-Extrakten weniger aktives THC ausweist als der Rohgehalt vermuten laesst.'},
+    {t:'Decarb bei Extrakten & Konzentraten',b:'<span class=\"lex-term\">Decarb bei Extrakten</span><span class=\"lex-tag adv\">Fortgeschritten</span><br>[ROHENTWURF \u2013 bitte pruefen] Nicht jeder Extrakt ist gleich. <b>Bereits aktiv (decarboxyliert):</b> Destillat, FECO und meist RSO \u2013 sie durchlaufen im Herstellungsprozess Hitze und koennen direkt in Edibles verwendet werden. <b>Roh (nicht decarboxyliert):</b> Rosin, Kief/Pollen, THCA-Kristalle und frisches BHO enthalten ueberwiegend THCA. Wer sie kalt in Butter oder Oel ruehrt, erhaelt ein kaum wirksames Edible \u2013 und dosiert beim naechsten Versuch leicht zu hoch, weil das Produkt faelschlich als \u201eschwach\u201c eingeschaetzt wird. Roh-Extrakte deshalb vor der Verarbeitung decarboxylieren. Im Rechner den Schalter \u201eBereits decarboxyliert?\u201c korrekt setzen \u2013 er beruecksichtigt den ~12%-Massenverlust automatisch.'},
     {t:'Inhalation — Grundlagen',b:'<span class="lex-term">Inhalation</span><span class="lex-tag base">Konsummethode</span><br>Bei der Inhalation gelangen Cannabinoide über die Lungen direkt ins Blut. Wirkungseintritt: 30–90 Sekunden, Peak: 10–30 Minuten, Dauer: 1–3 Stunden. Im Vergleich zu Edibles ist die Wirkung kürzer und besser steuerbar. Beim Verbrennen entstehen Verbrennungsprodukte wie Benzol, Kohlenmonoxid und Teer — ähnlich wie beim Tabakrauchen.'},
     {t:'Joint / Spliff',b:'<span class="lex-term">Joint</span><span class="lex-tag base">Konsummethode</span><br>Der Joint ist die verbreitetste Konsumform — Cannabis in Zigarettenpapier gerollt, oft mit Tabak gemischt (Spliff). Der Tabakzusatz erhöht das Abhängigkeitspotenzial durch Nikotin erheblich. Pur-Joints ohne Tabak mit Aktivkohlefilter reduzieren den Schadstoffeintrag.'},
     {t:'Vaporizer / Verdampfer',b:'<span class="lex-term">Vaporizer</span><span class="lex-tag base">Konsummethode</span><br>Vaporizer erhitzen Cannabis auf 160–220°C — unterhalb der Verbrennungstemperatur. Das erzeugt ein Aerosol statt Rauch, mit deutlich weniger schädlichen Verbrennungsprodukten. Empfohlene Temperaturen: 170–185°C (schonend, mehr Terpene), 190–210°C (volle Wirkung). Medizinische Geräte: Volcano Medic, Mighty Medic. Studien zeigen reduzierte Atemwegssymptome bei Vaporer-Nutzung.'},
@@ -1444,6 +1453,20 @@ window.onMediumChange = function() {
   calcUpdate();
 };
 
+window.onDecarbChange = function() {
+  var dc = document.getElementById('extract-decarb');
+  var box = document.getElementById('decarb-info');
+  if(dc && box) {
+    if(dc.value === 'no') {
+      box.style.display = 'block';
+      box.innerHTML = '\u26a0\ufe0f <b>Roh-Extrakt:</b> THCA muss vor oder beim Verarbeiten zu Edibles decarboxyliert (erhitzt) werden \u2013 sonst kaum Wirkung. Beim Aktivieren verliert THCA ~12% Masse (CO\u2082), der Rechner zieht das automatisch ab. Rosin/Kief/BHO nicht kalt verr\u00fchren.';
+    } else {
+      box.style.display = 'none';
+    }
+  }
+  calcUpdate();
+};
+
 window.onExtractTypeChange = function() {
   var t = document.getElementById('extract-type').value;
   var cfg = EXTRACT_CFG[t]||{min:1,max:99,def:70,hint:''};
@@ -1451,7 +1474,9 @@ window.onExtractTypeChange = function() {
   sl.min=cfg.min; sl.max=cfg.max; sl.value=cfg.def;
   document.getElementById('po-ext').textContent = cfg.def;
   document.getElementById('extract-hint').textContent = cfg.hint;
-  calcUpdate();
+  var dc = document.getElementById('extract-decarb');
+  if(dc) dc.value = (['dest','feco','rso','tred'].indexOf(t) >= 0) ? 'yes' : 'no';
+  if(window.onDecarbChange) onDecarbChange(); else calcUpdate();
 };
 
 window.onBioChange = function() {
@@ -1542,6 +1567,12 @@ window.calcUpdate = function() {
   // Extrakt ist bereits der fertige Wirkstoff (decarbed, gelöst) -> keine Infusions-Effizienz.
   var eEff = (calcMode==='extract') ? 100 : e;
   var totMg = rawMg*(eEff/100);
+  // Decarb-Korrektur: Roh-Extrakte (THCA) verlieren beim Aktivieren ~12,3% Masse (CO2).
+  var decarbNo = false;
+  if(calcMode==='extract') {
+    var _dc = document.getElementById('extract-decarb');
+    if(_dc && _dc.value === 'no') { totMg = totMg * 0.877; decarbNo = true; }
+  }
   var cpU = carrier>0 ? totMg/carrier : 0;
   var ppMg = cpU*pc;
   var totPor = pc>0 ? carrier/pc : 0;
@@ -1581,7 +1612,14 @@ window.calcUpdate = function() {
   else wb.style.display='none';
 
   cs.style.display='block';
-  var effLabel = (calcMode==='extract') ? 'Vollst\u00e4ndige Einarbeitung (~100% Transfer, kein Pflanzenmaterial-Verlust)' : 'Nach Effizienz ('+eEff+'%)';
+  var effLabel;
+  if(calcMode==='extract') {
+    effLabel = decarbNo
+      ? 'Roh-Extrakt \u2192 decarboxyliert: ~87,7% aktiv (THCA\u2192THC, CO\u2082-Verlust)'
+      : 'Vollst\u00e4ndige Einarbeitung (~100% Transfer, bereits aktiv)';
+  } else {
+    effLabel = 'Nach Effizienz ('+eEff+'%)';
+  }
   cs.innerHTML = desc+'<br>'+effLabel+': <b style="color:var(--accent)">'+Math.round(totMg)+' mg</b> in '+carrier+u+' '+medName+(ratio>0?' · 1:'+ratio.toFixed(1):'')+' <br>'
     +'Konzentration: <b style="color:var(--accent)">'+cpU.toFixed(2)+' mg/'+u+'</b> · Portion '+pc+u+' → <b style="color:var(--accent)">'+ppMg.toFixed(1)+' mg</b>'
     +(bio>0?' · bioverfügbar Ø <b style="color:var(--amber)">'+ppBio.toFixed(1)+' mg</b>':'')
