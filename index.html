@@ -476,7 +476,7 @@ textarea{resize:vertical;min-height:70px}
         <div class="input-row"><input type="number" id="portion-c" value="10" min="0.1" step="0.1" oninput="calcUpdate()"><span class="unit-badge" id="portion-unit">g</span></div>
       </div>
     <!-- Effizienz -->
-    <div class="cr">
+    <div class="cr" id="eff-row">
       <label class="cl">Extraktionseffizienz: <strong id="eo">80</strong>% <span id="eff-hint" style="font-size:var(--fs-xs);color:var(--text3);margin-left:4px"></span></label>
       <input type="range" min="50" max="98" step="1" value="80" id="eff" oninput="document.getElementById('eo').textContent=this.value;calcUpdate()">
     </div>
@@ -1422,6 +1422,7 @@ window.setCalcMode = function(m) {
   document.getElementById('extract-inputs').style.display = m==='extract'?'block':'none';
   document.getElementById('inhale-inputs').style.display = m==='inhale'?'block':'none';
   var ef = document.getElementById('edible-fields'); if(ef) ef.style.display = m==='inhale'?'none':'block';
+  var er = document.getElementById('eff-row'); if(er) er.style.display = m==='extract'?'none':'block';
   var cmr = document.getElementById('carrier-medium-row'); if(cmr) cmr.style.display = m==='inhale'?'none':'grid';
   var inhaleInfo = document.getElementById('inhale-puff-info'); if(inhaleInfo) inhaleInfo.style.display = m==='inhale'?'block':'none';
   var inhaleCompare = document.getElementById('inhale-compare-info'); if(inhaleCompare) inhaleCompare.style.display = m==='inhale'?'block':'none';
