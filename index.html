@@ -1538,7 +1538,9 @@ window.calcUpdate = function() {
     desc = g+'g Material × '+p+'% = '+Math.round(rawMg)+' mg roh';
   }
 
-  var totMg = rawMg*(e/100);
+  // Extrakt ist bereits der fertige Wirkstoff (decarbed, gelöst) -> keine Infusions-Effizienz.
+  var eEff = (calcMode==='extract') ? 100 : e;
+  var totMg = rawMg*(eEff/100);
   var cpU = carrier>0 ? totMg/carrier : 0;
   var ppMg = cpU*pc;
   var totPor = pc>0 ? carrier/pc : 0;
@@ -1546,13 +1548,9 @@ window.calcUpdate = function() {
   var ppBio = bio>0 ? ppMg*bio : 0;
   var ppTol = 0;
   if(tolFactor>1.0) {
-    if(bw>0) {
-      var startD = bw * 0.05 * sexF;
-      ppTol = Math.round(startD * tolFactor * 10) / 10;
-    } else {
-      var tolBase = {1.3: 7.5, 1.7: 12, 2.2: 18};
-      ppTol = tolBase[tolFactor] || 10;
-    }
+    // Absolute, gerätunabhängige Richtwerte (nicht koerpergewichtsbasiert).
+    var tolBase = {1.3: 7.5, 1.7: 12, 2.2: 18};
+    ppTol = tolBase[tolFactor] || 10;
   }
 
   // Validierung
@@ -1582,7 +1580,8 @@ window.calcUpdate = function() {
   else wb.style.display='none';
 
   cs.style.display='block';
-  cs.innerHTML = desc+'<br>Nach Effizienz ('+e+'%): <b style="color:var(--accent)">'+Math.round(totMg)+' mg</b> in '+carrier+u+' '+medName+(ratio>0?' · 1:'+ratio.toFixed(1):'')+' <br>'
+  var effLabel = (calcMode==='extract') ? 'Extrakt bereits aktiv (100%)' : 'Nach Effizienz ('+eEff+'%)';
+  cs.innerHTML = desc+'<br>'+effLabel+': <b style="color:var(--accent)">'+Math.round(totMg)+' mg</b> in '+carrier+u+' '+medName+(ratio>0?' · 1:'+ratio.toFixed(1):'')+' <br>'
     +'Konzentration: <b style="color:var(--accent)">'+cpU.toFixed(2)+' mg/'+u+'</b> · Portion '+pc+u+' → <b style="color:var(--accent)">'+ppMg.toFixed(1)+' mg</b>'
     +(bio>0?' · bioverfügbar Ø <b style="color:var(--amber)">'+ppBio.toFixed(1)+' mg</b>':'')
     +' · ca. <b style="color:var(--text2)">'+Math.round(totPor)+' Portionen</b>';
@@ -1646,12 +1645,11 @@ window.calcUpdate = function() {
 
   var kgBox = document.getElementById('r-kg-box');
   var kgEl = document.getElementById('r-kg');
-  if(bw > 0 && kgBox && kgEl) {
-
-    var startDose = Math.round(bw * 0.05 * sexF * 10) / 10;
-    var modDose = Math.round(bw * 0.1 * sexF * 10) / 10;
+  // Absolute Startdosis (MacCallum & Russo 2018); nur ohne Toleranz anzeigen,
+  // damit sie sich nicht mit der Toleranz-Box widerspricht.
+  if(tolFactor === 1.0 && kgBox && kgEl) {
     kgBox.style.display = 'block';
-    kgEl.innerHTML = '~'+startDose + ' mg <span style="font-size:11px;color:var(--text3)">(bis ~' + modDose + ' mg erfahren)</span>';
+    kgEl.innerHTML = '~2.5 mg <span style="font-size:11px;color:var(--text3)">(vorsichtig bis ~5 mg, langsam titrieren)</span>';
   } else if(kgBox) {
     kgBox.style.display = 'none';
   }
