@@ -1581,7 +1581,7 @@ window.calcUpdate = function() {
   else wb.style.display='none';
 
   cs.style.display='block';
-  var effLabel = (calcMode==='extract') ? 'Extrakt bereits aktiv (100%)' : 'Nach Effizienz ('+eEff+'%)';
+  var effLabel = (calcMode==='extract') ? 'Vollst\u00e4ndige Einarbeitung (~100% Transfer, kein Pflanzenmaterial-Verlust)' : 'Nach Effizienz ('+eEff+'%)';
   cs.innerHTML = desc+'<br>'+effLabel+': <b style="color:var(--accent)">'+Math.round(totMg)+' mg</b> in '+carrier+u+' '+medName+(ratio>0?' · 1:'+ratio.toFixed(1):'')+' <br>'
     +'Konzentration: <b style="color:var(--accent)">'+cpU.toFixed(2)+' mg/'+u+'</b> · Portion '+pc+u+' → <b style="color:var(--accent)">'+ppMg.toFixed(1)+' mg</b>'
     +(bio>0?' · bioverfügbar Ø <b style="color:var(--amber)">'+ppBio.toFixed(1)+' mg</b>':'')
