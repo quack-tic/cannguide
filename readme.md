@@ -2,7 +2,7 @@
 
 **Harm Reduction für Cannabis-Edibles im DACH-Raum**
 
-> ⚠️ **Aktiv in Entwicklung.** Die App ist bereits online — für Feedback, Vorstellungszwecke und erste Nutzung. Inhalte und Features wachsen laufend.
+> ⚠️ **PUBLIC REVIEW** Die App ist bereits online — für Feedback, Vorstellungszwecke und erste Nutzung. Inhalte und Features wachsen laufend.
 
 **→ [Live auf GitHub Pages](https://quack-tic.github.io/cannguide)**
 
