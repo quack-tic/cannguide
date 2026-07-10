@@ -71,7 +71,6 @@ Extraktionskunde, Lösungsmittelvergleich, Dekarboxylierungstabellen, Troublesho
 - DE/EN Sprachumschalter (Basis)
 
 ### 🔧 In Arbeit / Geplant
-- Prävention: Inhalationsspezifische Inhalte (Lunge, Dabbing-Temperaturen, Tabakbeimischung)
 - Lexikon: Erweiterung mit Inhalationsbegriffen
 - Kosten & Zeitaufwand pro Methode
 - Onboarding-Tour für Erstnutzer
@@ -83,7 +82,7 @@ Extraktionskunde, Lösungsmittelvergleich, Dekarboxylierungstabellen, Troublesho
 
 ## Technologie
 
-Vanilla HTML / CSS / JavaScript — keine Frameworks, keine Build-Tools, keine Abhängigkeiten. Die gesamte App steckt in einer einzigen HTML-Datei. Service Worker für Offline-Nutzung, Chart.js für Diagramme, PWA-konform.
+Vanilla HTML / CSS / JavaScript — keine Frameworks, keine Build-Tools, keine Abhängigkeiten. Service Worker für Offline-Nutzung, Chart.js für Diagramme, PWA-konform.
 
 ---
 
@@ -92,15 +91,10 @@ Vanilla HTML / CSS / JavaScript — keine Frameworks, keine Build-Tools, keine A
 Sachliche Korrekturen zu Prozessschritten, Dosierungswerten, Effizienzwerten oder Sicherheitshinweisen sind besonders willkommen — als [Issue](https://github.com/quack-tic/cannguide/issues) oder Pull Request.
 
 ---
-
-## Lizenz
-
-MIT License — frei verwendbar und veränderbar mit Namensnennung.
-
----
-
 ## Autor
 
 Erstellt von **quack-tic** · [github.com/quack-tic](https://github.com/quack-tic)
 
-> *CannGuide ist ein Bildungs- und Harm-Reduction-Werkzeug. Es ersetzt keine medizinische oder rechtliche Beratung.*
+> *CannGuide ist ein Bildungs- und Harm-Reduction-Werkzeug. Es ersetzt keine medizinische, psychologische oder rechtliche Beratung.* 
+
+Wie gehts dir? https://www.wie-gehts-dir.ch/adressen-und-angebote/ich-suche-unterstuetzung#lang=de 
