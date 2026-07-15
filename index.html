@@ -97,7 +97,8 @@ textarea{resize:vertical;min-height:70px}
 .tag{display:inline-block;font-size:var(--fs-xs);padding:2px 8px;border-radius:5px;font-weight:500}
 .tg{background:var(--accent-bg);color:var(--accent)}.ta{background:var(--amber-bg);color:var(--amber)}.tr{background:var(--warn-bg);color:var(--warn)}
 .disclaimer{font-size:var(--fs-xs);color:var(--text3);margin-top:.875rem;line-height:1.6}
-.unit-badge{display:flex;align-items:center;padding:0 10px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);font-size:var(--fs);color:var(--text3);white-space:nowrap;margin-top:3px}
+.unit-badge{display:flex;align-items:center;padding:0 10px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);font-size:var(--fs);color:var(--text3);white-space:nowrap;margin-top:3px;cursor:pointer}
+select.unit-badge{-webkit-appearance:none;appearance:none;font-family:inherit}
 .input-row{display:flex;gap:6px}.input-row input{flex:1;margin-top:0}
 .charge-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem;margin-bottom:10px}
 .charge-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.5rem}
@@ -405,7 +406,7 @@ textarea{resize:vertical;min-height:70px}
         </select>
       </div>
       <div class="cr"><label class="cl">Eingesetzte Wirkstoffmenge</label>
-        <div class="input-row"><input type="number" id="ig" value="5" min="0.001" step="0.001" oninput="calcUpdate()"><span class="unit-badge" id="input-unit-label">g</span></div>
+        <div class="input-row"><input type="number" id="ig" value="5" min="0.001" step="0.001" oninput="calcUpdate()"><select class="unit-badge" id="input-unit-label" onchange="calcUpdate()"><option value="1">g</option><option value="1000">kg</option></select></div>
       </div>
     </div>
     <!-- Blüten -->
@@ -450,10 +451,10 @@ textarea{resize:vertical;min-height:70px}
     </div>
     <div id="edible-fields">
       <div class="cr"><label class="cl" id="label-carrier">Trägermenge gesamt</label>
-        <div class="input-row"><input type="number" id="carrier" value="200" min="1" step="1" oninput="calcUpdate()"><span class="unit-badge" id="carrier-unit">g</span></div>
+        <div class="input-row"><input type="number" id="carrier" value="200" min="1" step="1" oninput="calcUpdate()"><select class="unit-badge" id="carrier-unit" onchange="calcUpdate()"><option value="1">g</option><option value="1000">kg</option></select></div>
       </div>
-      <div class="cr"><label class="cl">Gramm Wirkstoffträger pro fertige Portion enthalten</label>
-        <div class="input-row"><input type="number" id="portion-c" value="10" min="0.1" step="0.1" oninput="calcUpdate()"><span class="unit-badge" id="portion-unit">g</span></div>
+      <div class="cr"><label class="cl" id="label-portion">Gramm Wirkstoffträger pro fertige Portion enthalten</label>
+        <div class="input-row"><input type="number" id="portion-c" value="10" min="0.1" step="0.1" oninput="calcUpdate()"><select class="unit-badge" id="portion-unit" onchange="calcUpdate()"><option value="1">g</option><option value="1000">kg</option></select></div>
       </div>
     <!-- Effizienz -->
     <div class="cr" id="eff-row">
@@ -676,18 +677,18 @@ var THEMES = {
 };
 
 var MEDIA_CFG = {
-  butter:    {unit:'g',  eff:78, hint:'Butter ~78%', carrier:'Buttermenge gesamt'},
-  ghee:      {unit:'g',  eff:88, hint:'Ghee ~88% — reines Butterfett', carrier:'Ghee-Menge gesamt'},
-  kokosoel:  {unit:'g',  eff:90, hint:'Kokosöl nativ ~90%', carrier:'Kokosöl gesamt'},
-  kokosfett: {unit:'g',  eff:88, hint:'Kokosfett raffiniert ~88%', carrier:'Kokosfett gesamt'},
-  mct:       {unit:'ml', eff:85, hint:'MCT-Öl ~85%', carrier:'MCT-Öl gesamt'},
-  olivenoel: {unit:'ml', eff:75, hint:'Olivenöl ~75%', carrier:'Olivenöl gesamt'},
-  glycerin:  {unit:'ml', eff:55, hint:'Glycerin ~55%', carrier:'Glycerin gesamt'},
-  tinktur:   {unit:'ml', eff:92, hint:'Ethanol ~92%', carrier:'Ethanol gesamt'},
-  gummies:   {unit:'g',  eff:80, hint:'Gummies', carrier:'Gummimasse gesamt'},
-  hard_candy:{unit:'g',  eff:82, hint:'Hard Candy', carrier:'Zuckermasse gesamt'},
-  baked:     {unit:'g',  eff:75, hint:'Backwaren', carrier:'Teigmasse gesamt'},
-  kapseln:   {unit:'ml', eff:88, hint:'Kapseln', carrier:'Trägeröl gesamt'}
+  butter:    {unit:'g',  eff:78, hint:'Butter ~78%', carrier:'Buttermenge gesamt', portion:'Angereicherte Butter pro fertige Portion'},
+  ghee:      {unit:'g',  eff:88, hint:'Ghee ~88% — reines Butterfett', carrier:'Ghee-Menge gesamt', portion:'Angereichertes Ghee pro fertige Portion'},
+  kokosoel:  {unit:'g',  eff:90, hint:'Kokosöl nativ ~90%', carrier:'Kokosöl gesamt', portion:'Angereichertes Kokosöl pro fertige Portion'},
+  kokosfett: {unit:'g',  eff:88, hint:'Kokosfett raffiniert ~88%', carrier:'Kokosfett gesamt', portion:'Angereichertes Kokosfett pro fertige Portion'},
+  mct:       {unit:'ml', eff:85, hint:'MCT-Öl ~85%', carrier:'MCT-Öl gesamt', portion:'Angereichertes MCT-Öl pro fertige Portion'},
+  olivenoel: {unit:'ml', eff:75, hint:'Olivenöl ~75%', carrier:'Olivenöl gesamt', portion:'Angereichertes Olivenöl pro fertige Portion'},
+  glycerin:  {unit:'ml', eff:55, hint:'Glycerin ~55%', carrier:'Glycerin gesamt', portion:'Angereichertes Glycerin pro fertige Portion'},
+  tinktur:   {unit:'ml', eff:92, hint:'Ethanol ~92%', carrier:'Ethanol gesamt', portion:'Angereichertes Ethanol pro fertige Portion'},
+  gummies:   {unit:'g',  eff:80, hint:'Gummies', carrier:'Gummimasse gesamt', portion:'Angereicherte Gummimasse pro fertige Portion'},
+  hard_candy:{unit:'g',  eff:82, hint:'Hard Candy', carrier:'Zuckermasse gesamt', portion:'Angereicherte Zuckermasse pro fertige Portion'},
+  baked:     {unit:'g',  eff:75, hint:'Backwaren', carrier:'Teigmasse gesamt', portion:'Angereicherte Teigmasse pro fertige Portion'},
+  kapseln:   {unit:'ml', eff:88, hint:'Kapseln', carrier:'Trägeröl gesamt', portion:'Angereichertes Trägeröl pro fertige Portion'}
 };
 
 var EXTRACT_CFG = {
@@ -1379,12 +1380,19 @@ window.setCalcMode = function(m) {
   calcUpdate();
 };
 
+function setUnitOptions(id, baseUnit) {
+  var el = document.getElementById(id);
+  if(!el) return;
+  if(baseUnit === 'ml') el.innerHTML = '<option value="1">ml</option><option value="1000">l</option>';
+  else el.innerHTML = '<option value="1">g</option><option value="1000">kg</option>';
+  el.value = '1';
+}
 window.onMediumChange = function() {
   var med = document.getElementById('cm').value;
   var cfg = MEDIA_CFG[med]||{unit:'g',eff:80,hint:''};
-  document.getElementById('carrier-unit').textContent = cfg.unit;
-  document.getElementById('portion-unit').textContent = cfg.unit;
-  document.getElementById('input-unit-label').textContent = cfg.unit;
+  setUnitOptions('carrier-unit', cfg.unit);
+  setUnitOptions('portion-unit', cfg.unit);
+  setUnitOptions('input-unit-label', cfg.unit);
   document.getElementById('eff').value = cfg.eff;
   document.getElementById('eo').textContent = cfg.eff;
   document.getElementById('eff-hint').textContent = cfg.hint;
@@ -1445,10 +1453,15 @@ window.calcUpdate = function() {
   var u = cfg.unit;
   var lc = document.getElementById('label-carrier');
   if(lc) lc.textContent = cfg.carrier || 'Trägermenge gesamt';
-  var carrier = parseFloat(document.getElementById('carrier').value)||0;
-  var pc = parseFloat(document.getElementById('portion-c').value)||0;
+  var lp = document.getElementById('label-portion');
+  if(lp) lp.textContent = cfg.portion || 'Gramm Wirkstoffträger pro fertige Portion enthalten';
+  var carrierMult = parseFloat(document.getElementById('carrier-unit').value)||1;
+  var carrier = (parseFloat(document.getElementById('carrier').value)||0) * carrierMult;
+  var pcMult = parseFloat(document.getElementById('portion-unit').value)||1;
+  var pc = (parseFloat(document.getElementById('portion-c').value)||0) * pcMult;
   var e = parseFloat(document.getElementById('eff').value)||80;
-  var g = parseFloat(document.getElementById('ig').value)||0;
+  var gMult = parseFloat(document.getElementById('input-unit-label').value)||1;
+  var g = (parseFloat(document.getElementById('ig').value)||0) * gMult;
   var bio = parseFloat(document.getElementById('bioavail').value)||0;
   var tolSel = document.getElementById('tolerance').value;
   var tolFactor = parseFloat(tolSel)||1.0;
@@ -1617,11 +1630,18 @@ window.saveToCharge = function() {
   var g = document.getElementById('ig').value;
   var carrier = document.getElementById('carrier').value;
   var pcv = document.getElementById('portion-c').value;
-  var cfg2 = MEDIA_CFG[document.getElementById('cm').value]||{unit:'g'};
-  var mat = calcMode==='extract' ? g+'g Extrakt ('+document.getElementById('potency-ext').value+'%)' : g+'g Blüten ('+document.getElementById('potency').value+'%)';
+  var igUnitSel = document.getElementById('input-unit-label');
+  var igUnitTxt = igUnitSel.options[igUnitSel.selectedIndex].text;
+  var carrierUnitSel = document.getElementById('carrier-unit');
+  var carrierUnitTxt = carrierUnitSel.options[carrierUnitSel.selectedIndex].text;
+  var carrierMult2 = parseFloat(carrierUnitSel.value)||1;
+  var portionMult2 = parseFloat(document.getElementById('portion-unit').value)||1;
+  var carrierBase2 = (parseFloat(carrier)||0) * carrierMult2;
+  var pcvBase2 = (parseFloat(pcv)||0) * portionMult2;
+  var mat = calcMode==='extract' ? g+igUnitTxt+' Extrakt ('+document.getElementById('potency-ext').value+'%)' : g+igUnitTxt+' Blüten ('+document.getElementById('potency').value+'%)';
   var c = {id:Date.now(), name:'Charge '+ds+' – '+med, medium:med, date:ds,
-    dose:portion.replace(' mg',''), portions:Math.round(parseFloat(carrier)/parseFloat(pcv)||0),
-    material:mat, recipe:'Aus Rechner: '+mat+' in '+carrier+cfg2.unit+' '+med+'. Gesamt: '+total+'.',
+    dose:portion.replace(' mg',''), portions:Math.round(carrierBase2/pcvBase2||0),
+    material:mat, recipe:'Aus Rechner: '+mat+' in '+carrier+carrierUnitTxt+' '+med+'. Gesamt: '+total+'.',
     notes:'', attachments:[], created:Date.now()};
   charges.unshift(c); saveChargesStorage();
   document.getElementById('calc-saved').style.display='inline';
