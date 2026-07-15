@@ -2116,7 +2116,7 @@ function tourBuildMask(b, pad) {
   var rw = (b.right-b.left)+2*pad, rh = (b.bottom-b.top)+2*pad;
   var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'+
     '<rect width="'+w+'" height="'+h+'" fill="white"/>'+
-    '<rect x="'+x+'" y="'+y+'" width="'+rw+'" height="'+rh+'" rx="14" ry="14" fill="black"/>'+
+    '<rect x="'+x+'" y="'+y+'" width="'+rw+'" height="'+rh+'" rx="14" ry="14" fill="black" fill-opacity="0"/>'+
     '</svg>';
   return 'url("data:image/svg+xml,'+encodeURIComponent(svg)+'")';
 }
@@ -2224,7 +2224,6 @@ window.dismissTourPrompt = function(startIt) {
   else { try { localStorage.setItem('cannguide_calc_tour_done', '1'); } catch(e) {} }
 };
 window.resetCalcTour = function() {
-  try { localStorage.removeItem('cannguide_calc_tour_done'); } catch(e) {}
   showPage('calc');
   setTimeout(function(){ startCalcTour(); }, 80);
 };
