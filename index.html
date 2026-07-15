@@ -187,12 +187,12 @@ textarea{resize:vertical;min-height:70px}
 .pp-hero{background:linear-gradient(150deg,var(--pp-bg),#180a25);border:1px solid var(--pp-border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1rem}
 .pp-tag{display:inline-block;font-size:var(--fs-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--pp-text);background:rgba(123,47,196,.25);border:1px solid var(--pp-border);border-radius:20px;padding:4px 11px;margin-bottom:.75rem}
 .pp-hero h2{font-size:20px;font-weight:600;line-height:1.22;margin-bottom:.5rem;letter-spacing:-0.01em;color:var(--pp-text)}
-.pp-hero .lede{font-size:var(--fs-sm);color:var(--text2);line-height:1.6;margin-bottom:1.1rem;max-width:50ch}
+.pp-hero .lede{font-size:var(--fs-sm);color:var(--pp-text);opacity:.75;line-height:1.6;margin-bottom:1.1rem;max-width:50ch}
 .pp-rules{display:flex;flex-direction:column;gap:11px}
 .pp-rule{display:flex;gap:12px;align-items:flex-start}
 .pp-rule .n{width:23px;height:23px;flex:0 0 auto;border-radius:50%;border:1.5px solid var(--pp);color:var(--pp-text);font-size:var(--fs-sm);font-weight:600;display:flex;align-items:center;justify-content:center}
 .pp-rule b{font-size:var(--fs);font-weight:600;color:var(--pp-text)}
-.pp-rule .tx{font-size:var(--fs-sm);color:var(--text2);line-height:1.45}
+.pp-rule .tx{font-size:var(--fs-sm);color:var(--pp-text);opacity:.75;line-height:1.45}
 .pp-pillars{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:1.25rem}
 .pill{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:13px 14px;cursor:pointer;transition:all .15s}
 .pill.on{border-color:var(--pp-border);background:#1c1228}
@@ -214,7 +214,7 @@ textarea{resize:vertical;min-height:70px}
 .myth-cell.m .l{color:var(--warn)}
 .myth-cell.f .l{color:var(--accent)}
 .myth-cell p{font-size:var(--fs-sm);line-height:1.5}
-.myth-cell.m p{color:var(--text2)}
+.myth-cell.m p{color:rgba(255,255,255,.75)}
 @media(max-width:520px){.ref-grid{grid-template-columns:1fr 1fr}}
 @keyframes pulse-warn{0%,100%{box-shadow:0 0 0 0 rgba(224,82,82,0.4)}50%{box-shadow:0 0 0 6px rgba(224,82,82,0)}}
 @keyframes pulse-green{0%,100%{box-shadow:0 0 0 0 rgba(82,183,136,0.5)}50%{box-shadow:0 0 0 6px rgba(82,183,136,0)}}
@@ -2009,9 +2009,9 @@ window.renderSafety = function() {
     +'</div></div>';
   // Notfall (immer sichtbar)
   h+='<div class="notfall-box"><b style="color:var(--warn)">🆘 Notfallnummern</b><br>'
-    +'<span style="color:var(--text2)">🇨🇭 CH: <b>144</b> · <b>145</b> Tox Info · <b>143</b> Dargebotene Hand</span><br>'
-    +'<span style="color:var(--text2)">🇩🇪 DE: <b>112</b> · <b>0800 111 0 111</b> Telefonseelsorge</span><br>'
-    +'<span style="color:var(--text2)">🇦🇹 AT: <b>144</b> · <b>142</b> Seelsorge · <b>01 406 43 43</b> Vergiftung</span></div>';
+    +'<span style="color:rgba(255,255,255,.75)">🇨🇭 CH: <b>144</b> · <b>145</b> Tox Info · <b>143</b> Dargebotene Hand</span><br>'
+    +'<span style="color:rgba(255,255,255,.75)">🇩🇪 DE: <b>112</b> · <b>0800 111 0 111</b> Telefonseelsorge</span><br>'
+    +'<span style="color:rgba(255,255,255,.75)">🇦🇹 AT: <b>144</b> · <b>142</b> Seelsorge · <b>01 406 43 43</b> Vergiftung</span></div>';
   // Bereichs-Karten
   h+='<div class="ksec-h"><h2>Bereiche</h2><span class="meta">tippen zum Öffnen</span></div><div class="pp-pillars">';
   Object.keys(SAFETY).forEach(function(k){
