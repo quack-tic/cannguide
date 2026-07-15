@@ -46,7 +46,7 @@ Der Lite-Ansatz schützt das Projekt und erreicht gleichzeitig mehr Menschen.
 Das Herzstück. Dos & Don'ts, Wirkungsdauer und Verzögerungseffekt bei Edibles, Risikogruppen, Greening-Out-Protokoll, Sucht & Hilfe, konkrete Anlaufstellen für CH / DE / AT und internationale Ressourcen. Rechtslage DACH (Stand 2025, volatile Gesetzgebung). Notfallnummern immer direkt sichtbar.
 
 ### ∑ Dosierungsrechner
-Körpergewicht, Toleranzstufen, Geschlecht und Metabolismus, Intensitätsbewertung, Plausibilitätsprüfung. Zwei Modi: Rohmaterial oder Extrakt. Weil der häufigste Fehler bei Edibles eine falsch eingeschätzte Dosis ist.
+Zwei Modi (Blüten oder Extrakt/Konzentrat), Einheiten-Umschalter (g/kg, ml/l), Toleranzstufen als Pflichtangabe, Intensitätsbewertung, Plausibilitätsprüfung, geführte Onboarding-Tour für Erstnutzer. Weil der häufigste Fehler bei Edibles eine falsch eingeschätzte Dosis ist.
 
 ### ☑ Prozess-Guide
 Schritt-für-Schritt Herstellung mit Timern, Checkboxen und Notizfeldern — weil kontrollierte Prozesse kontrollierte Ergebnisse liefern. Vom einfachen Butter-Infus bis zur Destillation.
@@ -55,25 +55,24 @@ Schritt-für-Schritt Herstellung mit Timern, Checkboxen und Notizfeldern — wei
 Dokumentation eigener Herstellungen mit Diagrammen und Export. Wissen aus jeder Charge zieht in die nächste.
 
 ### ⊞ Bibliothek & Lexikon
-Extraktionskunde, Lösungsmittelvergleich, Dekarboxylierungstabellen, Troubleshooting, Fachbegriffe. Weil ein gemeinsames Vokabular Voraussetzung für einen informierten Umgang ist.
+Extraktionskunde, Cannabinoide & Wirkstoffe, Wechselwirkungen mit Medikamenten, Vertiefungsartikel (pharmakologische Hintergründe mit Quellenangaben), Fachbegriffe. Weil ein gemeinsames Vokabular Voraussetzung für einen informierten Umgang ist.
 
 ---
 
 ## Aktueller Stand (Phase 1.2: Gerüstbau)
 
 ### ✅ Umgesetzt
-- Prävention mit Anlaufstellen, Rechtslage und Greening-Out-Protokoll für D(A)CH
-- Vollständiger Dosierungsrechner inkl. Inhalationsrechner
+- Prävention ("Know before you go") mit Anlaufstellen, Rechtslage und Greening-Out-Protokoll für D(A)CH
+- Dosierungsrechner (Blüten/Extrakt) mit Einheiten-Umschalter (g/kg, ml/l) und Pflicht-Toleranzangabe
+- Geführte Onboarding-Tour für Erstnutzer im Rechner
 - Prozess-Guide für alle Standard- und Fortgeschrittenen-Methoden
 - Chargenverwaltung mit Charts, Vergleich und Export
-- Bibliothek, Lexikon, Troubleshooting
+- Bibliothek, Lexikon inkl. Wechselwirkungen-Kapitel und Vertiefungsartikel
 - PWA (offline-fähig, installierbar auf Android & iOS)
 - DE/EN Sprachumschalter (Basis)
 
 ### 🔧 In Arbeit / Geplant
-- Lexikon: Erweiterung mit Inhalationsbegriffen
 - Kosten & Zeitaufwand pro Methode
-- Onboarding-Tour für Erstnutzer
 - Play Store: TWA-Integration, Geo-Beschränkung CH + DE, Alterstor
 - Community-Rezeptteilen (Phase 3)
 - Vollständige DE/EN Übersetzung (Abschluss)
