@@ -90,7 +90,7 @@ textarea{resize:vertical;min-height:70px}
 .cr{margin-bottom:.875rem}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .rg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:.875rem}
-.rm{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:.875rem}
+.rm{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:.875rem;display:flex;flex-direction:column;justify-content:center}
 .rl{font-size:var(--fs-xs);color:var(--text3);margin-bottom:5px}
 .rv{font-size:21px;font-weight:600}.rv.hi{color:var(--accent)}.rv.am{color:var(--amber)}.rv.warn{color:var(--warn)}
 .rv.sm{font-size:var(--fs);line-height:1.5;padding-top:2px;font-weight:400}
@@ -1632,6 +1632,16 @@ window.calcUpdate = function() {
   var portionBox = document.getElementById('r-portion').closest('.rm');
   if(portionBox) portionBox.classList.toggle('pulse-warn', ppMg >= 25);
   document.getElementById('r-rec').textContent = rec;
+
+  var severityColor = ppMg>=25 ? 'var(--warn)' : ppMg>=15 ? 'var(--amber)' : 'var(--accent)';
+  var intBox = document.getElementById('r-int').closest('.rm');
+  var recBox = document.getElementById('r-rec').closest('.rm');
+  [intBox, recBox].forEach(function(box){
+    if(!box) return;
+    box.classList.remove('pulse-warn');
+    if(ppMg>=25) { box.classList.add('pulse-warn'); }
+    else { box.style.borderColor = severityColor; }
+  });
 
   var kgBox = document.getElementById('r-kg-box');
   var kgEl = document.getElementById('r-kg');
