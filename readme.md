@@ -1,8 +1,8 @@
 # 🌿 CannGuide
 
-**Harm Reduction für Cannabis-Edibles im DACH-Raum**
+**Harm Reduction für Cannabis-Edibles im D(A)CH-Raum**
 
-> ⚠️ **Aktiv in Entwicklung.** Die App ist bereits online — für Feedback, Vorstellungszwecke und erste Nutzung. Inhalte und Features wachsen laufend.
+> ⚠️ **PUBLIC REVIEW** Die App ist bereits online — für Feedback, Vorstellungszwecke und erste Nutzung. Inhalte und Features wachsen laufend.
 
 **→ [Live auf GitHub Pages](https://quack-tic.github.io/cannguide)**
 
@@ -12,11 +12,13 @@
 
 Cannabis wird konsumiert — mit oder ohne App, mit oder ohne Wissen. Die Frage ist nicht ob, sondern wie sicher.
 
-CannGuide geht davon aus: **Unwissen ist das eigentliche Risiko.** Wer nicht versteht wie Dekarboxylierung funktioniert, überdosiert. Wer Dosierung nicht einschätzen kann, landet im Greening Out. Wer ohne Grundlagen mit Lösungsmitteln extrahiert, gefährdet sich und andere. Wer Hot Spots in Backwaren nicht kennt, hat keine Chance auf einen kontrollierten Konsum.
+CannGuide geht davon aus: **Unwissen ist das eigentliche Risiko.** Wer nicht versteht wie Dekarboxylierung funktioniert, spürt nichts. Wer Dosierung nicht einschätzen kann, landet im Greening Out. Wer ohne Grundlagen mit Lösungsmitteln extrahiert, gefährdet sich und andere. Wer sich alfälligen Hot Spots in Backwaren nicht bewusst ist, hat keine Chance auf einen kontrollierten Konsum.
 
 Diesem Unwissen stellt CannGuide Wissen entgegen — praxisnah, ohne Verklärung, ohne Moralisieren.
 
-Der Prozess-Guide, der Dosierungsrechner, die Chargenverwaltung, die Extraktionskunde: das sind keine Features einer "Produktions-App". Das sind **Werkzeuge im Dienst der Schadenminimierung**. Weniger gefährliche Selbstexperimente. Weniger Überdosierungen. Weniger Panik. Mehr Kontrolle.
+Der Prozess-Guide, der Dosierungsrechner, die Chargenverwaltung, die Extraktionskunde, dienen als werkzeuge im Dienst der Aufklärung und Schadensminimierung. 
+
+## Weniger gefährliche Selbstexperimente. Weniger Überdosierungen. Weniger Panik. Mehr Kontrolle.
 
 ---
 
@@ -31,7 +33,7 @@ Der Gedanke dahinter: Wer diese Methoden anwendet, tut es so oder so. Fundiertes
 
 **→ [quack-tic.github.io/cannguide](https://quack-tic.github.io/cannguide)**
 
-### 🤖 Store-Lite — Google Play *(geplant)*
+### 🤖 Store-Lite — Google Play
 Eine niederschwellige Version für den Google Play Store — breiter zugänglich, öffentlich sichtbar, politisch weniger exponiert. Fortgeschrittene Lösungsmittel- und Laborextraktion entfällt bewusst. Nicht als Selbstzensur, sondern als **strategische Entscheidung**: Wer Vakuumdestillation braucht, findet die Full PWA. Wer zufällig auf die App stösst, bekommt das Wichtigste zuerst — sichere Dosierung, Prävention, Notfallnummern.
 
 Der Lite-Ansatz schützt das Projekt und erreicht gleichzeitig mehr Menschen.
@@ -57,10 +59,10 @@ Extraktionskunde, Lösungsmittelvergleich, Dekarboxylierungstabellen, Troublesho
 
 ---
 
-## Aktueller Stand
+## Aktueller Stand (Phase 1.2: Gerüstbau)
 
 ### ✅ Umgesetzt
-- Prävention mit Anlaufstellen, Rechtslage und Greening-Out-Protokoll für DACH
+- Prävention mit Anlaufstellen, Rechtslage und Greening-Out-Protokoll für D(A)CH
 - Vollständiger Dosierungsrechner inkl. Inhalationsrechner
 - Prozess-Guide für alle Standard- und Fortgeschrittenen-Methoden
 - Chargenverwaltung mit Charts, Vergleich und Export
@@ -69,7 +71,6 @@ Extraktionskunde, Lösungsmittelvergleich, Dekarboxylierungstabellen, Troublesho
 - DE/EN Sprachumschalter (Basis)
 
 ### 🔧 In Arbeit / Geplant
-- Prävention: Inhalationsspezifische Inhalte (Lunge, Dabbing-Temperaturen, Tabakbeimischung)
 - Lexikon: Erweiterung mit Inhalationsbegriffen
 - Kosten & Zeitaufwand pro Methode
 - Onboarding-Tour für Erstnutzer
@@ -81,7 +82,7 @@ Extraktionskunde, Lösungsmittelvergleich, Dekarboxylierungstabellen, Troublesho
 
 ## Technologie
 
-Vanilla HTML / CSS / JavaScript — keine Frameworks, keine Build-Tools, keine Abhängigkeiten. Die gesamte App steckt in einer einzigen HTML-Datei. Service Worker für Offline-Nutzung, Chart.js für Diagramme, PWA-konform.
+Vanilla HTML / CSS / JavaScript — keine Frameworks, keine Build-Tools, keine Abhängigkeiten. Service Worker für Offline-Nutzung, Chart.js für Diagramme, PWA-konform.
 
 ---
 
@@ -90,15 +91,10 @@ Vanilla HTML / CSS / JavaScript — keine Frameworks, keine Build-Tools, keine A
 Sachliche Korrekturen zu Prozessschritten, Dosierungswerten, Effizienzwerten oder Sicherheitshinweisen sind besonders willkommen — als [Issue](https://github.com/quack-tic/cannguide/issues) oder Pull Request.
 
 ---
-
-## Lizenz
-
-MIT License — frei verwendbar und veränderbar mit Namensnennung.
-
----
-
 ## Autor
 
 Erstellt von **quack-tic** · [github.com/quack-tic](https://github.com/quack-tic)
 
-> *CannGuide ist ein Bildungs- und Harm-Reduction-Werkzeug. Es ersetzt keine medizinische oder rechtliche Beratung.*
+> *CannGuide ist ein Bildungs- und Harm-Reduction-Werkzeug. Es ersetzt keine medizinische, psychologische oder rechtliche Beratung.* 
+
+Wie gehts dir? https://www.wie-gehts-dir.ch/adressen-und-angebote/ich-suche-unterstuetzung#lang=de 
