@@ -69,7 +69,7 @@ nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem;border-bottom:1px 
 @keyframes leHl{0%{background:var(--accent-bg)}100%{background:transparent}}
 .le:last-child{border-bottom:none}
 .le-title{font-size:var(--fs);font-weight:500;color:var(--text2);display:flex;justify-content:space-between;align-items:center;gap:8px}
-.le-body{font-size:var(--fs);color:var(--text3);line-height:1.75;display:none;padding-top:8px}
+.le-body{font-size:var(--fs);color:var(--text2);line-height:1.75;display:none;padding-top:8px}
 .le-body.open{display:block}
 .lex-term{font-size:var(--fs);font-weight:600;color:var(--accent)}
 .lex-tag{font-size:var(--fs-xs);padding:1px 6px;border-radius:4px;background:var(--bg3);color:var(--text3);border:1px solid var(--border);margin-left:6px;vertical-align:middle}
@@ -186,12 +186,12 @@ textarea{resize:vertical;min-height:70px}
 /* Prävention — A-Layout, Violett-Identität */
 .pp-hero{background:linear-gradient(150deg,var(--pp-bg),#180a25);border:1px solid var(--pp-border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1rem}
 .pp-tag{display:inline-block;font-size:var(--fs-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--pp-text);background:rgba(123,47,196,.25);border:1px solid var(--pp-border);border-radius:20px;padding:4px 11px;margin-bottom:.75rem}
-.pp-hero h2{font-size:20px;font-weight:600;line-height:1.22;margin-bottom:.5rem;letter-spacing:-0.01em}
+.pp-hero h2{font-size:20px;font-weight:600;line-height:1.22;margin-bottom:.5rem;letter-spacing:-0.01em;color:var(--pp-text)}
 .pp-hero .lede{font-size:var(--fs-sm);color:var(--text2);line-height:1.6;margin-bottom:1.1rem;max-width:50ch}
 .pp-rules{display:flex;flex-direction:column;gap:11px}
 .pp-rule{display:flex;gap:12px;align-items:flex-start}
 .pp-rule .n{width:23px;height:23px;flex:0 0 auto;border-radius:50%;border:1.5px solid var(--pp);color:var(--pp-text);font-size:var(--fs-sm);font-weight:600;display:flex;align-items:center;justify-content:center}
-.pp-rule b{font-size:var(--fs);font-weight:600}
+.pp-rule b{font-size:var(--fs);font-weight:600;color:var(--pp-text)}
 .pp-rule .tx{font-size:var(--fs-sm);color:var(--text2);line-height:1.45}
 .pp-pillars{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:1.25rem}
 .pill{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:13px 14px;cursor:pointer;transition:all .15s}
@@ -1299,7 +1299,7 @@ function jumpToEntry(id) {
 
 // ── LIBRARY ───────────────────────────────────────────────────────────────
 window.renderLib = function() {
-  var cats = {loesungsmittel:'Lösungsmittel', tricks:'Profi-Tricks', dekarb:'Dekarboxylierung', fehler:'Troubleshooting', extrakte:'🔷 Extrakte', cannabinoide:'🧪 Cannabinoide', ecs:'🔬 ECS', botanik:'🌿 Botanik', produkte:'🍃 Produkte', konsum:'💨 Konsum', grow:'🌱 Anbau', medizin:'💊 Medizin', wechselwirkungen:'⚕️ Wechselwirkungen', risiken:'⚠️ Risiken', szene:'📖 Szene', artikel:'📰 Vertiefung'};
+  var cats = {loesungsmittel:'Lösungsmittel', tricks:'Profi-Tricks', dekarb:'Dekarboxylierung', fehler:'Troubleshooting', extrakte:'🔷 Extrakte', cannabinoide:'🧪 Cannabinoide', ecs:'🔬 ECS', botanik:'🌿 Botanik', produkte:'🍃 Produkte', konsum:'💨 Konsum', grow:'🌱 Anbau', medizin:'💊 Medizin', wechselwirkungen:'⚕️ Wechselwirkungen', risiken:'⚠️ Risiken', szene:'📖 Szene', artikel:'📰 Vertiefungsartikel'};
   var tabs = '';
   Object.keys(cats).forEach(function(k){
     tabs += '<button class="nb'+(k===activeLibCat?' active':'')+'" onclick="setLibCat(\''+k+'\')">'+cats[k]+'</button>';
