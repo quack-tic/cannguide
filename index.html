@@ -264,7 +264,7 @@ textarea{resize:vertical;min-height:70px}
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px">
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">∑ <b>Dosierungsrechner</b><br><span style="color:var(--text3)">Blüten & Extrakte</span></div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">⊡ <b>Chargenverwaltung</b><br><span style="color:var(--text3)">mit Diagrammen & PDF</span></div>
-      <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">⛨ <b>Prävention</b><br><span style="color:var(--text3)">DACH Anlaufstellen</span></div>
+      <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">⛨ <b>Know before you go</b><br><span style="color:var(--text3)">DACH Anlaufstellen</span></div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">📖 <b>Lexikon</b><br><span style="color:var(--text3)">Szene- & Fachbegriffe</span></div>
     </div>
   </div>
@@ -326,7 +326,7 @@ textarea{resize:vertical;min-height:70px}
   <div style="display:flex;gap:8px;flex-wrap:wrap">
     <button class="btn primary" onclick="showPage('calc')">∑ Dosierungsrechner</button>
     <button class="btn primary" onclick="showPage('charges')">+ Neue Charge</button>
-    <button class="btn" onclick="showPage('safety')" style="background:#4a1d6e;border-color:#7b2fc4;color:#e0aaff">⛨ Prävention</button>
+    <button class="btn" onclick="showPage('safety')" style="background:#4a1d6e;border-color:#7b2fc4;color:#e0aaff">⛨ Know before you go</button>
   </div>
   <div class="adv-section">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:.5rem;flex-wrap:wrap">
@@ -1026,16 +1026,16 @@ try { templates = JSON.parse(localStorage.getItem('cannguide_templates') || '[]'
 var I18N = {
   de: {
     start:'Methoden', guide:'Guide', library:'Bibliothek', calc:'Rechner',
-    charges:'Chargen', prevention:'Prävention', design:'Design',
+    charges:'Chargen', prevention:'Know before you go', design:'Design',
     homeDesc:'CannGuide ist eine praxisorientierte Wissens- und Produktionsapp für Cannabis-Edibles im DACH-Raum. Von der Cannabutter bis zur Vakuumdestillation — mit Schritt-für-Schritt Guides, Timern, Dosierungsrechner, Chargenverwaltung und Prävention.',
-    newCharge:'+ Neue Charge', dosCalc:'∑ Dosierungsrechner', prevention2:'⛨ Prävention',
+    newCharge:'+ Neue Charge', dosCalc:'∑ Dosierungsrechner', prevention2:'⛨ Know before you go',
     advanced:'⚗ Fortgeschritten'
   },
   en: {
     start:'Methods', guide:'Guide', library:'Library', calc:'Calculator',
-    charges:'Batches', prevention:'Prevention', design:'Design',
+    charges:'Batches', prevention:'Know before you go', design:'Design',
     homeDesc:'CannGuide is a practice-oriented knowledge and production app for cannabis edibles in the DACH region. From cannabutter to vacuum distillation — with step-by-step guides, timers, dosage calculator, batch management and prevention.',
-    newCharge:'+ New Batch', dosCalc:'∑ Dosage Calculator', prevention2:'⛨ Prevention',
+    newCharge:'+ New Batch', dosCalc:'∑ Dosage Calculator', prevention2:'⛨ Know before you go',
     advanced:'⚗ Advanced'
   }
 };
