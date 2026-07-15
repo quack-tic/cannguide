@@ -1994,19 +1994,21 @@ window.renderCharges = function() {
 }
 
 // ── SAFETY ────────────────────────────────────────────────────────────────
-window.renderSafety = function() {
+
   document.getElementById('safety-tabs').innerHTML='';
   var desc={dosierung:'Start Low, Lagerung, Risikogruppen.',bewusst:'Alter, T-Break, THC/CBD, Fahren.',lunge:'Inhalation, Vaporizer, Tabak.',kontrolle:'Reduktion, Konsummuster, Selbsttest.',od:'Zeichen erkennen, Erste Hilfe, Notruf.',sucht:'Fakten, Warnzeichen, Hilfe.',anlaufstellen:'Adressen & Hotlines DACH.',recht:'Rechtslage DACH.'};
   var h='';
   // Hero
   h+='<div class="pp-hero"><span class="pp-tag">Safety first</span>'
     +'<h2>Sicher konsumieren beginnt mit Wissen.</h2>'
-    +'<p class="lede">Die drei Grundregeln für einen risikoärmeren Umgang mit Edibles — besonders wichtig beim ersten Mal.</p>'
+    +'<p class="lede">Grundregeln für einen risikoärmeren Umgang mit Edibles — besonders wichtig beim ersten Mal konsum!.</p>'
     +'<div class="pp-rules">'
-    +'<div class="pp-rule"><span class="n">1</span><div><b>Niedrig starten.</b> <span class="tx">Erste Erfahrung max. 1.5–2.5&nbsp;mg THC inhalativ, 2.5–5&nbsp;mg Edibles.</span></div></div>'
+    +'<div class="pp-rule"><span class="n">1</span><div><b>Niedrig starten.</b> <span class="tx">Erste Erfahrung max. 2.5–5&nbsp;mg Edibles.</span></div></div>'
     +'<div class="pp-rule"><span class="n">2</span><div><b>Geduld haben.</b> <span class="tx">Wirkung erst nach 30–120&nbsp;Min. Niemals nachlegen, weil „nichts passiert“.</span></div></div>'
-    +'<div class="pp-rule"><span class="n">3</span><div><b>Umfeld beachten.</b> <span class="tx">Vertraute Umgebung, kein Alkohol, nicht am Steuer, nie bei Minderjährigen.</span></div></div>'
-    +'</div></div>';
+    +'<div class="pp-rule"><span class="n">3</span><div><b>Umfeld beachten.</b> <span class="tx">Vertraute Umgebung, kein Alkohol, keine Medikamente, nicht am Steuer, nie Konsumieren in anwesenheit von Minderjährigen.</span></div></div>'
+    +'<div class="pp-rule"><span class="n">4</span><div><b>Informationen suchen.</b> <span class="tx">Vertraue deinen Instinkten, aber informiere dich über Wirkung, Dauer und Kontraindikationen wie z.B Medikamente oder Vorerkrankungen.</span></div></div>'
+  
+
   // Notfall (immer sichtbar)
   h+='<div class="notfall-box"><b style="color:var(--warn)">🆘 Notfallnummern</b><br>'
     +'<span style="color:rgba(255,255,255,.75)">🇨🇭 CH: <b>144</b> · <b>145</b> Tox Info · <b>143</b> Dargebotene Hand</span><br>'
