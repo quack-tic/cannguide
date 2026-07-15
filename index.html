@@ -223,7 +223,7 @@ textarea{resize:vertical;min-height:70px}
 .pulse-warn{animation:pulse-warn 1.5s ease-in-out infinite;border-color:var(--warn)!important;}
 .pulse-green{animation:pulse-green 1.5s ease-in-out infinite;border-color:var(--accent)!important;}
 .pulse-amber{animation:pulse-amber 1.5s ease-in-out infinite;border-color:var(--amber)!important;}
-.tour-overlay{position:fixed;inset:0;z-index:9997;background:rgba(248,248,250,.32);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);pointer-events:none;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;mask-position:0 0;-webkit-mask-position:0 0}
+.tour-hole{position:fixed;z-index:9997;border-radius:14px;box-shadow:0 0 0 9999px rgba(10,10,14,.72);pointer-events:none;transition:top .2s ease,left .2s ease,width .2s ease,height .2s ease}
 .tour-tooltip{position:fixed;z-index:9999;width:300px;max-width:90vw;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1rem 1.125rem;box-shadow:0 10px 40px rgba(0,0,0,.5);font-size:var(--fs-sm);color:var(--text2);line-height:1.55}
 .tour-tooltip h4{font-size:var(--fs);font-weight:700;color:var(--text);margin:0 0 .4rem}
 .tour-tooltip p{margin:0}
@@ -2109,24 +2109,16 @@ function tourBounds(sel) {
   };
 }
 
-function tourBuildMask(b, pad) {
-  var w = window.innerWidth, h = window.innerHeight;
-  var x = Math.max(0, b.left-pad), y = Math.max(0, b.top-pad);
-  var rw = (b.right-b.left)+2*pad, rh = (b.bottom-b.top)+2*pad;
-  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'+
-    '<rect width="'+w+'" height="'+h+'" fill="white"/>'+
-    '<rect x="'+x+'" y="'+y+'" width="'+rw+'" height="'+rh+'" rx="14" ry="14" fill="black" fill-opacity="0"/>'+
-    '</svg>';
-  return 'url("data:image/svg+xml,'+encodeURIComponent(svg)+'")';
-}
-
 function tourPositionOverlay(step) {
   var b = tourBounds(step.sel);
   if(!b) return false;
   var pad = 16;
-  var mask = tourBuildMask(b, pad);
-  tourOverlayEl.style.maskImage = mask;
-  tourOverlayEl.style.webkitMaskImage = mask;
+  var x = Math.max(0, b.left-pad), y = Math.max(0, b.top-pad);
+  var rw = (b.right-b.left)+2*pad, rh = (b.bottom-b.top)+2*pad;
+  tourOverlayEl.style.left = x+'px';
+  tourOverlayEl.style.top = y+'px';
+  tourOverlayEl.style.width = rw+'px';
+  tourOverlayEl.style.height = rh+'px';
   var cx = (b.left+b.right)/2;
   var tw = 300;
   var top = b.bottom+pad+18;
@@ -2191,7 +2183,7 @@ window.startCalcTour = function() {
   calcUpdate();
   tourIdx = 0;
   tourOverlayEl = document.createElement('div');
-  tourOverlayEl.className = 'tour-overlay';
+  tourOverlayEl.className = 'tour-hole';
   document.body.appendChild(tourOverlayEl);
   tourTooltipEl = document.createElement('div');
   tourTooltipEl.className = 'tour-tooltip';
