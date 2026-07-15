@@ -260,12 +260,10 @@ textarea{resize:vertical;min-height:70px}
     </div>
     <p id="home-desc" style="font-size:var(--fs);color:var(--text2);line-height:1.75;margin-bottom:.875rem">Cannabis wird konsumiert — mit oder ohne Wissen. CannGuide stellt Wissen entgegen: für sicheren Konsum, informierte Dosierung und weniger gefährliche Selbstexperimente. Guides, Rechner und Chargenverwaltung sind Werkzeuge im Dienst dieses Gedankens.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px">
-      <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">☑ <b>16 Guides</b><br><span style="color:var(--text3)">mit Timern & Notizen</span></div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">∑ <b>Dosierungsrechner</b><br><span style="color:var(--text3)">Blüten & Extrakte</span></div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">⊡ <b>Chargenverwaltung</b><br><span style="color:var(--text3)">mit Diagrammen & PDF</span></div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">⛨ <b>Prävention</b><br><span style="color:var(--text3)">DACH Anlaufstellen</span></div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">📖 <b>Lexikon</b><br><span style="color:var(--text3)">Szene- & Fachbegriffe</span></div>
-      <div style="background:var(--bg3);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-sm)">⚗ <b>Fortgeschritten</b><br><span style="color:var(--text3)">BHO, THCA, Destillat</span></div>
     </div>
   </div>
   <div onclick="showPage('safety')" style="background:#2a1040;border:1px solid #7b2fc4;border-radius:var(--radius-lg);padding:.875rem 1rem;margin-bottom:1rem;cursor:pointer;display:flex;align-items:center;gap:10px">
@@ -282,29 +280,29 @@ textarea{resize:vertical;min-height:70px}
     <button class="go" onclick="doGlobalSearch()">Suchen</button>
   </div>
   <div class="kchips">
-    <span class="kchip" onclick="showPage('safety')"><b>↗</b> Wirkdauer</span>
-    <span class="kchip" onclick="gotoLexCat('cannabinoide')"><b>↗</b> THC vs. CBD</span>
+    <span class="kchip" onclick="gotoEntry('library','cannabinoide',4)"><b>↗</b> Wirkdauer</span>
+    <span class="kchip" onclick="gotoEntry('library','cannabinoide',0)"><b>↗</b> THC vs. CBD</span>
     <span class="kchip" onclick="showPage('calc')"><b>↗</b> Mikrodosierung</span>
-    <span class="kchip" onclick="gotoLexCat('dekarb')"><b>↗</b> Decarboxylierung</span>
+    <span class="kchip" onclick="gotoEntry('library','dekarb',0)"><b>↗</b> Decarboxylierung</span>
   </div>
 
   <div class="ksec">
     <div class="ksec-h"><h2>Wirkstoffe</h2><span class="meta">Kurzreferenz</span></div>
     <div class="ref-grid">
-      <div class="ref-card" onclick="gotoLexCat('cannabinoide')"><div class="k">THC</div><div class="nm">Δ9-THC</div><div class="tg">Psychoaktiv · Rausch</div><div class="bar"><i style="width:92%"></i></div><div class="barlbl"><span>Psychoaktiv</span><span>hoch</span></div></div>
-      <div class="ref-card" onclick="gotoLexCat('cannabinoide')"><div class="k">CBD</div><div class="nm">Cannabidiol</div><div class="tg">Nicht berauschend</div><div class="bar"><i style="width:6%"></i></div><div class="barlbl"><span>Psychoaktiv</span><span>keine</span></div></div>
-      <div class="ref-card" onclick="gotoLexCat('cannabinoide')"><div class="k">CBN</div><div class="nm">Cannabinol</div><div class="tg">Schwach sedierend</div><div class="bar"><i style="width:24%"></i></div><div class="barlbl"><span>Psychoaktiv</span><span>gering</span></div></div>
-      <div class="ref-card" onclick="gotoLexCat('cannabinoide')"><div class="k">CBG</div><div class="nm">Cannabigerol</div><div class="tg">Vorstufe (Mutter)</div><div class="bar"><i style="width:4%"></i></div><div class="barlbl"><span>Psychoaktiv</span><span>keine</span></div></div>
+      <div class="ref-card" onclick="gotoEntry('library','cannabinoide',0)"><div class="k">THC</div><div class="nm">Δ9-THC</div><div class="tg">Psychoaktiv · Rausch</div><div class="bar"><i style="width:92%"></i></div><div class="barlbl"><span>Psychoaktiv</span><span>hoch</span></div></div>
+      <div class="ref-card" onclick="gotoEntry('library','cannabinoide',1)"><div class="k">CBD</div><div class="nm">Cannabidiol</div><div class="tg">Nicht berauschend</div><div class="bar"><i style="width:6%"></i></div><div class="barlbl"><span>Psychoaktiv</span><span>keine</span></div></div>
+      <div class="ref-card" onclick="gotoEntry('library','cannabinoide',5)"><div class="k">CBN</div><div class="nm">Cannabinol</div><div class="tg">Schwach sedierend</div><div class="bar"><i style="width:24%"></i></div><div class="barlbl"><span>Psychoaktiv</span><span>gering</span></div></div>
+      <div class="ref-card" onclick="gotoEntry('library','cannabinoide',6)"><div class="k">CBG</div><div class="nm">Cannabigerol</div><div class="tg">Vorstufe (Mutter)</div><div class="bar"><i style="width:4%"></i></div><div class="barlbl"><span>Psychoaktiv</span><span>keine</span></div></div>
     </div>
   </div>
 
   <div class="ksec">
     <div class="ksec-h"><h2>Meistgelesen</h2><span class="meta">diese Woche</span></div>
     <div class="read-list">
-      <div class="read" onclick="showPage('safety')"><span class="rank">01</span><div><div class="t">Wie lange wirken Edibles?</div><div class="m">Sicherheit · 4 Min.</div></div><span class="v">12.4k</span></div>
-      <div class="read" onclick="gotoLexCat('cannabinoide')"><span class="rank">02</span><div><div class="t">THC und CBD im Vergleich</div><div class="m">Wirkstoffe · 6 Min.</div></div><span class="v">9.8k</span></div>
-      <div class="read" onclick="gotoLexCat('dekarb')"><span class="rank">03</span><div><div class="t">Was ist Decarboxylierung?</div><div class="m">Konsumformen · 5 Min.</div></div><span class="v">7.1k</span></div>
-      <div class="read" onclick="showPage('safety')"><span class="rank">04</span><div><div class="t">Cannabis-Pilotprojekte Schweiz</div><div class="m">Recht · 7 Min.</div></div><span class="v">6.3k</span></div>
+      <div class="read" onclick="gotoEntry('library','cannabinoide',4)"><span class="rank">01</span><div><div class="t">Wie lange wirken Edibles?</div><div class="m">Sicherheit · 4 Min.</div></div><span class="v" style="font-size:10px;color:var(--text3)">Quelle: [ROHENTWURF]</span></div>
+      <div class="read" onclick="gotoEntry('library','cannabinoide',0)"><span class="rank">02</span><div><div class="t">THC und CBD im Vergleich</div><div class="m">Wirkstoffe · 6 Min.</div></div><span class="v" style="font-size:10px;color:var(--text3)">Quelle: [ROHENTWURF]</span></div>
+      <div class="read" onclick="gotoEntry('library','dekarb',0)"><span class="rank">03</span><div><div class="t">Was ist Decarboxylierung?</div><div class="m">Konsumformen · 5 Min.</div></div><span class="v" style="font-size:10px;color:var(--text3)">Quelle: [ROHENTWURF]</span></div>
+      <div class="read" onclick="gotoEntry('safety','recht',0)"><span class="rank">04</span><div><div class="t">Cannabis-Pilotprojekte Schweiz</div><div class="m">Recht · 7 Min.</div></div><span class="v" style="font-size:10px;color:var(--text3)">Quelle: [ROHENTWURF]</span></div>
     </div>
   </div>
 
@@ -923,6 +921,16 @@ var LIB = {
     {t:'Nabilon (Canemes)',b:'<span class="lex-term">Nabilon</span><span class="lex-tag med">Pharmazie</span><br>Nabilon ist ein vollsynthetischer THC-Abkömmling in Kapselform, stärker psychoaktiv als Dronabinol. Eingesetzt bei chemotherapiebedingter Übelkeit, wenn andere Mittel versagen. Wegen des höheren Missbrauchspotenzials strenger reguliert.'},
     {t:'Medizinalblüten (Apothekensorten)',b:'<span class="lex-term">Medizinalblüten</span><span class="lex-tag med">Pharmazie</span><br>Seit der Legalisierung in Deutschland (2017) und Schweizer Pilotversuchen sind standardisierte Cannabisblüten auf Rezept erhältlich. Sorten: Bedrocan (22% THC, <1% CBD), Bediol (6,3% THC, 8% CBD), Bedrolite (<1% THC, 9% CBD). Gehalt, Qualität und Reinheit sind GMP-zertifiziert — im Gegensatz zu Schwarzmarkt-Ware.'}
   ]},
+  wechselwirkungen:{cat:'Wechselwirkungen & Medikamente',items:[
+    {t:'Benzodiazepine (z.B. Diazepam, Lorazepam)',b:'<span class="lex-term">Benzodiazepine</span><span class="lex-tag med">Medikament</span><span class="lex-tag adv">Wechselwirkung</span><br>[ROHENTWURF – bitte prüfen] Benzodiazepine (u.a. gegen Angst, Schlafstörungen, Krampfanfälle) wirken wie Cannabis dämpfend auf das zentrale Nervensystem. In Kombination verstärken sich Sedierung, Schwindel und Koordinationsverlust überproportional — nicht additiv, sondern potenzierend. Zusätzliches Risiko bei gleichzeitigem Alkoholkonsum. Wer Benzodiazepine verschrieben bekommt, sollte Cannabiskonsum mit der verschreibenden Stelle besprechen.'},
+    {t:'Opioide (z.B. Oxycodon, Morphin, Tramadol)',b:'<span class="lex-term">Opioide</span><span class="lex-tag med">Medikament</span><span class="lex-tag adv">Wechselwirkung</span><br>[ROHENTWURF – bitte prüfen] Beide Substanzen wirken atemdepressiv und sedierend — in Kombination steigt das Risiko einer gefährlichen Atemdepression. Manche Studien diskutieren einen opioidsparenden Effekt von Cannabis bei chronischen Schmerzpatient:innen, die Datenlage dazu ist jedoch uneinheitlich und kein Freibrief für Selbstmedikation. Rücksprache mit Ärzt:in/Apotheke bei bestehender Opioidtherapie dringend empfohlen.'},
+    {t:'Alkohol',b:'<span class="lex-term">Alkohol</span><span class="lex-tag adv">Wechselwirkung</span><br>[ROHENTWURF – bitte prüfen] Alkohol und Cannabis verstärken sich gegenseitig nicht additiv, sondern potenzierend — der kombinierte Effekt ist schwer vorhersagbar und ein häufiger Auslöser für Übelkeit, Kreislaufprobleme und unangenehme Erfahrungen ("Greening Out"). Die Reihenfolge spielt eine Rolle: Cannabis nach Alkohol erhöht THC-Aufnahme und -Wirkung stärker, als umgekehrt. Kombination erhöht zudem das Unfallrisiko im Strassenverkehr deutlich über die Einzelwirkungen hinaus.'},
+    {t:'Blutverdünner (Vitamin-K-Antagonisten, z.B. Marcoumar/Warfarin)',b:'<span class="lex-term">Vitamin-K-Antagonisten</span><span class="lex-tag med">Medikament</span><span class="lex-tag adv">Wechselwirkung</span><br>[ROHENTWURF – bitte prüfen] Cannabinoide hemmen das Leberenzym CYP2C9, das auch am Abbau von Vitamin-K-Antagonisten (Marcoumar/Sintrom, Warfarin) beteiligt ist. Dadurch kann der Medikamentenspiegel steigen und die Blutungsneigung zunehmen (INR-Erhöhung). Menschen unter Blutverdünnung sollten regelmässige Cannabisnutzung mit der verschreibenden Stelle besprechen, insbesondere bei Dosisänderungen.'},
+    {t:'SSRI/SNRI-Antidepressiva',b:'<span class="lex-term">SSRI/SNRI</span><span class="lex-tag med">Medikament</span><span class="lex-tag adv">Wechselwirkung</span><br>[ROHENTWURF – bitte prüfen] CBD hemmt u.a. CYP2C19 und CYP3A4, worüber viele Antidepressiva verstoffwechselt werden — der Wirkspiegel kann dadurch ansteigen. THC selbst kann bei manchen Personen Angst oder Stimmungsschwankungen verstärken, was sich mit einer bestehenden depressiven oder Angst-Symptomatik überschneiden kann. Keine pauschale Kontraindikation, aber ein Punkt für das Gespräch mit Ärzt:in oder Psychiater:in.'},
+    {t:'Betablocker & Blutdrucksenker',b:'<span class="lex-term">Betablocker</span><span class="lex-tag med">Medikament</span><span class="lex-tag adv">Wechselwirkung</span><br>[ROHENTWURF – bitte prüfen] THC kann in niedrigen Dosen die Herzfrequenz erhöhen (Tachykardie), bei höheren Dosen dagegen Blutdruckabfall und orthostatische Hypotonie (Schwindel beim Aufstehen) begünstigen. In Kombination mit Blutdrucksenkern oder Betablockern kann dieser Effekt verstärkt oder maskiert werden. Besonders relevant für Personen mit bekannten Herz-Kreislauf-Vorerkrankungen.'},
+    {t:'Stimulanzien & ADHS-Medikamente (Methylphenidat, Amphetamine, Kokain, MDMA)',b:'<span class="lex-term">Stimulanzien</span><span class="lex-tag adv">Wechselwirkung</span><br>[ROHENTWURF – bitte prüfen] Stimulanzien erhöhen Herzfrequenz und Blutdruck; Cannabis kann diesen Effekt zusätzlich verstärken, vor allem in Kombination mit Kokain oder MDMA (kardiovaskuläre Belastung, Herzrhythmusstörungen). Bei verschriebenen ADHS-Medikamenten (Methylphenidat u.ä.) sollte gleichzeitiger Cannabiskonsum mit der behandelnden Stelle besprochen werden, insbesondere wegen möglicher Wechselwirkungen auf Konzentration und Herz-Kreislauf-System.'},
+    {t:'Immunsuppressiva & Statine (CYP3A4-Substrate)',b:'<span class="lex-term">CYP3A4-Substrate</span><span class="lex-tag med">Medikament</span><span class="lex-tag adv">Wechselwirkung</span><br>[ROHENTWURF – bitte prüfen] Viele Immunsuppressiva (z.B. nach Organtransplantation) und Statine (Cholesterinsenker) werden über CYP3A4 abgebaut, ein Enzym, das Cannabinoide teilweise hemmen. Das kann zu höheren Wirkstoffspiegeln und verstärkten Nebenwirkungen führen. Diese Liste ist nicht vollständig — bei jeder Dauermedikation lohnt sich die gezielte Nachfrage nach CYP450-Interaktionen bei Arzt oder Apotheke.'}
+  ]},
   risiken:{cat:'Physiologie & Risiken',items:[
     {t:'Toleranzentwicklung',b:'<span class="lex-term">Toleranz</span><span class="lex-tag adv">Risiko</span><br>Regelmässiger Cannabiskonsum führt zur Downregulation von CB1-Rezeptoren — das Gehirn reduziert die Anzahl verfügbarer Andockstellen. Folge: Für denselben Effekt werden höhere Dosen benötigt. Toleranz baut sich in Wochen auf und nach einer Pause (T-Break) innerhalb von 2–4 Wochen wieder ab. Stark gestiegener Bedarf ist ein Warnsignal für ein problematisches Konsummuster.'},
     {t:'Cannabis-Use-Disorder (CUD)',b:'<span class="lex-term">CUD</span><span class="lex-tag adv">Risiko</span><br>Cannabisabhängigkeit betrifft schätzungsweise 9% aller Konsumenten, bei täglichem Konsum bis zu 50%. Kriterien: Kontrollverlust, Vernachlässigung anderer Aktivitäten, Konsum trotz negativer Konsequenzen. Körperliche Entzugssymptome (Reizbarkeit, Schlafstörungen, Appetitlosigkeit) dauern 1–2 Wochen. Professionelle Hilfe ist effektiv.'},
@@ -1302,6 +1310,12 @@ window.renderLib = function() {
 }
 window.setLibCat = function(k) { activeLibCat=k; renderLib(); };
 window.gotoLexCat = function(c){ activeLibCat = c; showPage('library'); };
+window.gotoEntry = function(page, cat, idx){
+  if(page==='library'){ activeLibCat = cat; } else if(page==='safety'){ activeSafetyCat = cat; }
+  showPage(page);
+  var prefix = page==='library' ? 'l' : 's';
+  setTimeout(function(){ jumpToEntry(prefix+cat+idx); }, 60);
+};
 window.toggleEntry = function(id) { var el=document.getElementById(id); if(el) el.classList.toggle('open'); };
 
 // ── TERPENE GRID ──────────────────────────────────────────────────────────
