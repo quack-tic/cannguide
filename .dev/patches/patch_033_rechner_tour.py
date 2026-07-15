@@ -19,7 +19,7 @@ total = 5
 # 1) CSS fuer Overlay, Tooltip und Prompt-Dialog
 # ─────────────────────────────────────────────────────────────────────────
 old1 = """</style>"""
-new1 = """.tour-overlay{position:fixed;inset:0;z-index:9997;background:rgba(248,248,250,.32);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);pointer-events:none}
+new1 = """.tour-overlay{position:fixed;inset:0;z-index:9997;background:rgba(248,248,250,.32);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);pointer-events:none;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;mask-position:0 0;-webkit-mask-position:0 0}
 .tour-tooltip{position:fixed;z-index:9999;width:300px;max-width:90vw;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1rem 1.125rem;box-shadow:0 10px 40px rgba(0,0,0,.5);font-size:var(--fs-sm);color:var(--text2);line-height:1.55}
 .tour-tooltip h4{font-size:var(--fs);font-weight:700;color:var(--text);margin:0 0 .4rem}
 .tour-tooltip p{margin:0}
@@ -109,7 +109,7 @@ new5 = """// ── RECHNER-TOUR ───────────────�
 var TOUR_STEPS = [
   {sel:['.mode-toggle'], t:'Modus wählen', b:'Wähle hier, ob du mit rohem Pflanzenmaterial (Blüten) oder einem Extrakt/Konzentrat rechnest. Die restlichen Felder passen sich automatisch an.'},
   {sel:['#carrier-medium-row'], t:'Medium & Menge', b:'Wähle dein Trägermedium (z.B. Butter, MCT-Öl) und gib ein, wie viel Gramm Ausgangsmaterial du tatsächlich eingesetzt hast.'},
-  {sel:['#potency'], t:'Wirkstoffgehalt', b:'Der %-Wert von der Verpackung oder einem Labortest — beeinflusst die ganze Rechnung stark. Ohne Test: vorsichtig schätzen, eher tiefer ansetzen.'},
+  {sel:['#potency'], t:'Wirkstoffgehalt', b:'Der %-Wert von der Verpackung oder einem Labortest — beeinflusst die ganze Rechnung stark. Ohne Test: eher höher schätzen als tiefer — eine Unterschätzung führt leicht zu ungewolltem Nachdosieren und Greening Out.'},
   {sel:['#raw-decarb'], t:'Decarboxyliert?', b:'Entscheidend: Ist dein Material schon aktiviert (decarboxyliert) oder noch Rohwert (THCA)? Im Zweifel „Nein“ wählen — unaktiviertes Material wirkt kaum.'},
   {sel:['#carrier','#portion-c'], t:'Trägermenge & Portion', b:'Wie viel hast du insgesamt hergestellt, und wie viele Gramm Wirkstoffträger stecken in einer fertigen Portion? Beides zusammen bestimmt die Dosis pro Stück.'},
   {sel:['#bioavail'], t:'Aufnahmeform', b:'Wähle die Aufnahmeform. Die Prozentwerte zeigen die durchschnittliche Verfügbarkeit nach Applikationsform aus Studien — individuell kann das spürbar abweichen.'},
@@ -132,18 +132,28 @@ function tourBounds(sel) {
   };
 }
 
+function tourBuildMask(b, pad) {
+  var w = window.innerWidth, h = window.innerHeight;
+  var x = Math.max(0, b.left-pad), y = Math.max(0, b.top-pad);
+  var rw = (b.right-b.left)+2*pad, rh = (b.bottom-b.top)+2*pad;
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'+
+    '<rect width="'+w+'" height="'+h+'" fill="white"/>'+
+    '<rect x="'+x+'" y="'+y+'" width="'+rw+'" height="'+rh+'" rx="14" ry="14" fill="black"/>'+
+    '</svg>';
+  return 'url("data:image/svg+xml,'+encodeURIComponent(svg)+'")';
+}
+
 function tourPositionOverlay(step) {
   var b = tourBounds(step.sel);
   if(!b) return false;
-  var pad = 14;
-  var cx = (b.left+b.right)/2, cy = (b.top+b.bottom)/2;
-  var rx = (b.right-b.left)/2+pad, ry = (b.bottom-b.top)/2+pad;
-  var mask = 'radial-gradient(ellipse '+rx+'px '+ry+'px at '+cx+'px '+cy+'px, transparent 0%, transparent 92%, black 100%)';
+  var pad = 16;
+  var mask = tourBuildMask(b, pad);
   tourOverlayEl.style.maskImage = mask;
   tourOverlayEl.style.webkitMaskImage = mask;
+  var cx = (b.left+b.right)/2;
   var tw = 300;
-  var top = b.bottom+18;
-  if(top+170 > window.innerHeight) top = Math.max(12, b.top-170);
+  var top = b.bottom+pad+18;
+  if(top+170 > window.innerHeight) top = Math.max(12, b.top-pad-170);
   var left = Math.min(Math.max(12, cx-tw/2), window.innerWidth-tw-12);
   tourTooltipEl.style.top = top+'px';
   tourTooltipEl.style.left = left+'px';
@@ -152,11 +162,24 @@ function tourPositionOverlay(step) {
   return true;
 }
 
+var tourRepositionTimer = null;
+function tourStartRepositioning() {
+  if(tourRepositionTimer) clearInterval(tourRepositionTimer);
+  tourRepositionTimer = setInterval(function(){
+    if(!tourOverlayEl) return;
+    tourPositionOverlay(TOUR_STEPS[tourIdx]);
+  }, 150);
+}
+function tourStopRepositioning() {
+  if(tourRepositionTimer) { clearInterval(tourRepositionTimer); tourRepositionTimer = null; }
+}
+
 function tourRenderStep() {
   if(!tourOverlayEl) return;
   var step = TOUR_STEPS[tourIdx];
   var ok = tourPositionOverlay(step);
   if(!ok) { window.tourNext(); return; }
+  tourStartRepositioning();
   tourTooltipEl.innerHTML =
     '<div class="tour-step-count">Schritt '+(tourIdx+1)+' / '+TOUR_STEPS.length+'</div>'+
     '<h4>'+step.t+'</h4><p>'+step.b+'</p>'+
@@ -180,6 +203,7 @@ window.tourPrev = function() {
   tourRenderStep();
 };
 window.endCalcTour = function() {
+  tourStopRepositioning();
   if(tourOverlayEl) { tourOverlayEl.remove(); tourOverlayEl = null; }
   if(tourTooltipEl) { tourTooltipEl.remove(); tourTooltipEl = null; }
   window.removeEventListener('resize', tourRenderStep);
