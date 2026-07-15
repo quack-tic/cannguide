@@ -423,6 +423,7 @@ a[href^="tel:"]:active{opacity:.7}
           <select id="extract-type" onchange="onExtractTypeChange()">
             <optgroup label="Blütenmaterial (unverarbeitet)"><option value="kief">Kief / Pollen (30–60%)</option></optgroup>
             <optgroup label="Lösungsmittelfrei"><option value="rosin">Rosin (60–80%)</option><option value="thca_k">THCA-Kristalle (95–99%)</option></optgroup>
+            <optgroup label="Live-Extrakte (frisch gefroren)"><option value="live_bho">Live Resin – BHO (65–85%)</option><option value="live_rosin">Live Rosin / Live Bubble Hash (50–85%)</option><option value="live_sift">Live Dry Sift (35–65%)</option></optgroup>
             <optgroup label="Lösungsmittel-Extrakte"><option value="bho_s">BHO Shatter (70–90%)</option><option value="bho_w">BHO Wax/Budder (65–85%)</option><option value="bho_o">BHO Sauce/Öl (50–80%)</option><option value="rso">RSO (40–70%)</option><option value="feco">FECO (50–80%)</option><option value="tred">Tinktur-Redukt (30–60%)</option></optgroup>
             <optgroup label="Destillate"><option value="dest">Vakuumdestillat (85–99%)</option></optgroup>
             <option value="custom">Eigener Wert</option>
@@ -698,6 +699,9 @@ var MEDIA_CFG = {
 var EXTRACT_CFG = {
   rosin:  {min:60,max:80,def:70,hint:'Rosin: Lösungsmittelfrei, 60–80%.'},
   kief:   {min:30,max:60,def:45,hint:'Kief / Pollen: 30–60%.'},
+  live_bho:   {min:65,max:85,def:75,hint:'Live Resin (BHO): Butan-Extraktion aus frisch gefrorenem Material, 65–85%.'},
+  live_rosin: {min:50,max:85,def:70,hint:'Live Rosin / Live Bubble Hash: lösungsmittelfrei aus gefrorenem Material, 50–85%.'},
+  live_sift:  {min:35,max:65,def:50,hint:'Live Dry Sift: Trockensieb aus gefrorenem Material, 35–65%.'},
   thca_k: {min:95,max:99,def:97,hint:'THCA-Kristalle: 95–99% THCA. Dekarb vor Edibles-Einsatz Pflicht!'},
   bho_s:  {min:70,max:90,def:80,hint:'BHO Shatter: 70–90%.'},
   bho_w:  {min:65,max:85,def:75,hint:'BHO Wax/Budder: 65–85%.'},
@@ -2126,6 +2130,8 @@ function tourBounds(sel) {
   var els = sel.map(function(s){ var el = document.querySelector(s); if(!el) return null; return el.closest('.cr') || el; }).filter(Boolean);
   if(!els.length) return null;
   var rects = els.map(function(e){ return e.getBoundingClientRect(); });
+  var visible = rects.some(function(r){ return r.width > 0 && r.height > 0; });
+  if(!visible) return null;
   return {
     top: Math.min.apply(null, rects.map(function(r){return r.top;})),
     left: Math.min.apply(null, rects.map(function(r){return r.left;})),
