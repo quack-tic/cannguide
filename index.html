@@ -408,7 +408,7 @@ textarea{resize:vertical;min-height:70px}
         <select id="raw-decarb" onchange="onDecarbChange()">
           <option value="" selected disabled>— bitte wählen —</option>
           <option value="no">Nein – Rohwert / THCA (Aktivierung nötig)</option>
-          <option value="yes">Ja – aktives (Total-)THC</option>
+          <option value="yes">Ja – aktives Material</option>
         </select>
       </div>
       <div id="raw-decarb-info" style="display:none;border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-sm);margin-bottom:.625rem"></div>
@@ -433,7 +433,7 @@ textarea{resize:vertical;min-height:70px}
         <select id="extract-decarb" onchange="onDecarbChange()">
           <option value="" selected disabled>— bitte wählen —</option>
           <option value="no">Nein – Rohwert (THCA, Aktivierung nötig)</option>
-          <option value="yes">Ja – bereits aktives THC</option>
+          <option value="yes">Ja – aktives Material</option>
         </select>
       </div>
       <div id="decarb-info" style="display:none;background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-sm);color:var(--warn);margin-bottom:.625rem"></div>
@@ -443,7 +443,7 @@ textarea{resize:vertical;min-height:70px}
       <div class="cr"><label class="cl" id="label-carrier">Trägermenge gesamt</label>
         <div class="input-row"><input type="number" id="carrier" value="200" min="1" step="1" oninput="calcUpdate()"><span class="unit-badge" id="carrier-unit">g</span></div>
       </div>
-      <div class="cr"><label class="cl">Gramm pro Portion</label>
+      <div class="cr"><label class="cl">Gramm Wirkstoffträger pro fertige Portion enthalten</label>
         <div class="input-row"><input type="number" id="portion-c" value="10" min="0.1" step="0.1" oninput="calcUpdate()"><span class="unit-badge" id="portion-unit">g</span></div>
       </div>
     <!-- Effizienz -->
@@ -470,7 +470,7 @@ textarea{resize:vertical;min-height:70px}
     <div class="cr">
       <label class="cl">Konsumfrequenz (Toleranzkorrektur)</label>
       <select id="tolerance" onchange="calcUpdate()">
-        <option value="1.0">— Nicht berücksichtigen —</option>
+        <option value="" selected disabled>— bitte wählen —</option>
         <option value="1.0">Gelegentlich (1× / Woche oder weniger)</option>
         <option value="1.3">Regelmässig (2–4× / Woche)</option>
         <option value="1.7">Täglich</option>
@@ -1436,7 +1436,8 @@ window.calcUpdate = function() {
   var e = parseFloat(document.getElementById('eff').value)||80;
   var g = parseFloat(document.getElementById('ig').value)||0;
   var bio = parseFloat(document.getElementById('bioavail').value)||0;
-  var tolFactor = parseFloat(document.getElementById('tolerance').value)||1.0;
+  var tolSel = document.getElementById('tolerance').value;
+  var tolFactor = parseFloat(tolSel)||1.0;
   var medName = document.getElementById('cm').options[document.getElementById('cm').selectedIndex].text;
 
   // Bioavailability disclaimer
@@ -1486,6 +1487,7 @@ window.calcUpdate = function() {
   if(pc<=0) errs.push('Portionsgrösse eingeben.');
   if(g<=0) errs.push('Eingesetzte Wirkstoffmenge eingeben.');
   if((calcMode==='extract'||calcMode==='raw') && decarbSel!=='yes' && decarbSel!=='no') errs.push('Decarboxylierung w\u00e4hlen (Ja/Nein).');
+  if(tolSel==='') errs.push('Konsumfrequenz wählen.');
   if(carrier>0&&pc>=carrier) errs.push('Portionsgrösse >= Trägermenge.');
   if(ratio>0&&ratio<5) errs.push('Zu wenig Träger: 1:'+ratio.toFixed(1)+'. Mind. 1:10.');
   else if(ratio>0&&ratio<10) warns.push('Verhältnis 1:'+ratio.toFixed(1)+' knapp.');
@@ -1569,7 +1571,7 @@ window.calcUpdate = function() {
   if(tolFactor>1.0 && tolTextEl) {
     var _tolSel=document.getElementById('tolerance');
     if(tolLvlEl) tolLvlEl.textContent=_tolSel.options[_tolSel.selectedIndex].text;
-    tolTextEl.innerHTML='Bei bestehender Toleranz kann für einen spürbaren Wirkungseintritt mehr nötig sein — erfahrungsgemäss bis ~'+ppTol+' mg. <b>Das ist keine Empfehlung.</b> Höhere Dosen steigern Risiko und Toleranz weiter; eine Konsumpause (T-Break) senkt den Bedarf wieder.';
+    tolTextEl.innerHTML='Bei bestehender Toleranz kann für einen spürbaren Wirkungseintritt mehr nötig sein — erfahrungsgemäss bis <span style="background:var(--amber);color:#1a1200;font-weight:800;font-size:1.15em;padding:1px 8px;border-radius:6px;white-space:nowrap">~'+ppTol+' mg</span>. <b>Das ist keine Empfehlung.</b> Höhere Dosen steigern Risiko und Toleranz weiter; eine Konsumpause (T-Break) senkt den Bedarf wieder.';
   }
 
   var tag='', rec='';
