@@ -397,18 +397,10 @@ a[href^="tel:"]:active{opacity:.7}
       <button id="btn-mode-raw" class="btn primary" onclick="setCalcMode('raw')">🌿 Blüten</button>
       <button id="btn-mode-extract" class="btn" onclick="setCalcMode('extract')">💧 Extrakt / Konzentrat</button>
     </div>
-    <div class="row2" id="carrier-medium-row">
-      <div class="cr"><label class="cl">Träger / Medium</label>
-        <select id="cm" onchange="onMediumChange()">
-          <optgroup label="Fette"><option value="butter">Butter</option><option value="ghee">Ghee</option><option value="kokosoel">Kokosöl (nativ)</option><option value="kokosfett">Kokosfett (raffiniert)</option></optgroup>
-          <optgroup label="Öle"><option value="mct">MCT-Öl (C8/C10)</option><option value="olivenoel">Olivenöl</option></optgroup>
-          <optgroup label="Weitere Träger"><option value="glycerin">Glycerin (VG)</option><option value="tinktur">Tinktur / Ethanol</option></optgroup>
-          <optgroup label="Fertigprodukte"><option value="gummies">Gummies</option><option value="hard_candy">Hard Candy</option><option value="baked">Backwaren</option><option value="kapseln">Kapseln</option></optgroup>
-        </select>
-      </div>
-      <div class="cr"><label class="cl">Eingesetzte Wirkstoffmenge</label>
-        <div class="input-row"><input type="number" id="ig" value="5" min="0.001" step="0.001" oninput="calcUpdate()"><select class="unit-badge" id="input-unit-label" onchange="calcUpdate()"><option value="1">g</option><option value="1000">kg</option></select></div>
-      </div>
+
+    <div class="ksec-h" style="margin-top:.75rem"><h2>① Ausgangsmaterial</h2></div>
+    <div class="cr"><label class="cl">Eingesetzte Wirkstoffmenge</label>
+      <div class="input-row"><input type="number" id="ig" value="5" min="0.001" step="0.001" oninput="calcUpdate()"><select class="unit-badge" id="input-unit-label" onchange="calcUpdate()"><option value="1">g</option><option value="1000">kg</option></select></div>
     </div>
     <!-- Blüten -->
     <div id="raw-inputs">
@@ -450,6 +442,16 @@ a[href^="tel:"]:active{opacity:.7}
       <div id="decarb-info" style="display:none;background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-sm);color:var(--warn);margin-bottom:.625rem"></div>
       <div id="extract-hint" style="background:var(--bg3);border-radius:var(--radius);padding:8px 10px;font-size:var(--fs-sm);color:var(--text3);margin-bottom:.625rem"></div>
     </div>
+
+    <div class="ksec-h" style="margin-top:1.1rem"><h2>② Herstellung & Portionierung</h2></div>
+    <div class="cr"><label class="cl">Träger / Medium</label>
+      <select id="cm" onchange="onMediumChange()">
+        <optgroup label="Fette"><option value="butter">Butter</option><option value="ghee">Ghee</option><option value="kokosoel">Kokosöl (nativ)</option><option value="kokosfett">Kokosfett (raffiniert)</option></optgroup>
+        <optgroup label="Öle"><option value="mct">MCT-Öl (C8/C10)</option><option value="olivenoel">Olivenöl</option></optgroup>
+        <optgroup label="Weitere Träger"><option value="glycerin">Glycerin (VG)</option><option value="tinktur">Tinktur / Ethanol</option></optgroup>
+        <optgroup label="Fertigprodukte"><option value="gummies">Gummies</option><option value="hard_candy">Hard Candy</option><option value="baked">Backwaren</option><option value="kapseln">Kapseln</option></optgroup>
+      </select>
+    </div>
     <div id="edible-fields">
       <div class="cr"><label class="cl" id="label-carrier">Trägermenge gesamt</label>
         <div class="input-row"><input type="number" id="carrier" value="200" min="1" step="1" oninput="calcUpdate()"><select class="unit-badge" id="carrier-unit" onchange="calcUpdate()"><option value="1">g</option><option value="1000">kg</option></select></div>
@@ -462,6 +464,9 @@ a[href^="tel:"]:active{opacity:.7}
       <label class="cl">Extraktionseffizienz: <strong id="eo">80</strong>% <span id="eff-hint" style="font-size:var(--fs-xs);color:var(--text3);margin-left:4px"></span></label>
       <input type="range" min="50" max="98" step="1" value="80" id="eff" oninput="document.getElementById('eo').textContent=this.value;calcUpdate()">
     </div>
+    </div>
+
+    <div class="ksec-h" style="margin-top:1.1rem"><h2>③ Wirkung & Einordnung</h2></div>
     <!-- Applikation / Bioverfügbarkeit -->
     <div class="cr">
       <label class="cl">Applikationsform (Bioverfügbarkeit)</label>
@@ -476,7 +481,6 @@ a[href^="tel:"]:active{opacity:.7}
     <div id="bio-disclaimer" style="display:none;background:var(--amber-bg);border:1px solid var(--amber);border-radius:var(--radius);padding:9px 12px;font-size:var(--fs-xs);color:var(--amber);line-height:1.65;margin-bottom:.875rem">
       ⚠ Bioverfügbarkeitswerte sind Mittelwerte aus klinischen Studien und stellen keine individuellen Prognosen dar. Natürliche Produkte unterliegen inhärenten Schwankungen in Wirkstoffgehalt und -zusammensetzung. Darüber hinaus beeinflussen genetische Veranlagung, Stoffwechselrate, Mageninhalt, Toleranz und Enzymaktivität (insb. CYP2C9/CYP3A4) die tatsächlich bioverfügbare Menge erheblich. Die angezeigten Werte dienen ausschliesslich der groben Orientierung.
     </div>
-    </div>
     <!-- Toleranz -->
     <div class="cr">
       <label class="cl">Konsumfrequenz (Toleranzkorrektur)</label>
@@ -488,7 +492,6 @@ a[href^="tel:"]:active{opacity:.7}
         <option value="2.2">Täglich mehrmals</option>
       </select>
     </div>
-
     <!-- Terpene -->
     <div class="cr">
       <div style="display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="var g=document.getElementById('terpene-grid');var i=document.getElementById('terp-toggle');var v=g.style.display==='none';g.style.display=v?'grid':'none';i.textContent=v?'▲':'▼'">
@@ -2106,11 +2109,12 @@ function esc(s){ if(!s) return ''; return String(s).replace(/&/g,'&amp;').replac
 // ── RECHNER-TOUR ────────────────────────────
 var TOUR_STEPS = [
   {sel:['.mode-toggle'], t:'Modus wählen', b:'Wähle hier, ob du mit rohem Pflanzenmaterial (Blüten) oder einem Extrakt/Konzentrat rechnest. Die restlichen Felder passen sich automatisch an.'},
-  {sel:['#carrier-medium-row'], t:'Medium & Menge', b:'Wähle dein Trägermedium (z.B. Butter, MCT-Öl) und gib ein, wie viel Gramm Ausgangsmaterial du tatsächlich eingesetzt hast.'},
+  {sel:['#ig'], t:'① Eingesetzte Wirkstoffmenge', b:'Wie viel Gramm Blüten oder Extrakt setzt du ein? Wichtig: Das ist die Menge des Cannabis-Ausgangsmaterials — NICHT die Menge deines Trägermediums (Butter, Öl etc.), die kommt gleich in Block ②.'},
   {sel:['#potency'], t:'Wirkstoffgehalt', b:'Der %-Wert von der Verpackung oder einem Labortest — beeinflusst die ganze Rechnung stark. Ohne Test: eher höher schätzen als tiefer — eine Unterschätzung führt leicht zu ungewolltem Nachdosieren und Greening Out.'},
   {sel:['#raw-decarb'], t:'Decarboxyliert?', b:'Entscheidend: Ist dein Material schon aktiviert (decarboxyliert) oder noch Rohwert (THCA)? Im Zweifel „Nein“ wählen — unaktiviertes Material wirkt kaum.'},
+  {sel:['#cm'], t:'② Träger / Medium', b:'Womit stellst du her — Butter, MCT-Öl, Gummies? Das bestimmt automatisch die passende Extraktionseffizienz. Hier geht es nur um die Art, die Menge folgt im nächsten Schritt.'},
   {sel:['#carrier','#portion-c'], t:'Trägermenge & Portion', b:'Wie viel hast du insgesamt hergestellt, und wie viele Gramm Wirkstoffträger stecken in einer fertigen Portion? Beides zusammen bestimmt die Dosis pro Stück.'},
-  {sel:['#bioavail'], t:'Aufnahmeform', b:'Wähle die Aufnahmeform. Die Prozentwerte zeigen die durchschnittliche Verfügbarkeit nach Applikationsform aus Studien — individuell kann das spürbar abweichen.'},
+  {sel:['#bioavail'], t:'③ Aufnahmeform', b:'Wähle die Aufnahmeform. Die Prozentwerte zeigen die durchschnittliche Verfügbarkeit nach Applikationsform aus Studien — individuell kann das spürbar abweichen.'},
   {sel:['#tolerance'], t:'Konsumfrequenz', b:'Pflichtfeld: Deine Konsumhäufigkeit beeinflusst, wie stark eine bestehende Toleranz die wahrscheinliche Wirkschwelle in den Ergebnissen verschiebt.'},
   {sel:['#result-grid'], t:'Ergebnis', b:'Hier siehst du die Gesamtmenge, die Menge pro Portion und die Intensitätseinschätzung.'},
   {sel:['#r-kg-box'], t:'Empfohlene Einstiegsdosis', b:'Das ist deine Startdosis — hier anfangen, nicht bei der Gesamtmenge! Falls eine Toleranz-Warnung mit einer höheren mg-Zahl erscheint: Das ist ausdrücklich keine Empfehlung, sondern nur ein Erfahrungswert.'},
