@@ -237,7 +237,7 @@ textarea{resize:vertical;min-height:70px}
       <path d="M256,230 Q306,210 326,270 Q276,290 256,230 Z" fill="#059669"/>
       <line x1="256" y1="390" x2="256" y2="440" stroke="#38BDF8" stroke-width="28" stroke-linecap="round"/>
     </svg>
-    <div><h1 id="app-title">CannGuide</h1><p class="sub" id="app-sub">Guide · Bibliothek · Rechner · Chargen · Prävention</p></div>
+    <div onclick="showPage('home')" style="cursor:pointer"><h1 id="app-title">CannGuide</h1><p class="sub" id="app-sub">Guide · Bibliothek · Rechner · Chargen · Prävention</p></div>
   </div>
   <div style="display:flex;gap:6px;align-items:center">
     <button class="btn" id="lang-toggle" onclick="toggleLang()" title="Sprache">DE</button>
@@ -631,13 +631,6 @@ textarea{resize:vertical;min-height:70px}
         <button class="btn" id="btn-auto-mode" onclick="setMode('auto')">◐ Auto</button>
         <button class="btn primary" id="btn-dark-mode" onclick="setMode('dark')">🌙 Dunkel</button>
         <button class="btn" id="btn-light-mode" onclick="setMode('light')">☀ Hell</button>
-      </div>
-    </div>
-    <div class="cr">
-      <label class="cl" style="font-size:var(--fs);font-weight:500;color:var(--text2)">App-Titel</label>
-      <div style="display:flex;gap:8px;margin-top:.375rem">
-        <input type="text" id="title-input" placeholder="CannGuide" style="flex:1">
-        <button class="btn primary" onclick="setTitle()">✓</button>
       </div>
     </div>
     <div class="cr">
@@ -2004,7 +1997,7 @@ window.renderSafety = function() {
     +'<h2>Sicher konsumieren beginnt mit Wissen.</h2>'
     +'<p class="lede">Grundregeln für einen risikoärmeren Umgang mit Edibles — besonders wichtig beim ersten Mal konsum!.</p>'
     +'<div class="pp-rules">'
-    +'<div class="pp-rule"><span class="n">1</span><div><b>Niedrig starten.</b> <span class="tx">Erste Erfahrung max. 2.5–5&nbsp;mg Edibles.</span></div></div>'
+    +'<div class="pp-rule"><span class="n">1</span><div><b>Niedrig starten.</b> <span class="tx">Erste Erfahrung max. 2.5–5&nbsp;mg THC pro Konsumeinheit.</span></div></div>'
     +'<div class="pp-rule"><span class="n">2</span><div><b>Geduld haben.</b> <span class="tx">Wirkung erst nach 30–120&nbsp;Min. Niemals nachlegen, weil „nichts passiert“.</span></div></div>'
     +'<div class="pp-rule"><span class="n">3</span><div><b>Umfeld beachten.</b> <span class="tx">Vertraute Umgebung, kein Alkohol, keine Medikamente, nicht am Steuer, nie Konsumieren in anwesenheit von Minderjährigen.</span></div></div>'
     +'<div class="pp-rule"><span class="n">4</span><div><b>Informationen suchen.</b> <span class="tx">Vertraue deinen Instinkten, aber informiere dich über Wirkung, Dauer und Kontraindikationen wie z.B Medikamente oder Vorerkrankungen.</span></div></div>'
@@ -2064,12 +2057,6 @@ window.setMode = function(m) {
   try{localStorage.setItem('cannguide_mode',m);}catch(e){}
 };
 
-window.setTitle = function() {
-  var v=document.getElementById('title-input').value.trim();
-  if(v) document.getElementById('app-title').textContent=v;
-  try{localStorage.setItem('cannguide_title',v);}catch(e){}
-};
-
 window.clearCharges = function() {
   if(confirm('Alle Chargen löschen?')){charges=[];saveChargesStorage();renderCharges();}
 };
@@ -2084,7 +2071,6 @@ function esc(s){ if(!s) return ''; return String(s).replace(/&/g,'&amp;').replac
   try{
     var t=localStorage.getItem('cannguide_theme'); if(t&&THEMES[t]) setTheme(t);
     var md=localStorage.getItem('cannguide_mode'); if(md) setMode(md); else setMode('auto');
-    var tl=localStorage.getItem('cannguide_title'); if(tl) document.getElementById('app-title').textContent=tl;
     var lg=localStorage.getItem('cannguide_lang'); if(lg) { currentLang=lg; document.getElementById('lang-toggle').textContent=lg.toUpperCase(); applyLang(); }
   }catch(e){}
 
