@@ -2137,8 +2137,8 @@ function esc(s){ if(!s) return ''; return String(s).replace(/&/g,'&amp;').replac
 var TOUR_STEPS = [
   {sel:['.mode-toggle'], t:'Modus wählen', b:'Wähle hier, ob du mit rohem Pflanzenmaterial (Blüten) oder einem Extrakt/Konzentrat rechnest. Die restlichen Felder passen sich automatisch an.'},
   {sel:['#ig'], t:'① Eingesetzte Wirkstoffmenge', b:'Wie viel Gramm Blüten oder Extrakt setzt du ein? Wichtig: Das ist die Menge des Cannabis-Ausgangsmaterials — NICHT die Menge deines Trägermediums (Butter, Öl etc.), die kommt gleich in Block ②.'},
-  {sel:['#potency'], t:'Wirkstoffgehalt', b:'Der %-Wert von der Verpackung oder einem Labortest — beeinflusst die ganze Rechnung stark. Ohne Test: eher höher schätzen als tiefer — eine Unterschätzung führt leicht zu ungewolltem Nachdosieren und Greening Out.'},
-  {sel:['#raw-decarb'], t:'Decarboxyliert?', b:'Entscheidend: Ist dein Material schon aktiviert (decarboxyliert) oder noch Rohwert (THCA)? Im Zweifel „Nein“ wählen — unaktiviertes Material wirkt kaum.'},
+  {sel:['#potency','#potency-ext'], t:'Wirkstoffgehalt', b:'Der %-Wert von der Verpackung oder einem Labortest — beeinflusst die ganze Rechnung stark. Ohne Test: eher höher schätzen als tiefer — eine Unterschätzung führt leicht zu ungewolltem Nachdosieren und Greening Out. Im Extrakt-Modus wählt "Extrakt-Typ" automatisch einen sinnvollen Startwert.'},
+  {sel:['#raw-decarb','#extract-decarb'], t:'Decarboxyliert?', b:'Entscheidend: Ist dein Material schon aktiviert (decarboxyliert) oder noch Rohwert (THCA)? Im Zweifel „Nein“ wählen — unaktiviertes Material wirkt kaum.'},
   {sel:['#cm'], t:'② Träger / Medium', b:'Womit stellst du her — Butter, MCT-Öl, Gummies? Das bestimmt automatisch die passende Extraktionseffizienz. Hier geht es nur um die Art, die Menge folgt im nächsten Schritt.'},
   {sel:['#carrier','#portion-c'], t:'Trägermenge & Portion', b:'Wie viel hast du insgesamt hergestellt, und wie viele Gramm Wirkstoffträger stecken in einer fertigen Portion? Beides zusammen bestimmt die Dosis pro Stück.'},
   {sel:['#bioavail'], t:'③ Aufnahmeform', b:'Wähle die Aufnahmeform. Die Prozentwerte zeigen die durchschnittliche Verfügbarkeit nach Applikationsform aus Studien — individuell kann das spürbar abweichen.'},
@@ -2147,14 +2147,13 @@ var TOUR_STEPS = [
   {sel:['#r-kg-box'], t:'Empfohlene Einstiegsdosis', b:'Das ist deine Startdosis — hier anfangen, nicht bei der Gesamtmenge! Falls eine Toleranz-Warnung mit einer höheren mg-Zahl erscheint: Das ist ausdrücklich keine Empfehlung, sondern nur ein Erfahrungswert.'},
   {sel:['#btn-save-charge'], t:'Charge speichern', b:'Ergebnis merken? Direkt als Charge speichern — inklusive aller Angaben für später.'}
 ];
-var tourIdx = 0, tourOverlayEl = null, tourTooltipEl = null;
+var tourIdx = 0, tourOverlayEl = null, tourTooltipEl = null, tourDirection = 1;
 
 function tourBounds(sel) {
   var els = sel.map(function(s){ var el = document.querySelector(s); if(!el) return null; return el.closest('.cr') || el; }).filter(Boolean);
   if(!els.length) return null;
-  var rects = els.map(function(e){ return e.getBoundingClientRect(); });
-  var visible = rects.some(function(r){ return r.width > 0 && r.height > 0; });
-  if(!visible) return null;
+  var rects = els.map(function(e){ return e.getBoundingClientRect(); }).filter(function(r){ return r.width > 0 && r.height > 0; });
+  if(!rects.length) return null;
   return {
     top: Math.min.apply(null, rects.map(function(r){return r.top;})),
     left: Math.min.apply(null, rects.map(function(r){return r.left;})),
@@ -2201,7 +2200,7 @@ function tourRenderStep() {
   if(!tourOverlayEl) return;
   var step = TOUR_STEPS[tourIdx];
   var ok = tourPositionOverlay(step);
-  if(!ok) { window.tourNext(); return; }
+  if(!ok) { if(tourDirection<0) window.tourPrev(); else window.tourNext(); return; }
   tourStartRepositioning();
   tourTooltipEl.innerHTML =
     '<div class="tour-step-count">Schritt '+(tourIdx+1)+' / '+TOUR_STEPS.length+'</div>'+
@@ -2216,11 +2215,13 @@ function tourRenderStep() {
 }
 
 window.tourNext = function() {
+  tourDirection = 1;
   if(tourIdx >= TOUR_STEPS.length-1) { endCalcTour(); return; }
   tourIdx++;
   tourRenderStep();
 };
 window.tourPrev = function() {
+  tourDirection = -1;
   if(tourIdx<=0) return;
   tourIdx--;
   tourRenderStep();
