@@ -1397,7 +1397,7 @@ window.setCalcMode = function(m) {
 function setUnitOptions(id, baseUnit) {
   var el = document.getElementById(id);
   if(!el) return;
-  if(baseUnit === 'ml') el.innerHTML = '<option value="1">ml</option><option value="100">dl</option><option value="1000">l</option>';
+  if(baseUnit === 'ml') el.innerHTML = '<option value="1">ml</option><option value="0.05" title="Standardannahme: 20 Tropfen ≈ 1 ml (kann je nach Flüssigkeit/Tropfer leicht abweichen)">Tropfen</option><option value="100">dl</option><option value="1000">l</option>';
   else el.innerHTML = '<option value="0.001">mg</option><option value="1">g</option><option value="1000">kg</option>';
   el.value = '1';
 }
@@ -2150,7 +2150,7 @@ var TOUR_STEPS = [
   {sel:['#potency','#potency-ext'], t:'Wirkstoffgehalt', b:'Der %-Wert von der Verpackung oder einem Labortest — beeinflusst die ganze Rechnung stark. Ohne Test: eher höher schätzen als tiefer — eine Unterschätzung führt dazu, dass die tatsächlich aufgenommene Menge schon in der ersten Portion höher ist als angenommen, mit dem Risiko einer unerwartet starken Wirkung bis hin zu Greening Out.'},
   {sel:['#raw-decarb','#extract-decarb'], t:'Decarboxyliert?', b:'Entscheidend: Ist dein Material schon aktiviert (decarboxyliert) oder noch Rohwert (THCA)? Im Zweifel „Nein“ wählen — unaktiviertes Material wirkt kaum.'},
   {sel:['#cm'], t:'② Träger / Medium', b:'Womit stellst du her — Butter, MCT-Öl, Gummies? Das bestimmt automatisch die passende Extraktionseffizienz. Hier geht es nur um die Art, die Menge folgt im nächsten Schritt.'},
-  {sel:['#carrier','#portion-c'], t:'Trägermenge & Portion', b:'Wie viel hast du insgesamt hergestellt, und wie viele Gramm Wirkstoffträger stecken in einer fertigen Portion? Beides zusammen bestimmt die Dosis pro Stück.'},
+  {sel:['#carrier','#portion-c'], t:'Trägermenge & Portion', b:'Wie viel hast du insgesamt hergestellt, und wie viel steckt in einer fertigen Portion? Beides zusammen bestimmt die Dosis pro Stück. Bei flüssigen Trägern (z.B. Tinktur) kannst du bei der Einheit auch "Tropfen" wählen — praktisch, wenn eine Portion z.B. genau 1 Tropfen sein soll.'},
   {sel:['#bioavail'], t:'③ Aufnahmeform', b:'Wähle die Aufnahmeform. Die Prozentwerte zeigen die durchschnittliche Verfügbarkeit nach Applikationsform aus Studien — individuell kann das spürbar abweichen.'},
   {sel:['#tolerance'], t:'Konsumfrequenz', b:'Pflichtfeld: Deine Konsumhäufigkeit beeinflusst, wie stark eine bestehende Toleranz die wahrscheinliche Wirkschwelle in den Ergebnissen verschiebt.'},
   {sel:['#result-grid'], t:'Ergebnis', b:'Hier siehst du die Gesamtmenge, die Menge pro Portion und die Intensitätseinschätzung.'},
