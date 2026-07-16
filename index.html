@@ -2137,7 +2137,8 @@ function esc(s){ if(!s) return ''; return String(s).replace(/&/g,'&amp;').replac
 var TOUR_STEPS = [
   {sel:['.mode-toggle'], t:'Modus wählen', b:'Wähle hier, ob du mit rohem Pflanzenmaterial (Blüten) oder einem Extrakt/Konzentrat rechnest. Die restlichen Felder passen sich automatisch an.'},
   {sel:['#ig'], t:'① Eingesetzte Wirkstoffmenge', b:'Wie viel Gramm Blüten oder Extrakt setzt du ein? Wichtig: Das ist die Menge des Cannabis-Ausgangsmaterials — NICHT die Menge deines Trägermediums (Butter, Öl etc.), die kommt gleich in Block ②.'},
-  {sel:['#potency','#potency-ext'], t:'Wirkstoffgehalt', b:'Der %-Wert von der Verpackung oder einem Labortest — beeinflusst die ganze Rechnung stark. Ohne Test: eher höher schätzen als tiefer — eine Unterschätzung führt leicht zu ungewolltem Nachdosieren und Greening Out. Im Extrakt-Modus wählt "Extrakt-Typ" automatisch einen sinnvollen Startwert.'},
+  {sel:['#extract-type'], t:'Extrakt-Typ', b:'Wähle die Art deines Extrakts (z.B. BHO, Rosin, RSO, Live Resin) — dieser Schritt erscheint nur im Extrakt-Modus. Die Auswahl setzt automatisch einen für diese Methode typischen Durchschnittswert beim Wirkstoffgehalt, den du im nächsten Schritt bei Bedarf noch anpassen kannst.'},
+  {sel:['#potency','#potency-ext'], t:'Wirkstoffgehalt', b:'Der %-Wert von der Verpackung oder einem Labortest — beeinflusst die ganze Rechnung stark. Ohne Test: eher höher schätzen als tiefer — eine Unterschätzung führt leicht zu ungewolltem Nachdosieren und Greening Out.'},
   {sel:['#raw-decarb','#extract-decarb'], t:'Decarboxyliert?', b:'Entscheidend: Ist dein Material schon aktiviert (decarboxyliert) oder noch Rohwert (THCA)? Im Zweifel „Nein“ wählen — unaktiviertes Material wirkt kaum.'},
   {sel:['#cm'], t:'② Träger / Medium', b:'Womit stellst du her — Butter, MCT-Öl, Gummies? Das bestimmt automatisch die passende Extraktionseffizienz. Hier geht es nur um die Art, die Menge folgt im nächsten Schritt.'},
   {sel:['#carrier','#portion-c'], t:'Trägermenge & Portion', b:'Wie viel hast du insgesamt hergestellt, und wie viele Gramm Wirkstoffträger stecken in einer fertigen Portion? Beides zusammen bestimmt die Dosis pro Stück.'},
@@ -2234,7 +2235,6 @@ window.endCalcTour = function() {
   try { localStorage.setItem('cannguide_calc_tour_done', '1'); } catch(e) {}
 };
 window.startCalcTour = function() {
-  setCalcMode('raw');
   calcUpdate();
   tourIdx = 0;
   tourOverlayEl = document.createElement('div');
