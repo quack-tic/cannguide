@@ -1625,21 +1625,22 @@ window.calcUpdate = function() {
   var tag='', rec='';
   if(ppMg<2.5) { tag='<span class="tag tg">Schwellendosis (&lt;2.5mg)</span>'; rec='Kaum spürbar. Mikrodosierung. Ideal zum Einstieg.'; }
   else if(ppMg<5) { tag='<span class="tag tg">Niedrig (2.5–5mg)</span>'; rec='Einsteiger-Bereich. Gut kontrollierbar.'; }
-  else if(ppMg<15) { tag='<span class="tag tg">Mittel (5–15mg)</span>'; rec='Standard für Erfahrene.';}
-  else if(ppMg<25) { tag='<span class="tag ta">Stark (15–25mg)</span>'; rec='Nur erfahrene Konsumenten!'; }
-  else { tag='<span class="tag tr">Sehr stark (&gt;25mg)</span>'; rec='Portionen teilen.'; }
+  else if(ppMg<10) { tag='<span class="tag tg">Mittel (5–10mg)</span>'; rec='Standard für Erfahrene.';}
+  else if(ppMg<20) { tag='<span class="tag ta">Stark (10–20mg)</span>'; rec='Nur erfahrene Konsumenten!'; }
+  else if(ppMg<35) { tag='<span class="tag tr">Sehr stark (20–35mg)</span>'; rec='Portionen teilen.'; }
+  else { tag='<span class="tag tr">Extrem (&gt;35mg)</span>'; rec='Portionen teilen — und Rezept überdenken: vermutlich zu viel Wirkstoff fürs Vorhaben eingesetzt.'; }
   document.getElementById('r-int').innerHTML = tag;
   var portionBox = document.getElementById('r-portion').closest('.rm');
-  if(portionBox) portionBox.classList.toggle('pulse-warn', ppMg >= 25);
+  if(portionBox) portionBox.classList.toggle('pulse-warn', ppMg >= 20);
   document.getElementById('r-rec').textContent = rec;
 
-  var severityColor = ppMg>=25 ? 'var(--warn)' : ppMg>=15 ? 'var(--amber)' : 'var(--accent)';
+  var severityColor = ppMg>=20 ? 'var(--warn)' : ppMg>=10 ? 'var(--amber)' : 'var(--accent)';
   var intBox = document.getElementById('r-int').closest('.rm');
   var recBox = document.getElementById('r-rec').closest('.rm');
   [intBox, recBox].forEach(function(box){
     if(!box) return;
     box.classList.remove('pulse-warn');
-    if(ppMg>=25) { box.classList.add('pulse-warn'); }
+    if(ppMg>=20) { box.classList.add('pulse-warn'); }
     else { box.style.borderColor = severityColor; }
   });
 
