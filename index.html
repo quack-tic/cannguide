@@ -1645,10 +1645,12 @@ window.calcUpdate = function() {
 
   var kgBox = document.getElementById('r-kg-box');
   var kgEl = document.getElementById('r-kg');
-  // Einstiegsdosis (MacCallum & Russo 2018): absolut, immer sichtbar als Grundempfehlung.
+  // Einstiegsdosis (MacCallum & Russo 2018 als Basis): als Range, passt sich der Konsumfrequenz an.
   if(kgBox && kgEl) {
     kgBox.style.display = 'block';
-    kgEl.innerHTML = '~2.5 mg<div style="display:block;font-size:11px;font-weight:400;color:var(--text3);line-height:1.5;margin-top:4px">Delta-9-THC aufgenommen · oral wirksam als 11-OH · bis ~5 mg langsam steigern<br>empfindliche Personen (tendenziell weiblichen Geschlechts) tiefer ansetzen</div>';
+    var kgRange = tolFactor>=1.7 ? '~5–10 mg' : '~2.5–5 mg';
+    var kgFreqNote = tolFactor>=1.7 ? ' Bei täglichem Konsum braucht es für einen spürbaren Effekt erfahrungsgemäss mehr — daher die höhere Spanne.' : '';
+    kgEl.innerHTML = kgRange+'<div style="display:block;font-size:11px;font-weight:400;color:var(--text3);line-height:1.5;margin-top:4px">Delta-9-THC aufgenommen · oral wirksam als 11-OH · innerhalb dieser Spanne langsam steigern, nicht sofort das obere Ende nehmen.'+kgFreqNote+'<br>empfindliche Personen (tendenziell weiblichen Geschlechts) eher am unteren Ende ansetzen</div>';
   }
 };
 
